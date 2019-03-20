@@ -1,0 +1,11 @@
+.myHeader.ui-li-heading {
+			color:#cc0000;
+		}
+		.myParagraph.ui-li-desc {
+			color:#333;
+			overflow:show;
+			text-overflow:clip;
+			white-space:normal;
+			height:28px;
+			margin-bottom:0px;
+		}

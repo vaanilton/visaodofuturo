@@ -1,0 +1,63 @@
+
+.profile-sidebar {
+    padding: 10px 0;
+    border-bottom: 1px solid #e9ecf2;
+}
+
+
+
+.profile-userpic img {
+    float: left;
+    margin: 10px 0px 0px 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 9999px !important;
+}
+
+
+
+
+
+
+.profile-usertitle {
+    float: left;
+    text-align: left;
+    margin: 10px 0 0 12px;
+}
+
+.profile-usertitle-name {
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.profile-usertitle-status {
+    text-transform: uppercase;
+    color: #AAA;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 9999px;
+    margin-right: 5px;
+}
+
+.label-success {
+    background-color: #8ad919;
+}
+
+.label-success[href]:hover,
+.label-success[href]:focus {
+    background-color: #8ad919;
+}
+
+.ga-border {
+    height: 3px;
+    width: 40px;
+    background-color: #228bdf;
+    margin: 10px auto;
+}

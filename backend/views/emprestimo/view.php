@@ -2,17 +2,15 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use backend\models\Fornecedor;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Emprestimo */
 
-$this->title = $model->id;
+$this->title = 'View';
 $this->params['breadcrumbs'][] = ['label' => 'Emprestimos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="emprestimo-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -28,8 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'id_fornecedor',
+            //'id',
+            //'id_fornecedor',
+            [
+                'attribute'=>'Fornecedor',
+                'value'=>function($data){
+                  $fornecedor = Fornecedor::find()->where(['id'=>$data->id_fornecedor])->One();
+                  if($fornecedor){
+                     return $fornecedor->nome.' '.$fornecedor->sobrenome;
+                  }
+                }
+            ],
             'id_utilizador',
             'tipo',
             'nome',

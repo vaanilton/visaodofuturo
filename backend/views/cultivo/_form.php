@@ -25,14 +25,14 @@ use kartik\select2\Select2;
 
       <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
         <?= $form->field($model, 'id_fornecedor')->widget(Select2::className(), [
-          'data' => ArrayHelper::map(Fornecedor::find()->all(),'id','nome'),
+          'data' => ArrayHelper::map(Fornecedor::find()->orderBy(['nome' => SORT_ASC])->all(),'id','nome'),
           'options' => ['placeholder' => 'Escolha um Agricultor', 'id' => 'catid'],
         ]);?>
       </div>
 
       <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
         <?= $form->field($model, 'id_regiao')->widget(Select2::className(), [
-          'data' => ArrayHelper::map(Regiao::find()->all(),'id','localidade'),
+          'data' => ArrayHelper::map(Regiao::find()->orderBy(['localidade' => SORT_ASC])->all(),'id','localidade'),
           'options' => ['placeholder' => 'Escolha Regiao', 'id' => 'catidd'],
         ]);?>
       </div>
@@ -100,7 +100,7 @@ use kartik\select2\Select2;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i> Salvar',['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

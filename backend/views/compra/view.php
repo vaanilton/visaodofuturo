@@ -62,6 +62,23 @@ $this->params['breadcrumbs'][] = ['label' => 'Compras', 'url' => ['index']];
                   }
               }
             ],
+            [
+              'attribute'=>'Nome Produto',
+              'value'=>function($data){
+                  $producao = Producao::find()->where(['id'=>$data->id_producao])->One();
+                  if($producao){
+                    $cultivo = Cultivo::find()->where(['id'=>$producao->id_cultivo])->One();
+                    if($cultivo){
+                      return $cultivo->nome_do_planteio;
+                    }else return $producao->designacao;
+                  }else {
+                    $gado = Gado::find()->where(['id'=>$data->id_gado])->One();
+                    if($gado){
+                      return $gado->nome;
+                    }
+                  }
+              }
+            ],
             'quantidade',
             [
               'attribute'=>'Preco Total',

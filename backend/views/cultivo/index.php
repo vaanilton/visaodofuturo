@@ -272,7 +272,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                   )
               ],*/
-              [
+              'data_do_planteio',
+              /*[
                 'attribute'=> 'Data Registrado',
                 'value' => 'data_do_planteio',
                 'format' => 'raw',
@@ -284,7 +285,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'yyyy-m-d'
                     ]
                 ])
-              ],
+              ],*/
               [
                   'class' => 'kartik\grid\BooleanColumn',
                   'attribute' => 'status',
@@ -292,7 +293,7 @@ $this->params['breadcrumbs'][] = $this->title;
               ],
               [
                   'class' => 'kartik\grid\ActionColumn',
-                  'template' => '{Produzir}',
+                  'template' => '{Produzir}{view}{update}{delete}',
                   'buttons' => [
 
                      'Produzir' => function($url, $model) {
@@ -302,19 +303,16 @@ $this->params['breadcrumbs'][] = $this->title;
                            ['producao/agricula', 'id' => $model['id']]
                          );
                        }
-                     }
-                  ]
-              ],
-              [
-                  'class' => 'kartik\grid\ActionColumn',
-                  'template' => '{view}{update}{delete}',
-                  'buttons' => [
+                     },
+
                     'view' => function($url, $model) {
               	         return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-eye"></b></span>', ['view', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
               	     },
+
               	     'update' => function($id, $model) {
               	        return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-pencil"></b></span>', ['update', 'id' => $model['id']], ['title' => 'Update', 'id' => 'modal-btn-view']);
               	     },
+
               	     'delete' => function($url, $model) {
               	         return Html::a(
                            '<span class="btn btn-sm btn-danger"><b class="fa fa-trash"></b></span>',
@@ -333,7 +331,7 @@ $this->params['breadcrumbs'][] = $this->title;
                          );
               	     }
                   ]
-             ],
+                ],
             ],
             'panel' => [
                 'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-globe"></i> Cultivos</h3>',
@@ -397,6 +395,17 @@ $this->params['breadcrumbs'][] = $this->title;
                          'class' => 'text-center'
                    ]
                ],
+               'nome_do_planteio',
+               /*[
+                   'attribute' => 'Cultivo',
+                   'value' => 'nome_do_planteio',
+                   'filter' => Html::activeDropDownList(
+                     $searchModel, 'nome_do_planteio', [Cultivo::find()->asArray()->all(),'nome_do_planteio'],
+                     [
+                       'class'=>'form-control','prompt' => 'Planteio'
+                     ]
+                   )
+               ],*/
                [
                    'attribute'=>'Nome Agricultor',
                    'value'=>function($data){
@@ -421,19 +430,7 @@ $this->params['breadcrumbs'][] = $this->title;
                          'class' => 'text-center'
                       ]
                ],
-
-               'nome_do_planteio',
-               [
-                   'attribute' => 'Cultivo',
-                   'value' => 'nome_do_planteio',
-                   'filter' => Html::activeDropDownList(
-                     $searchModel, 'nome_do_planteio', [Cultivo::find()->asArray()->all(),'nome_do_planteio'],
-                     [
-                       'class'=>'form-control','prompt' => 'Planteio'
-                     ]
-                   )
-               ],
-               [
+               /*[
                  'attribute'=> 'Data Registrado',
                  'value' => 'data_do_planteio',
                  'format' => 'raw',
@@ -445,7 +442,8 @@ $this->params['breadcrumbs'][] = $this->title;
                          'format' => 'yyyy-m-d'
                      ]
                  ])
-               ],
+               ],*/
+               'data_do_planteio',
                [
                    'class' => 'kartik\grid\BooleanColumn',
                    'attribute' => 'status',

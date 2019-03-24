@@ -65,8 +65,7 @@ use yii\helpers\Url;
                 <span class="fa fa-chevron-down"></span>
               </a>
               <ul class="nav child_menu">
-                <li><a class="" href="<?= Url::to(['site/index']); ?>">Dashboard Producao</a></li>
-                <li><a class="" href="<?= Url::to(['site/dashboard']); ?>">Dashboard Fornecedor</a></li>
+                <li><a class="" href="<?= Url::to(['site/index']); ?>">Dashboard</a></li>
               </ul>
             </li>
 
@@ -153,7 +152,7 @@ use yii\helpers\Url;
           <h3>BackOffice</h3>
           <ul class="nav side-menu">
             <li>
-              <a href="<?= Url::to(['site/backofice']); ?>">
+              <a href="<?= Url::to(['backoffice/index']); ?>">
                 <i class="fa fa-bold"></i> BackOffice
               </a>
             </li>

@@ -17,7 +17,7 @@ use yii\helpers\Html;
       <div class="tile-stats" style="background-color: #E9EBEE;padding: 5px;text-align: center;font-size: 10px;color: white;">
         <div class="icon"><i class="fa fa-users blue"></i></div>
         <div class="count blue"><?=$modelsTotalUtilizador?></div>
-        <h3>Colaborador</h3>
+        <h3>Utilizador</h3>
         <p></p>
       </div>
     </div>
@@ -53,6 +53,41 @@ use yii\helpers\Html;
       <div class="tile-stats" style="background-color: #E9EBEE;padding: 5px;text-align: center;font-size: 10px;color: white;">
         <div class="icon"><i class="fa fa-lock blue"></i></div>
         <div class="count blue"><?=User::find()->where(['status'=>0])->count()?></div>
+        <h3>Bloquiado</h3>
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row top_tiles">
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="tile-stats">
+        <div class="icon"><i class="fa fa-users red"></i></div>
+        <div class="count blue"><?=Fornecedor::find()->where(['status'=>10])->count()?></div>
+        <h3>Fornecedor</h3>
+        <p></p>
+      </div>
+    </div>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="tile-stats">
+        <div class="icon"><i class="fa fa-male red"></i></div>
+        <div class="count blue"><?=Fornecedor::find()->where(['status'=>10, 'tipo'=>'Agricultor'])->count()?></div>
+        <h3>Agricultor</h3>
+        <p></p>
+      </div>
+    </div>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="tile-stats">
+        <div class="icon"><i class="fa fa-male red"></i></div>
+        <div class="count blue"><?=Fornecedor::find()->where(['status'=>10, 'tipo'=>'Pastor'])->count()?></div>
+        <h3>Pastor</h3>
+        <p></p>
+      </div>
+    </div>
+    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="tile-stats">
+        <div class="icon"><i class="fa fa-lock red"></i></div>
+        <div class="count blue"><?=Fornecedor::find()->where(['status'=>0])->count()?></div>
         <h3>Bloquiado</h3>
         <p></p>
       </div>

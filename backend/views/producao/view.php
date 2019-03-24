@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
         $profile = Profile::find()->where(['user_iduser' => Yii::$app->user->identity->id])->one();
         if($profile){
-          if($profile->tipo === 'Adiministrador'){
+          if($profile->tipo === 'Adiministrador' || $profile->tipo === 'Gestor'){
           ?>
             <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -46,42 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
               <h1><?= Html::encode("Producao Comprado") ?></h1>
         <?php
           }
-        }else if($profile->tipo === 'Gestor'){
-        ?>
-            <?= Html::a('Comprar', ['comprar', 'id' => $model->id], [
-                'class' => 'btn btn-success',
-                'data' => [
-                    'confirm' => 'Are you sure you want to delete this item?',
-                    'method' => 'post',
-                ],
-            ]) ?>
-            <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => 'Are you sure you want to delete this item?',
-                    'method' => 'post',
-                ],
-            ]) ?>
-
-            <?php
-            if($model->estado === 'Analizar'){
-            ?>
-                <?= Html::a('Confirmar', ['confirmar', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?php
-            }else if($model->estado === 'Confirmado'){
-            ?>
-                <?= Html::a('Comprar', ['comprar', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?php
-            }else if($model->estado === 'Comprado'){
-            ?>
-                <h1><?= Html::encode("Producao Comprado") ?></h1>
-            <?php
-            }
-            ?>
-
-          <?php
-          }else if($profile->tipo === 'Fiel_armazen'){
+        }else if($profile->tipo === 'Fiel_armazen'){
           ?>
             <?php
             if($model->estado === 'Analizar'){

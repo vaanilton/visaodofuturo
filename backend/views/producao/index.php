@@ -158,7 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
               ],
               [
                   'class' => 'kartik\grid\ActionColumn',
-                  'template' => '{Comprar}{Confirmar}{Comprado}',
+                  'template' => '{Comprar}{Confirmar}{Comprado}{view}{update}{delete}',
                   'buttons' => [
 
                       'Confirmar' => function($url, $model) {
@@ -186,14 +186,9 @@ $this->params['breadcrumbs'][] = $this->title;
                          );
                        }
                      },
-                  ]
-              ],
-              [
-                  'class' => 'kartik\grid\ActionColumn',
-                  'template' => '{view}{update}{delete}',
-                  'buttons' => [
+
                     'view' => function($url, $model) {
-              	         return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-search-plus"></b></span>', ['view', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
+              	         return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-eye"></b></span>', ['view', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
               	     },
               	     'update' => function($id, $model) {
               	        return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-pencil"></b></span>', ['update', 'id' => $model['id']], ['title' => 'Update', 'id' => 'modal-btn-view']);

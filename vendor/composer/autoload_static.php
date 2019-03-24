@@ -106,6 +106,7 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         ),
         'k' => 
         array (
+            'kop\\y2sp\\' => 9,
             'kartik\\sortable\\' => 16,
             'kartik\\select2\\' => 15,
             'kartik\\popover\\' => 15,
@@ -251,6 +252,10 @@ class ComposerStaticInit9c4ae0f1e3be1063039c0f96f3fd7424
         'miloschuman\\highcharts\\' => 
         array (
             0 => __DIR__ . '/..' . '/miloschuman/yii2-highcharts-widget/src',
+        ),
+        'kop\\y2sp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kop/yii2-scroll-pager',
         ),
         'kartik\\sortable\\' => 
         array (

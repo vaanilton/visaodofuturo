@@ -33,11 +33,11 @@
       ['class' => 'yii\grid\ActionColumn'],
     ];
 
-    // Renders a export dropdown menu
+    /* Renders a export dropdown menu
     echo ExportMenu::widget([
         'dataProvider' => $dataProvider,
         'columns' => $gridColumns
-    ]);
+    ]);*/
   ?>
   <?= GridView::widget([
       'dataProvider' => $dataProvider,
@@ -65,6 +65,7 @@
           //'tipo',
           [
               'attribute'=>'Tipo',
+              'pageSummary' => 'Total',
               'value'=>'tipo',
               'filter' => Html::activeDropDownList(
                 $searchModel, 'tipo',['Equipamento'=>'Equipamento', 'Medicamento'=>'Medicamento'],

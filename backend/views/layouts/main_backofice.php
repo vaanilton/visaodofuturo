@@ -53,21 +53,21 @@ use yii\helpers\Url;
                   <div class="container body">
                     <div class="main_container">
                       <?= $this->render(
-                        '../BackOffic/header.php',
+                        '../Backoffice/header.php',
                         [
                           'directoryAsset' => $directoryAsset,
                           'profile'=>$profile
                         ]
                       )?>
                       <?= $this->render(
-                        '../BackOffic/left.php',
+                        '../Backoffice/left.php',
                         [
                           'directoryAsset' => $directoryAsset,
                           'profile'=>$profile
                         ]
                       )?>
                       <?= $this->render(
-                        '../BackOffic/content.php',
+                        '../Backoffice/content.php',
                         [
                           'content' => $content,
                           'directoryAsset' => $directoryAsset

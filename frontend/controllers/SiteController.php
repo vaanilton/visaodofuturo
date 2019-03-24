@@ -17,7 +17,8 @@ use frontend\models\Fornecedor;
 use yii\helpers\Url;
 use yii\data\Pagination;
 use frontend\models\ProducaoSearch;
-
+use frontend\models\Inscricao;
+use frontend\models\Contacto;
 /**
  * Site controller
  */
@@ -126,6 +127,12 @@ class SiteController extends Controller
        ->limit(4)
        ->all();
 
+       $modelsAnuncio=(new \yii\db\Query())
+       ->select(['descricao', 'requisitos','status','data', 'id'])
+       ->from('Anuncio v')
+       ->where(['v.status' => 10])
+       ->all();
+
        return $this->render('index',[
            'modelsUsers'=>$modelsEquipa,
            'modelsFornecedor'=>$modelsFornecedor,
@@ -135,6 +142,7 @@ class SiteController extends Controller
            'modelsEspecialisasao' => $modelsEspecialisasao,
            'modelsIntervensaoSocial' => $modelsIntervensaoSocial,
            'modelsInformacaoContacto' => $modelsInformacaoContacto,
+           'modelsAnuncio' => $modelsAnuncio,
        ]);
    }
 
@@ -228,6 +236,12 @@ class SiteController extends Controller
         ->limit(4)
         ->all();
 
+        $modelsAnuncio=(new \yii\db\Query())
+        ->select(['descricao', 'requisitos','status','data', 'id'])
+        ->from('Anuncio v')
+        ->where(['v.status' => 10])
+        ->all();
+
         $searchModel = new ProducaoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, 'producao');
 
@@ -264,6 +278,25 @@ class SiteController extends Controller
             }
         }
 
+
+        $model = new Inscricao();
+
+        if ($model->load(Yii::$app->request->post())) {
+          if($model->save())
+            return $this->redirect(['index']);
+        }
+
+        $modelContacto = new Contacto();
+        if ($modelContacto->load(Yii::$app->request->post()) && $modelContacto->validate()) {
+            if ($modelContacto->sendEmail(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+            } else {
+                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+            }
+
+            return $this->refresh();
+        }
+
         return $this->render('index',[
             'modelsUsers'=>$modelsEquipa,
             'modelsFornecedor'=>$modelsFornecedor,
@@ -273,6 +306,9 @@ class SiteController extends Controller
             'modelsEspecialisasao' => $modelsEspecialisasao,
             'modelsIntervensaoSocial' => $modelsIntervensaoSocial,
             'modelsInformacaoContacto' => $modelsInformacaoContacto,
+            'modelsAnuncio' => $modelsAnuncio,
+            'model' => $model,
+            'modelContacto' => $modelContacto,
         ]);
     }
 

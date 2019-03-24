@@ -273,43 +273,53 @@ $this->params['breadcrumbs'][] = $this->title;
              ],
              'data_registo',
              [
-                 'class' => 'kartik\grid\ActionColumn',
-                 'template' => '{Produzir}{Comprar}',
-                 'buttons' => [
-
-                    'Produzir' => function($url, $model) {
-                      if($model['status'] == 10 &&  $model['quantidade']!=0){
-                        return Html::a(
-                          '<span class="btn btn-sm btn-danger">Produzir<b class="fa fa-success"></b></span>',
-                          ['producao/pecuaria', 'id' => $model['id']]
-                        );
-                      }
-                    },
-                    'Comprar' => function($url, $model) {
-                      if($model['status'] == 10 &&  $model['quantidade']!=0){
-                        return Html::a(
-                          '<span class="btn btn-sm btn-success">Comprar<b class=""></b></span>',
-                          ['gado/comprar', 'id' => $model['id']]
-                        );
-                      }
-                    }
-                 ]
-             ],
-             [
                  'class' => 'kartik\grid\BooleanColumn',
                  'attribute' => 'status',
                  'vAlign' => 'middle'
              ],
              [
                  'class' => 'kartik\grid\ActionColumn',
-                 'template' => '{view}{update}{delete}',
+                 'template' => '{Mais}{Menos}{Produzir}{Comprar}{view}{update}{delete}',
                  'buttons' => [
+
+                    'Produzir' => function($url, $model) {
+                      if($model['status'] == 10 &&  $model['quantidade']!=0){
+                        return Html::a(
+                          '<span class="btn btn-sm btn-primary">Produzir<b class="fa fa-success"></b></span>',
+                          ['producao/pecuaria', 'id' => $model['id']]
+                        );
+                      }
+                    },
+
+                    'Comprar' => function($url, $model) {
+                      if($model['status'] == 10 &&  $model['quantidade']!=0){
+                        return Html::a(
+                          '<span class="btn btn-sm btn-success"><b class="fa fa-shopping-cart"></b></span>',
+                          ['gado/comprar', 'id' => $model['id']]
+                        );
+                      }
+                    },
+
+                   'Mais' => function($url, $model) {
+                     if($model['status'] == 10 &&  $model['quantidade']!=0){
+                        return Html::a('<span class="btn btn-sm btn-success"><b class="glyphicon glyphicon-plus"></b></span>', ['historial-gado/aumentar', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
+                      }
+                    },
+
+                   'Menos' => function($url, $model) {
+                     if($model['status'] == 10 &&  $model['quantidade']!=0){
+                        return Html::a('<span class="btn btn-sm btn-success"><b class="glyphicon glyphicon-minus"></b></span>', ['historial-gado/diminuir', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
+                      }
+                    },
+
                    'view' => function($url, $model) {
                         return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-eye"></b></span>', ['view', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
                     },
+
                     'update' => function($id, $model) {
                        return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-pencil"></b></span>', ['update', 'id' => $model['id']], ['title' => 'Update', 'id' => 'modal-btn-view']);
                     },
+
                     'delete' => function($url, $model) {
                         return Html::a(
                           '<span class="btn btn-sm btn-danger"><b class="fa fa-trash"></b></span>',
@@ -392,6 +402,18 @@ $this->params['breadcrumbs'][] = $this->title;
                       'class' => 'text-center'
                 ]
             ],
+            'nome',
+            /*[
+                'attribute' => 'Gado',
+                'value' => 'nome',
+                'filter' => Html::activeDropDownList(
+                  $searchModel, 'nome', [Gado::find()->asArray()->all(),'nome'],
+                  [
+                    'class'=>'form-control','prompt' => 'Gado'
+                  ]
+                )
+            ],*/
+            'quantidade',
             [
                 'attribute'=>'Nome Pastor',
                 'value'=>function($data){
@@ -416,18 +438,8 @@ $this->params['breadcrumbs'][] = $this->title;
                       'class' => 'text-center'
                    ]
             ],
-            'nome',
-            [
-                'attribute' => 'Gado',
-                'value' => 'nome',
-                'filter' => Html::activeDropDownList(
-                  $searchModel, 'nome', [Gado::find()->asArray()->all(),'nome'],
-                  [
-                    'class'=>'form-control','prompt' => 'Gado'
-                  ]
-                )
-            ],
-            [
+            'data_registo',
+            /*[
               'attribute'=> 'Data Registrado',
               'value' => 'data_registo',
               'format' => 'raw',
@@ -439,7 +451,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       'format' => 'yyyy-m-d'
                   ]
               ])
-            ],
+            ],*/
             [
                 'class' => 'kartik\grid\BooleanColumn',
                 'attribute' => 'status',
@@ -447,9 +459,20 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{Produzir}',
+                'template' => '{Mais}{Menos}{Produzir}',
                 'buttons' => [
 
+                  'Mais' => function($url, $model) {
+                    if($model['status'] == 10 &&  $model['quantidade']!=0){
+                       return Html::a('<span class="btn btn-sm btn-success"><b class="glyphicon glyphicon-plus"></b></span>', ['fornecedor/imprimirproducao', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
+                     }
+                   },
+
+                  'Menos' => function($url, $model) {
+                    if($model['status'] == 10 &&  $model['quantidade']!=0){
+                       return Html::a('<span class="btn btn-sm btn-success"><b class="glyphicon glyphicon-minus"></b></span>', ['fornecedor/imprimirproducao', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
+                     }
+                   },
                    'Produzir' => function($url, $model) {
                      if($model['status'] == 10){
                        return Html::a(

@@ -258,7 +258,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'type'=>'success',
                 'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Cadastrar Fornecedor', ['create'], ['class' => 'btn btn-success']),
                 'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
-                'footer'=>false
+                'footer'=>true
             ],
          ]);?>
 

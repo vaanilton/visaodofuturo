@@ -426,7 +426,7 @@ AppAsset::register($this);
 
               <?php $pegar_area = $key?>
 
-    					<a href="" data-toggle="modal" data-target="#area" class="life-buttons">Mais Informação</a>
+    					<a href="<?= Url::to(['area-intervencao/view','id'=>$value['id']]); ?>" data-toggle="modal" data-target="" class="life-buttons">Mais Informação</a>
     				</div>
 
           <?php }else{ ?>
@@ -446,10 +446,9 @@ AppAsset::register($this);
                 <?= $pegar ?>
               </p>
 
-              <?php $pegar_area = $key?>
+              <a href="<?= Url::to(['area-intervencao/view','id'=>$value['id']]); ?>" data-toggle="modal" data-target="" class="life-buttons">Mais Informação</a>
 
-    					<a href="" data-toggle="modal" data-target="#area" class="life-buttons">Mais Informação</a>
-    				</div>
+            </div>
 
         <?php  }}
         } ?>
@@ -459,12 +458,34 @@ AppAsset::register($this);
 	</div>
 	<!-- //services -->
 
+  <div class="modal fade" id="intervencao" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body modal-body-sub_nature">
+          <div class="main-mailposi">
+            <span class="fa fa-envelope-o" aria-hidden="true"></span>
+          </div>
+          <div class="modal_body_left modal_body_left1">
+
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <!-- //Modal content-->
+    </div>
+  </div>
+
   <div class="modal fade" id="area" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body modal-body-sub_nature">
@@ -777,6 +798,7 @@ AppAsset::register($this);
 		<div class="clearfix"> </div>
 	</div>
 	<div class="second-contact-nature">
+
 		<div class="col-md-6 form-bg">
 			<form action="#" method="post">
 				<div class="contact-fields">
@@ -794,6 +816,7 @@ AppAsset::register($this);
 				<input type="submit" value="Submit">
 			</form>
 		</div>
+
 		<div class="col-md-6 address-left-second">
 
       <?php

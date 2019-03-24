@@ -46,9 +46,39 @@ use yii\helpers\Url;
 
                   return Yii::$app->response->redirect(Url::to(['site/login']));
 
-                //Caso for Fiel_armazen
-              }else if($profile->tipo === 'Fiel_armazen'){
-        ?>
+              //Caso for Administrador
+
+              }else if($profile->tipo === 'Adiministrador'){ ?>
+                  <div class="wrapper">
+                    <div class="container body">
+                      <div class="main_container">
+                          <?= $this->render(
+                            '../Adiministrador/header.php',
+                            [
+                              'directoryAsset' => $directoryAsset,
+                              'profile'=>$profile
+                            ]
+                          )?>
+                          <?= $this->render(
+                            '../Adiministrador/left.php',
+                            [
+                              'directoryAsset' => $directoryAsset,
+                              'profile'=>$profile
+                            ]
+                          )?>
+                          <?= $this->render(
+                            '../Adiministrador/content.php',
+                            [
+                              'content' => $content,
+                              'directoryAsset' => $directoryAsset
+                            ]
+                          )?>
+                        </div>
+                      </div>
+                    </div>
+
+              <?php }else if($profile->tipo === 'Fiel_armazen'){ ?>
+
                 <div class="wrapper">
                   <div class="container body">
                     <div class="main_container">
@@ -77,10 +107,9 @@ use yii\helpers\Url;
                     </div>
                   </div>
                 </div>
-              <?php
-              //Caso for Fornecedores[Agricultor Pastor]
-              }else if($profile->tipo === 'Fornecedores'){
-        ?>
+
+              <?php }else if($profile->tipo === 'Fornecedores'){ ?>
+
                 <div class="wrapper">
                   <div class="container body">
                     <div class="main_container">
@@ -109,72 +138,9 @@ use yii\helpers\Url;
                     </div>
                   </div>
                 </div>
-              <?php
-              //Caso for Adiministrador
-              }else if($profile->tipo === 'Adiministrador'){
-              ?>
-                  <div class="wrapper">
-                    <div class="container body">
-                      <div class="main_container">
-                          <?= $this->render(
-                            '../Adiministrador/header.php',
-                            [
-                              'directoryAsset' => $directoryAsset,
-                              'profile'=>$profile
-                            ]
-                          )?>
-                          <?= $this->render(
-                            '../Adiministrador/left.php',
-                            [
-                              'directoryAsset' => $directoryAsset,
-                              'profile'=>$profile
-                            ]
-                          )?>
-                          <?= $this->render(
-                            '../Adiministrador/content.php',
-                            [
-                              'content' => $content,
-                              'directoryAsset' => $directoryAsset
-                            ]
-                          )?>
-                        </div>
-                      </div>
-                    </div>
-              <?php
-                if($layout == 'backofice'){
-              ?>
-                  <div class="wrapper">
-                    <div class="container body">
-                      <div class="main_container">
-                          <?= $this->render(
-                            '../backofice/header.php',
-                            [
-                              'directoryAsset' => $directoryAsset,
-                              'profile'=>$profile
-                            ]
-                          )?>
-                          <?= $this->render(
-                            '../backofice/left.php',
-                            [
-                              'directoryAsset' => $directoryAsset,
-                              'profile'=>$profile
-                            ]
-                          )?>
-                          <?= $this->render(
-                            '../backofice/content.php',
-                            [
-                              'content' => $content,
-                              'directoryAsset' => $directoryAsset
-                            ]
-                          )?>
-                        </div>
-                      </div>
-                    </div>
-              <?php
-                }
-              //Caso for Gestor
-              }else if($profile->tipo === 'Gestor'){
-              ?>
+
+              <?php }else if($profile->tipo === 'Gestor'){ ?>
+
                   <div class="wrapper">
                     <div class="container body">
                       <div class="main_container">
@@ -200,10 +166,9 @@ use yii\helpers\Url;
                       </div>
                     </div>
                   </div>
-              <?php
-              //Caso for Operador
-            }else if($profile->tipo === 'backoffice'){
-              ?>
+
+              <?php }else if($profile->tipo === 'backoffice'){ ?>
+
                   <div class="wrapper">
                     <div class="container body">
                       <div class="main_container">
@@ -229,10 +194,9 @@ use yii\helpers\Url;
                       </div>
                     </div>
                   </div>
-              <?php
-              //Caso for Operador
-              }else if($profile->tipo === 'Operador'){
-                ?>
+
+              <?php }else if($profile->tipo === 'Operador'){ ?>
+
                 <div class="wrapper">
                   <div class="container body">
                     <div class="main_container">
@@ -258,11 +222,9 @@ use yii\helpers\Url;
                     </div>
                   </div>
                 </div>
-          <?php
-              }else return Yii::$app->getResponse()->redirect(Url::to(['site/login']));
+              <?php }else return Yii::$app->getResponse()->redirect(Url::to(['site/login']));
+          } else return Yii::$app->getResponse()->redirect(Url::to(['site/login'])); ?>
 
-          } else return Yii::$app->getResponse()->redirect(Url::to(['site/login']));
-          ?>
           <?php $this->endBody() ?>
       </body>
     </html>

@@ -59,14 +59,29 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'kartik\grid\ActionColumn',
-                'template' => '{view}{update}{delete}',
+                'template' => '{Mais}{Menos}{view}{delete}',
                 'buttons' => [
+
+                  'Mais' => function($url, $model) {
+                    if($model['status'] == 10 &&  $model['quantidade']>=0){
+                       return Html::a('<span class="btn btn-sm btn-success"><b class="glyphicon glyphicon-plus"></b></span>', ['aumentar', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
+                     }
+                   },
+
+                  'Menos' => function($url, $model) {
+                    if($model['status'] == 10 &&  $model['quantidade'] > 0){
+                       return Html::a('<span class="btn btn-sm btn-success"><b class="glyphicon glyphicon-minus"></b></span>', ['diminuir', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
+                     }
+                   },
+
                   'view' => function($url, $model) {
-            	         return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-search-plus"></b></span>', ['view', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
+            	         return Html::a('<span class="btn btn-sm btn-default"><b class="glyphicon glyphicon-eye-open"></b></span>', ['view', 'id' => $model['id']], ['title' => 'View', 'id' => 'modal-btn-view']);
             	     },
+                   /*
             	     'update' => function($id, $model) {
             	        return Html::a('<span class="btn btn-sm btn-default"><b class="fa fa-pencil"></b></span>', ['update', 'id' => $model['id']], ['title' => 'Update', 'id' => 'modal-btn-view']);
-            	     },
+            	     },*/
+
             	     'delete' => function($url, $model) {
             	         return Html::a(
                          '<span class="btn btn-sm btn-danger"><b class="fa fa-trash"></b></span>',

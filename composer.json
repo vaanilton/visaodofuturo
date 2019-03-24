@@ -34,7 +34,8 @@
         "2amigos/yii2-google-maps-library": "*",
         "yii2mod/yii2-google-maps-markers": "*",
         "kartik-v/yii2-export": "@dev",
-        "mpdf/mpdf": "@dev"
+        "mpdf/mpdf": "@dev",
+        "kop/yii2-scroll-pager": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

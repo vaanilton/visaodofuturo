@@ -20,7 +20,7 @@ class AppAsset extends AssetBundle
         'css/flexslider.css',
     ];
     public $js = [
-      'js/jquery-2.1.4.min.js',
+      //'js/jquery-2.1.4.min.js',
       'js/bootstrap.js',
       //'js/lightbox-plus-jquery.min.js',
       'js/numscroller-1.0.js',

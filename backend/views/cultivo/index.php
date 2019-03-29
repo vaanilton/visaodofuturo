@@ -11,7 +11,7 @@ use backend\models\ProducaoSearch;
 use kartik\date\DatePicker;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
-
+use kop\y2sp\ScrollPager;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CultivoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -340,6 +340,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
                 'footer'=>true
             ],
+            'pager' => [
+                'class'     => ScrollPager::className(),
+                'container' => '.grid-view tbody',
+                'item'      => 'tr',
+                'paginationSelector' => '.grid-view .pagination',
+                'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+                'enabledExtensions'  => [
+                    ScrollPager::EXTENSION_SPINNER,
+                    //ScrollPager::EXTENSION_NONE_LEFT,
+                    ScrollPager::EXTENSION_PAGING,
+                ],
+            ],
           ]);?>
 
         <?php }else if($profile->tipo == 'Operador'){ ?>
@@ -471,6 +483,18 @@ $this->params['breadcrumbs'][] = $this->title;
                  'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Registrar Cultivo', ['create'], ['class' => 'btn btn-success']),
                  'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
                  'footer'=>true
+             ],
+             'pager' => [
+                 'class'     => ScrollPager::className(),
+                 'container' => '.grid-view tbody',
+                 'item'      => 'tr',
+                 'paginationSelector' => '.grid-view .pagination',
+                 'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+                 'enabledExtensions'  => [
+                     ScrollPager::EXTENSION_SPINNER,
+                     //ScrollPager::EXTENSION_NONE_LEFT,
+                     ScrollPager::EXTENSION_PAGING,
+                 ],
              ],
            ]);?>
 

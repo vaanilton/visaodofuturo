@@ -34,10 +34,10 @@ class Emprestimo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_fornecedor', 'id_utilizador', 'tipo', 'descricao', 'quantidade'], 'required'],
+            [['id_fornecedor', 'id_utilizador', 'tipo', 'quantidade'], 'required'],
             [['id', 'id_fornecedor', 'id_utilizador', 'quantidade'], 'integer'],
             [['tipo'], 'string', 'max' => 32],
-            [['descricao', 'data'], 'string', 'max' => 255],
+            [['data'], 'string', 'max' => 255],
             [['id'], 'unique'],
             [['id_fornecedor'], 'exist', 'skipOnError' => true, 'targetClass' => Fornecedor::className(), 'targetAttribute' => ['id_fornecedor' => 'id']],
             [['id_utilizador'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_utilizador' => 'user_iduser']],

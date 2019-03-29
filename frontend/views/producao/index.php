@@ -1,21 +1,23 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
-use backend\models\Cultivo;
-use backend\models\Gado;
-use backend\models\Profile;
+use kartik\grid\GridView;
+use frontend\models\Cultivo;
+use frontend\models\Gado;
+use frontend\models\Regiao;
+use frontend\models\Fornecedor;
+use frontend\models\Profile;
 use kartik\date\DatePicker;
+use kop\y2sp\ScrollPager;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ProducaoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Producao';
+$this->title = 'Produção';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="producao-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <?php /*
     <div>
@@ -30,8 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
           'filterModel' => $searchModel,
           'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             [
+                'class' => 'kartik\grid\RadioColumn',
+                'width' => '36px',
+                'headerOptions' => ['class' => 'kartik-sheet-style'],
+            ],
+
+            /*[
                 'label'=>'Photo',
                 'format'=>'html',
                 'value'=>function($data){
@@ -42,6 +49,49 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => [
                       'class' => 'text-center'
                 ]
+            ],*/
+            /*[
+                'attribute'=>'Nome Portador',
+
+                'value'=>function($data){
+                  $cultivo = Cultivo::find()->where(['id'=>$data['id_cultivo']])->One();
+                  $gado = Gado::find()->where(['id'=>$data['id_gado']])->One();
+                  if($cultivo){
+                      $fornecedor = Fornecedor::find()->where(['id'=>$cultivo->id_fornecedor])->One();
+                     return $fornecedor->nome.' '.$fornecedor->sobrenome;
+                  }else if($gado){
+                      $fornecedor = Fornecedor::find()->where(['id'=>$gado->id_fornecedor])->One();
+                     return $fornecedor->nome.' '.$fornecedor->sobrenome;
+                  }
+
+                },
+                'contentOptions' => [
+                    'class' => 'text-center'
+                 ]
+            ],*/
+            [
+                'attribute'=>'Região',
+
+                'value'=>function($data){
+                  $cultivo = Cultivo::find()->where(['id'=>$data['id_cultivo']])->One();
+                  $gado = Gado::find()->where(['id'=>$data['id_gado']])->One();
+
+                  if($cultivo){
+
+                      $regiao = Regiao::find()->where(['id'=>$cultivo->id_regiao])->One();
+                      return $regiao->localidade;
+
+                  }else if($gado){
+
+                      $regiao = Regiao::find()->where(['id'=>$gado->id_regiao])->One();
+                      return $regiao->localidade;
+
+                  }
+
+                },
+                'contentOptions' => [
+                    'class' => 'text-center'
+                 ]
             ],
             [
                 'attribute'=>'Nome',
@@ -59,13 +109,13 @@ $this->params['breadcrumbs'][] = $this->title;
       			          'class' => 'text-center'
       			    ]
             ],
-            [
+            /*[
               'attribute'=>'Designacao',
               'value'=>'designacao',
               'contentOptions' => [
                     'class' => 'text-center'
               ]
-            ],
+            ],*/
             [
                 'attribute'=>'Tipo',
                 'value'=>'tipo',
@@ -106,6 +156,47 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'text-center'
               ]
             ],
+            [
+                'class' => 'kartik\grid\ActionColumn',
+                'template' => '{Imprimir}',
+                'buttons' => [
+                  'Imprimir' => function($url, $model) {
+                       return Html::a('<span class="btn btn-sm btn-default">
+                                        <b class="glyphicon glyphicon-print"></b>
+                                      </span>',
+                                      [
+                                        'fornecedor/imprimirproducao',
+                                        'id' => $model['id']
+                                      ],
+                                      [
+                                        'title' => 'View',
+                                        'id' => 'modal-btn-view'
+                                      ]);
+                  }
+                ]
+            ],
+            [
+              'class' => 'kartik\grid\CheckboxColumn',
+              'headerOptions' => ['class' => 'kartik-sheet-style'],
+            ],
+          ],
+          'panel' => [
+              'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-globe"></i> Produções</h3>',
+              'type'=>'success',
+              'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
+              'footer'=>true
+          ],
+          'pager' => [
+              'class'     => ScrollPager::className(),
+              'container' => '.grid-view tbody',
+              'item'      => 'tr',
+              'paginationSelector' => '.grid-view .pagination',
+              'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+              'enabledExtensions'  => [
+                  ScrollPager::EXTENSION_SPINNER,
+                  //ScrollPager::EXTENSION_NONE_LEFT,
+                  ScrollPager::EXTENSION_PAGING,
+              ],
           ],
         ]);
     ?>

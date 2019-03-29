@@ -40,9 +40,19 @@ if($profile){
               'label'=>'Photo',
               'format'=>'html',
               'value'=>function($data){
-                return Html::img(Yii::getAlias('@web').'/'.$data->photo,[
-                  'width'=>'400', 'height'=>'450'
-                ]);
+
+                if(file_exists($data->photo)){
+
+                  return Html::img(Yii::getAlias('@web').'/'.$data->photo,[
+                    'width'=>'400', 'height'=>'450'
+                  ]);
+                  
+                }else {
+                  return Html::img('../../img/user/utilizador.jpg',[
+                    'width'=>'400', 'height'=>'450'
+                  ]);
+                }
+
               }
           ],
           'nome',

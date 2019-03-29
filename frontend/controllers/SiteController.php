@@ -19,6 +19,8 @@ use yii\data\Pagination;
 use frontend\models\ProducaoSearch;
 use frontend\models\Inscricao;
 use frontend\models\Contacto;
+use frontend\models\Emprestimo;
+use frontend\models\EmprestimoSearch;
 /**
  * Site controller
  */
@@ -245,6 +247,10 @@ class SiteController extends Controller
         $searchModel = new ProducaoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, 'producao');
 
+        $searchModelEmprestimo = new EmprestimoSearch();
+        $searchModelEmprestimo->id_fornecedor = $id_fornecedor;
+        $dataProviderEmprestimo = $searchModelEmprestimo->search(Yii::$app->request->queryParams, 'all');
+
         if(!Yii::$app->user->isGuest){
 
             $fornecedor = Fornecedor::find()->where(['user_iduser' => Yii::$app->user->identity->id])->one();
@@ -259,21 +265,25 @@ class SiteController extends Controller
 
             }else if($fornecedor->tipo == 'Agricultor-Pastor'){
               $this->layout = 'main2';
-              return $this->render('../Fornecedores/index',[
+              return $this->render('../fornecedor/index',[
                   'modelsCultivo'=>$modelsCultivo,
                   'modelsGado'=>$modelsGado,
                   'FornecedorLogado'=>$FornecedorLogado,
                   'searchModel' => $searchModel,
                   'dataProvider' => $dataProvider,
+                  'searchModelEmprestimo' => $searchModelEmprestimo,
+                  'dataProviderEmprestimo' => $dataProviderEmprestimo,
               ]);
             }else if($fornecedor->tipo == 'Pastor'){
               $this->layout = 'main2';
-              return $this->render('../Fornecedores/index',[
+              return $this->render('../fornecedor/index',[
                   'modelsCultivo'=>$modelsCultivo,
                   'modelsGado'=>$modelsGado,
                   'FornecedorLogado'=>$FornecedorLogado,
-                  'searchModel' => $searchModel,
                   'dataProvider' => $dataProvider,
+                  'searchModel' => $searchModel,
+                  'searchModelEmprestimo' => $searchModelEmprestimo,
+                  'dataProviderEmprestimo' => $dataProviderEmprestimo,
               ]);
             }
         }

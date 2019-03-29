@@ -12,10 +12,10 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="fornecedor-update">
 
-      <div class="col-md-12">
-
-          <div class="panel-body tabs">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs" style="background-color: #D0DCE0;padding: 5px;font-size: 14px;
+                        font-family: Open Sans; letter-spacing:2px;
+                        vertical-align: baseline; line-height: 32px;
+                        font-style: negrito ;text-align: justify;">
               <li class="active" role="presentation">
                 <a href="#details-account" aria-controls="user" role="tab" data-toggle="tab" aria-expanded="true">Dados da Fornecedor</a>
               </li>
@@ -34,10 +34,10 @@ $this->params['breadcrumbs'][] = 'Update';
                   'user' => $user,
                 ]) ?>
               </div>
-            </div>
+
           </div>
 
-      </div>
+
 
 
   <?php /*

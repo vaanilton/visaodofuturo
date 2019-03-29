@@ -14,8 +14,10 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Profile;
 use frontend\models\Fornecedor;
+use frontend\models\Producao;
 use yii\helpers\Url;
-
+use kartik\mpdf\Pdf;
+use frontend\models\Emprestimo;
 /**
  * Site controller
  */
@@ -87,6 +89,18 @@ class FornecedorController extends Controller
             ->limit($pages->limit)
             ->all();
 
+        $query = Producao::find()->where(['status'=>0]);
+
+        $dataProvideProducao = new ActiveDataProvider([
+          'query' => $query,
+          'Pagination' =>[
+            'pageSize' => 3
+          ],
+          'sort'=> [
+            'defaultOrder' => ['name' => SORT_ASC]
+          ]
+        ]);
+
 
         if(!Yii::$app->user->isGuest){
 
@@ -105,6 +119,11 @@ class FornecedorController extends Controller
               return $this->render('../Fornecedores/index',[
                   'modelsCultivo'=>$modelsCultivo,
                   'modelsGado'=>$modelsGado,
+              ]);
+            }else if($profile->tipo == 'Agricultor-Pastor'){
+              $this->layout = 'main2';
+              return $this->render('../Fornecedores/index',[
+                  'dataProvide'=>$dataProvideProducao,
               ]);
             }
         }
@@ -201,5 +220,97 @@ class FornecedorController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    // IMPRIMIR EMPRESTIMOS
+
+    public function actionImprimiremprestimo($id = null){
+
+        $plano = Emprestimo::find()
+          ->where('id = :id', [':id' => $id])
+          ->one();
+
+        // get your HTML raw content without any layouts or scripts
+        $content = $this->renderPartial('imprimirEmprestimo', [
+          'model' => $plano,
+
+        ]);
+
+        // setup kartik\mpdf\Pdf component
+        $pdf = new Pdf([
+            // set to use core fonts only
+            'mode' => Pdf::MODE_UTF8  ,
+            // A4 paper format
+            'format' => Pdf::FORMAT_A4,
+            // portrait orientation
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            // stream to browser inline
+            'destination' => Pdf::DEST_BROWSER  ,
+            // your html content input
+            'content' => $content,
+            // format content from your own css file if needed or use the
+            // enhanced bootstrap css built by Krajee for mPDF formatting
+            //'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            'cssFile' => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js',
+            'cssInline' => '.teste-input{float:left;height: 76px;color:#0099ac;border:1px solid #c90}',
+            // any css to be embedded if required
+//            'cssInline' => '.kv-heading-1{font-size:18px}',
+             // set mPDF properties on the fly
+            'options' => ['title' => 'Visao do Futuro'],
+             // call mPDF methods on the fly
+            'methods' => [
+                'SetHeader'=>['<div><img src="../../img//logotipo.jpg" class="img-responsive zoom-img" alt="" width="100px" height="100px"><br></div>'],
+                'SetFooter'=>['{PAGENO}'],
+            ]
+        ]);
+
+        // return the pdf output as per the destination setting
+        return $pdf->render();
+    }
+
+    // IMPRIMIR PRODUCAO
+
+    public function actionImprimirproducao($id = null){
+
+        $plano = Producao::find()
+          ->where('id = :id', [':id' => $id])
+          ->one();
+
+        // get your HTML raw content without any layouts or scripts
+        $content = $this->renderPartial('imprimirProducao', [
+          'model' => $plano,
+
+        ]);
+
+        // setup kartik\mpdf\Pdf component
+        $pdf = new Pdf([
+            // set to use core fonts only
+            'mode' => Pdf::MODE_UTF8  ,
+            // A4 paper format
+            'format' => Pdf::FORMAT_A4,
+            // portrait orientation
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            // stream to browser inline
+            'destination' => Pdf::DEST_BROWSER  ,
+            // your html content input
+            'content' => $content,
+            // format content from your own css file if needed or use the
+            // enhanced bootstrap css built by Krajee for mPDF formatting
+            //'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+            'cssFile' => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js',
+            'cssInline' => '.teste-input{float:left;height: 76px;color:#0099ac;border:1px solid #c90}',
+            // any css to be embedded if required
+//            'cssInline' => '.kv-heading-1{font-size:18px}',
+             // set mPDF properties on the fly
+            'options' => ['title' => 'Visao do Futuro'],
+             // call mPDF methods on the fly
+            'methods' => [
+                'SetHeader'=>['<div><img src="../../img//logotipo.jpg" class="img-responsive zoom-img" alt="" width="100px" height="100px"><br></div>'],
+                'SetFooter'=>['{PAGENO}'],
+            ]
+        ]);
+
+        // return the pdf output as per the destination setting
+        return $pdf->render();
     }
 }

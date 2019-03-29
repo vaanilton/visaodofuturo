@@ -9,26 +9,29 @@ use yii\helpers\Html;
             'enableClientValidation' => true,
 ]); ?>
 
- <div class="form-group">
+ <div class="form-group" style="background-color: #E9EBEE;padding: 18px;font-size: 16px;
+             font-family: Open Sans; letter-spacing:2px;
+             vertical-align: baseline; line-height: 32px;
+             font-style: negrito ;text-align: justify;">
 
     <div class="form-group col-sm-12   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-      <?= $form->field($model, 'username') ?>
+      <?= $form->field($model, 'username')->textInput(['placeholder'=>"Username"]) ?>
     </div>
 
     <div class="form-group col-sm-12   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-      <?= $form->field($model, 'email') ?>
+      <?= $form->field($model, 'email')->textInput(['placeholder'=>"Email"]) ?>
     </div>
 
     <div class="form-group col-sm-12   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-      <?= $form->field($model, 'currentPassword')->passwordInput() ?>
+      <?= $form->field($model, 'currentPassword')->passwordInput(['placeholder'=>"Degite o Atual Password"]) ?>
     </div>
 
     <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-      <?= $form->field($model, 'password')->passwordInput() ?>
+      <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Entre com Novo Password"]) ?>
     </div>
 
     <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-      <?= $form->field($model, 'password_confirm')->passwordInput() ?>
+      <?= $form->field($model, 'password_confirm')->passwordInput(['placeholder'=>"Degite novamente o Password"]) ?>
     </div>
 
     <?= Html::submitButton('Update', ['class' => 'btn btn-lg btn-primary criar']) ?>

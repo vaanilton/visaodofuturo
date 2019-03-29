@@ -27,16 +27,31 @@ $this->title = 'Producao';
 
       <?= GridView::widget([
           'dataProvider' => $dataProvider,
-
+          'toggleDataContainer' => ['class' => 'btn-group mr-2'],
+          'showPageSummary' => true,
           'columns' => [
-
-            'quantidade_producao',
-            'quantidade_perda',
+            //'quantidade_producao',
+            [
+                'class' => 'kartik\grid\FormulaColumn',
+                'header' => 'Total Produzido',
+                'value' => 'quantidade_producao',
+                'format' => ['decimal', 2],
+                'pageSummary' => true,
+            ],
+            //'quantidade_perda',
+            [
+                'class' => 'kartik\grid\FormulaColumn',
+                'header' => 'Quantidade Perda',
+                'value' => 'quantidade_perda',
+                'format' => ['decimal', 2],
+                'pageSummary' => true,
+            ],
             [
                 'class' => 'kartik\grid\FormulaColumn',
                 'header' => 'Preco/Unidade',
                 'value' => 'preco_kilo',
                 'format' => ['decimal', 2],
+                'pageSummary' => true,
             ],
             'data_colheita',
             [
@@ -52,9 +67,12 @@ $this->title = 'Producao';
                 'format' => ['decimal', 2],
                 'headerOptions' => ['class' => 'kartik-sheet-style'],
                 'mergeHeader' => true,
-                'pageSummary' => true,
                 'pageSummaryFunc' => GridView::F_AVG,
                 'footer' => true
+            ],
+            [
+              'class' => 'kartik\grid\CheckboxColumn',
+              'headerOptions' => ['class' => 'kartik-sheet-style'],
             ],
           ],
         ]);

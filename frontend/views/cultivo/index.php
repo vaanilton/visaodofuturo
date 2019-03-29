@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use kartik\grid\GridView;
 use frontend\models\Fornecedor;
 use frontend\models\Cultivo;
+use frontend\models\Gado;
 use frontend\models\Regiao;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
@@ -11,7 +12,7 @@ use frontend\models\ProducaoSearch;
 use kartik\date\DatePicker;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
-
+use kop\y2sp\ScrollPager;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CultivoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -31,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'export' => [
             'fontAwesome' => true
         ],
-      'columns' => [
+        'columns' => [
         [
             'class' => 'kartik\grid\SerialColumn',
             'contentOptions' => ['class' => 'kartik-sheet-style'],
@@ -45,9 +46,12 @@ $this->params['breadcrumbs'][] = $this->title;
             return GridView::ROW_COLLAPSED;
           },
           'detail' => function($model, $key, $index, $column){
-            $searchModel = new ProducaoSearch();
-            $searchModel->id_cultivo = $model['id'];
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, 'cultivo');
+
+             $searchModel = new ProducaoSearch();
+
+              $searchModel->id_cultivo = $model['id'];
+              $dataProvider = $searchModel->search(Yii::$app->request->queryParams, 'cultivo');
+
 
             return Yii::$app->controller->renderPartial('indexProducao', [
               'searchModel' => $searchModel,
@@ -103,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                ]
         ],
         'nome_do_planteio',
-        [
+        /*[
             'attribute' => 'Cultivo',
             'value' => 'nome_do_planteio',
             'filter' => Html::activeDropDownList(
@@ -112,7 +116,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class'=>'form-control','prompt' => 'Planteio'
               ]
             )
-        ],
+        ],*/
         [
           'attribute'=> 'Data Registrado',
           'value' => 'data_do_planteio',
@@ -126,16 +130,34 @@ $this->params['breadcrumbs'][] = $this->title;
               ]
           ])
         ],
-        [
+        /*[
             'class' => 'kartik\grid\BooleanColumn',
             'attribute' => 'status',
             'vAlign' => 'middle'
-        ],
+        ],*/
         [
           'class' => 'kartik\grid\CheckboxColumn',
           'headerOptions' => ['class' => 'kartik-sheet-style'],
         ],
 
+      ],
+      'panel' => [
+          'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-globe"></i> Cultivos</h3>',
+          'type'=>'success',
+          'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
+          'footer'=>true
+      ],
+      'pager' => [
+          'class'     => ScrollPager::className(),
+          'container' => '.grid-view tbody',
+          'item'      => 'tr',
+          'paginationSelector' => '.grid-view .pagination',
+          'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+          'enabledExtensions'  => [
+              ScrollPager::EXTENSION_SPINNER,
+              //ScrollPager::EXTENSION_NONE_LEFT,
+              ScrollPager::EXTENSION_PAGING,
+          ],
       ],
     ]);?>
 

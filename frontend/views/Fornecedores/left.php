@@ -1,6 +1,10 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
+use frontend\models\Fornecedor;
+
+$id = Yii::$app->user->identity['id'];
+$fornecedor = Fornecedor::find()->where(['user_iduser' => $id])->One();
 ?>
 
   <div class="col-md-3 left_col sidebar">
@@ -70,16 +74,27 @@ use yii\helpers\Url;
                 <li><?= Html::a('Pendentes', ['emprestimo/pendentes']) ?></li>
               </ul>
             </li>
+
+            <?php if($fornecedor->tipo == 'Agricultor-Pastor' || $fornecedor->tipo == 'Agricultor'){ ?>
+
             <li><a><i class="fa fa-tree"></i> Cultivo <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><?= Html::a('Cultivo', ['cultivo/index']) ?></li>
               </ul>
             </li>
+
+            <?php } ?>
+
+            <?php if($fornecedor->tipo == 'Agricultor-Pastor' || $fornecedor->tipo == 'Pastor'){ ?>
+
             <li><a><i class="fa fa-qq"></i> Gado <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><?= Html::a('Gado', ['gado/index']) ?></li>
               </ul>
             </li>
+
+            <?php } ?>
+
             <li><a><i class="fa fa-cubes"></i>Producao <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><?= Html::a('Producao', ['producao/index']) ?></li>

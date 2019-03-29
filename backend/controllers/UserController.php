@@ -7,6 +7,9 @@ use backend\models\User;
 use backend\models\UserSearch;
 use backend\models\SignupForm;
 use backend\models\profile;
+use backend\models\Emprestimo;
+use backend\models\Compra;
+use backend\models\Fornecedor;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -191,6 +194,9 @@ class UserController extends Controller
 
          $model = User::find()->where(['id'=>$id])->one();
          $profile = Profile::find()->where(['user_iduser'=>$model->id])->one();
+         $fornecedor = Fornecedor::find()->where(['id_utilizador'=>$id])->one();
+         $compra = Compra::find()->where(['id_utilizador'=>$id])->one();
+         $emprestimo = Emprestimo::find()->where(['id_utilizador'=>$id])->one();
 
          if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
              Yii::$app->response->format = 'json';
@@ -259,8 +265,20 @@ class UserController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionApagar($id)
-    {
+    public function actionApagar($id){
+
+      if (($profile = Profile::findOne($id)) !== null) {
+
+          if($profile->delete()){
+
+              Yii::$app->session->setFlash('success', "Conta Eliminada");
+
+          }else {
+
+              Yii::$app->session->setFlash('error', "Nao tens permissão de apagar esta conta!");
+
+          }
+      }
         $this->findModel($id)->delete();
         return $this->redirect(['index']);
     }
@@ -268,54 +286,64 @@ class UserController extends Controller
 
     public function actionBloquear($id){
 
-        $model = User::find()->where(['id' => $id])->one();
+        $model = \common\models\User::find()->where(['id' => $id])->one();
+        $profile = Profile::find()->where(['user_iduser' => $model->id])->one();
+        //print_r($model->status); die;
+        /*$model->status=10;
+        $saved=$model->save();
+        if($saved){
+          print_r($model->save()); die;
 
-        if($id == 1){
+
+        }*/
+
+        if($profile){
+
+          if($profile->tipo == 'Adiministrador'){
+
             Yii::$app->session->setFlash('error', "Nao tens permissão de apagar esta conta!");
 
-        }elseif (Yii::$app->user->identity->id == $id) {
-          if($model->status == 10){
-              $model->status = 0;
-              if($model->save()){
-                Html::a('<em class="fa fa-power-off"></em>&nbsp;Logout', ['site/logout'], ['data' => ['method' => 'post']]);
-              }
-          }
-        }else{
+          }else if (Yii::$app->user->identity->id == $id) {
 
             if($model->status == 10){
+
                 $model->status = 0;
+
                 if($model->save()){
+                  //print_r($model->getErrors()); die;
                   Html::a('<em class="fa fa-power-off"></em>&nbsp;Logout', ['site/logout'], ['data' => ['method' => 'post']]);
                 }
             }
-        }
+
+          }else{
+
+              if($model->status == 10){
+                  $model->status = 0;
+                  if($model->save()){
+                    Yii::$app->session->setFlash('success', "Utilizador bloquiado");
+                  }
+                  //print_r($model->getErrors()); die;
+              }
+          }
+      }
             return $this->redirect(['index']);
     }
 
     public function actionDesbloquear($id){
 
-        $model = User::find()->where(['id' => $id])->one();
+        $model = $this->findModel($id);
 
-        if($id == 1){
-            Yii::$app->session->setFlash('error', "Nao tens permissão de apagar esta conta!");
+        if($model->status == 0){
+          $model->status = 10;
 
-        }elseif (Yii::$app->user->identity->id == $id) {
-          if($model->status == 0){
-              $model->status = 10;
-              if($model->save()){
-                Html::a('<em class="fa fa-power-off"></em>&nbsp;Logout', ['site/logout'], ['data' => ['method' => 'post']]);
-              }
+          if($model->save()){
+              return $this->redirect(['index']);
+          }else {
+
+            return $this->redirect(['bloquiado']);
           }
-        }else{
-
-            if($model->status == 0){
-                $model->status = 10;
-                if($model->save()){
-                  Html::a('<em class="fa fa-power-off"></em>&nbsp;Logout', ['site/logout'], ['data' => ['method' => 'post']]);
-                }
-            }
         }
-            return $this->redirect(['index']);
+
     }
 
 
@@ -328,7 +356,7 @@ class UserController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = User::findOne($id)) !== null) {
+        if (($model = \common\models\User::findOne($id)) !== null) {
             return $model;
         }
 

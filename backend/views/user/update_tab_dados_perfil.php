@@ -8,23 +8,25 @@ use backend\models\Regiao;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
 ?>
-<br>
 
-    <?php $form = ActiveForm::begin([
-        'options' => ['enctype' => 'multipart/form-data']
-    ]); ?>
+    <div class="form-group" style="background-color: #E9EBEE;padding: 18px;font-size: 16px;
+                font-family: Open Sans; letter-spacing:2px;
+                vertical-align: baseline; line-height: 32px;
+                font-style: negrito ;text-align: justify;">
+                
+      <?php $form = ActiveForm::begin([
+          'options' => ['enctype' => 'multipart/form-data']
+      ]); ?>
 
-
-    <div class="form-group">
-      <div class="form-group col-sm-4   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+      <div class="form-group col-sm-4 gen-fields-holder">
         <?= $form->field($profile, 'nome') ?>
       </div>
 
-      <div class="form-group col-sm-8   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+      <div class="form-group col-sm-8 gen-fields-holder">
         <?= $form->field($profile, 'sobrenome') ?>
       </div>
 
-      <div class="form-group col-sm-12   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+      <div class="form-group col-sm-12 gen-fields-holder">
         <?= $form->field($profile, 'sexo')->widget(Select2::className(), [
             'data' => [
               'Masculino' => 'Masculino',
@@ -35,7 +37,7 @@ use kartik\date\DatePicker;
         ?>
       </div>
 
-      <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+      <div class="form-group col-sm-6 gen-fields-holder">
         <?= $form->field($profile, 'data_nascimento')->widget(DatePicker::classname(), [
             'options' => ['placeholder' => 'Enter birth date ...'],
             'pluginOptions' => [
@@ -45,7 +47,7 @@ use kartik\date\DatePicker;
         ]);?>
       </div>
 
-      <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+      <div class="form-group col-sm-6 gen-fields-holder">
         <?= $form->field($profile, 'id_regiao')->widget(Select2::className(), [
 
           'data' => ArrayHelper::map(Regiao::find()->all(),'id','localidade'),
@@ -55,17 +57,18 @@ use kartik\date\DatePicker;
       </div>
 
 
-      <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+      <div class="form-group col-sm-6 gen-fields-holder">
         <?= $form->field($profile, 'endereco') ?>
       </div>
 
-      <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+      <div class="form-group col-sm-6 gen-fields-holder">
         <?= $form->field($profile, 'telefone') ?>
       </div>
 
-      <div class="form-group col-sm-12   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+      <div class="form-group col-sm-12 gen-fields-holder">
         <?= Html::submitButton('Update', ['class' => 'btn btn-lg btn-primary criar']) ?>
       </div>
-    </div>
+
+  </div>
 
   <?php ActiveForm::end(); ?>

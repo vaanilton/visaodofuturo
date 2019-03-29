@@ -16,7 +16,6 @@
   /* @var $model backend\models\Fornecedor */
 
   ?>
-  <br>
   <div class="x_panel">
     <div class="row">
       <div class="col-md-12">

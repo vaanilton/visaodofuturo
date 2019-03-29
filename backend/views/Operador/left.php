@@ -59,7 +59,10 @@ use yii\helpers\Url;
         <div class="menu_section">
           <h3>General</h3>
           <ul class="nav side-menu">
-            <li><a><i class="fa fa-group"></i> Fornecedor <span class="fa fa-chevron-down"></span></a>
+            <li class="parent <?php if ($page=='fornecedor') { echo "active"; } ?>">
+              <a>
+                <i class="fa fa-group"></i> Fornecedor <span class="fa fa-chevron-down"></span>
+              </a>
               <ul class="nav child_menu">
                 <li><?= Html::a('Listar Fornecedor', ['fornecedor/index']) ?></li>
                 <li><?= Html::a('Cadastrar Fornecedor', ['fornecedor/create']) ?></li>
@@ -67,19 +70,27 @@ use yii\helpers\Url;
                 <li><?= Html::a('Listar Pastor', ['fornecedor/listarpastor']) ?></li>
               </ul>
             </li>
-            <li><a><i class="fa fa-tree"></i> Cultivo <span class="fa fa-chevron-down"></span></a>
+
+            <li class="parent <?php if ($page=='cultivo') { echo "active"; } ?>">
+              <a><i class="fa fa-tree"></i> Cultivo <span class="fa fa-chevron-down"></span>
+              </a>
               <ul class="nav child_menu">
                 <li><?= Html::a('Cultivo', ['cultivo/index']) ?></li>
                 <li><?= Html::a('Novo', ['cultivo/create']) ?></li>
               </ul>
             </li>
-            <li><a><i class="fa fa-qq"></i> Gado <span class="fa fa-chevron-down"></span></a>
+
+            <li class="parent <?php if ($page=='gado') { echo "active"; } ?>">
+              <a><i class="fa fa-qq"></i> Gado <span class="fa fa-chevron-down"></span>
+              </a>
               <ul class="nav child_menu">
                 <li><?= Html::a('Gado', ['gado/index']) ?></li>
                 <li><?= Html::a('Novo', ['gado/create']) ?></li>
               </ul>
             </li>
-            <li><a><i class="fa fa-cubes"></i>Producao <span class="fa fa-chevron-down"></span></a>
+
+            <li class="parent <?php if ($page=='codigo-producao' || $page=='producao') { echo "active"; } ?>">
+              <a><i class="fa fa-cubes"></i>Producao <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><?= Html::a('Criar Codigo Producao', ['codigo-producao/create']) ?></li>
                 <li><?= Html::a('Producao', ['producao/index']) ?></li>
@@ -95,8 +106,10 @@ use yii\helpers\Url;
         <div class="menu_section">
           <h3>Regiao</h3>
           <ul class="nav side-menu">
-            <li><a href="<?= Url::to(['regiao/index']); ?>"><i class="fa fa-plus-square"></i> Regiao <span class="fa fa-chevron-down"></span></a>
-              
+            <li class="parent <?php if ($page=='regiao') { echo "active"; } ?>">
+              <a href="<?= Url::to(['regiao/index']); ?>">
+                <i class="fa fa-plus-square"></i> Regiao <span class="fa fa-chevron-down"></span>
+              </a>
             </li>
           </ul>
         </div>

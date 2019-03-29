@@ -254,9 +254,11 @@ class UserController extends Controller
                  //Yii::$app->session->setFlash('success', "success");
              }
          }
+         
          return $this->render('update', [
              'model' => $model,
              'profile' => $profile,
+             'modelView' => $this->findModel($id),
          ]);
      }
 

@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Inscricao */
 
-$this->title = 'Update Inscricao: {nameAttribute}';
+$this->title = 'Update Inscricao';
 $this->params['breadcrumbs'][] = ['label' => 'Inscricaos', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => 'View', 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="inscricao-update">

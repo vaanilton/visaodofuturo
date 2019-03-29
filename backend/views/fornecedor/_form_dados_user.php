@@ -12,7 +12,7 @@ use kartik\select2\Select2;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="fornecedor-form">
+<div class="fornecedor-form" >
   <div class="x_panel">
       <?php $form = ActiveForm::begin(); ?>
         <div class="row">

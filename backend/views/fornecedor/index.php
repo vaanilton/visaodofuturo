@@ -9,6 +9,7 @@ use backend\models\Regiao;
 use backend\models\Profile;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use kop\y2sp\ScrollPager;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\mdels\FornecedorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -67,8 +68,14 @@ $this->params['breadcrumbs'][] = $this->title;
                   ]);
                 }
               ],
-              'nome',
-              'sobrenome',
+              //'nome',
+              [
+                'label'=>'Nome',
+                'value'=>function($data){
+                  return $data->nome.' '.$data->sobrenome;
+                }
+              ],
+              //'sobrenome',
               'BI',
               'NIF',
               [
@@ -93,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'tipo',
                 'value'=>'tipo',
                 'filter' => Html::activeDropDownList(
-                  $searchModel, 'tipo',['Agricultor'=>'Agricultor', 'Pastor'=>'Pastor'],
+                  $searchModel, 'tipo',['Agricultor'=>'Agricultor', 'Pastor'=>'Pastor', 'Agricultor-Pastor'=>'Agricultor-Pastor'],
                   [
                     'class'=>'form-control','prompt' => 'tipo'
                   ]
@@ -146,13 +153,13 @@ $this->params['breadcrumbs'][] = $this->title;
               	         return Html::a(
                            '<span class="btn btn-sm btn-danger"><b class="fa fa-trash"></b></span>',
                            [
-                             'delete', 'id' => $model['id']
+                             'apagar', 'id' => $model['id']
                            ],
                            [
                              'title' => 'Delete',
                              'class' => '',
                              'data' => [
-                               'confirm' => 'Tem certeza que pretende eliminar esta producao.',
+                               'confirm' => 'Tem certeza que pretende eliminar este Colaborador.',
                                'method' => 'post',
                                'data-pjax' => false
                              ],
@@ -168,6 +175,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Cadastrar Fornecedor', ['create'], ['class' => 'btn btn-success']),
                 'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
                 'footer'=>true
+            ],
+            'pager' => [
+                'class'     => ScrollPager::className(),
+                'container' => '.grid-view tbody',
+                'item'      => 'tr',
+                'paginationSelector' => '.grid-view .pagination',
+                'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+                'enabledExtensions'  => [
+                    ScrollPager::EXTENSION_SPINNER,
+                    //ScrollPager::EXTENSION_NONE_LEFT,
+                    ScrollPager::EXTENSION_PAGING,
+                ],
             ],
          ]);?>
 
@@ -259,6 +278,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Cadastrar Fornecedor', ['create'], ['class' => 'btn btn-success']),
                 'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
                 'footer'=>true
+            ],
+            'pager' => [
+                'class'     => ScrollPager::className(),
+                'container' => '.grid-view tbody',
+                'item'      => 'tr',
+                'paginationSelector' => '.grid-view .pagination',
+                'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+                'enabledExtensions'  => [
+                    ScrollPager::EXTENSION_SPINNER,
+                    //ScrollPager::EXTENSION_NONE_LEFT,
+                    ScrollPager::EXTENSION_PAGING,
+                ],
             ],
          ]);?>
 

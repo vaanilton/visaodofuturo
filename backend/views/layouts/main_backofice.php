@@ -38,17 +38,16 @@ use yii\helpers\Url;
       <body class="nav-md">
         <?php $this->beginBody() ?>
 
-        <?php
-          if(!Yii::$app->user->isGuest){
+        <?php if(!Yii::$app->user->isGuest){
 
-              $profile = Profile::find()->where(['user_iduser' => Yii::$app->user->identity->id])->one();
-              if(!$profile){
+          $profile = Profile::find()->where(['user_iduser' => Yii::$app->user->identity->id])->one();
+          if(!$profile){
 
-                  return Yii::$app->response->redirect(Url::to(['site/login']));
+              return Yii::$app->response->redirect(Url::to(['site/login']));
 
-                //Caso for Fiel_armazen
-              }else{
-        ?>
+            //Caso for Fiel_armazen
+          }else{ ?>
+
                 <div class="wrapper">
                   <div class="container body">
                     <div class="main_container">
@@ -81,8 +80,8 @@ use yii\helpers\Url;
               //Caso for Fornecedores[Agricultor Pastor]
               }
 
-          } else return Yii::$app->getResponse()->redirect(Url::to(['site/login']));
-          ?>
+          } else return Yii::$app->getResponse()->redirect(Url::to(['site/login']));?>
+
           <?php $this->endBody() ?>
       </body>
     </html>

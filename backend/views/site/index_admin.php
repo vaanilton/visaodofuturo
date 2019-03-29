@@ -64,14 +64,14 @@ use yii\helpers\Html;
       <div class="tile-stats">
         <div class="icon"><i class="fa fa-users red"></i></div>
         <div class="count blue"><?=Fornecedor::find()->where(['status'=>10])->count()?></div>
-        <h3>Fornecedor</h3>
+        <h3>Colaborador</h3>
         <p></p>
       </div>
     </div>
     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
       <div class="tile-stats">
         <div class="icon"><i class="fa fa-male red"></i></div>
-        <div class="count blue"><?=Fornecedor::find()->where(['status'=>10, 'tipo'=>'Agricultor'])->count()?></div>
+        <div class="count blue"><?=Fornecedor::find()->where(['status'=>10, 'tipo'=>['Agricultor','Agricultor-Pastor']])->count()?></div>
         <h3>Agricultor</h3>
         <p></p>
       </div>
@@ -79,7 +79,7 @@ use yii\helpers\Html;
     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
       <div class="tile-stats">
         <div class="icon"><i class="fa fa-male red"></i></div>
-        <div class="count blue"><?=Fornecedor::find()->where(['status'=>10, 'tipo'=>'Pastor'])->count()?></div>
+        <div class="count blue"><?=Fornecedor::find()->where(['status'=>10, 'tipo'=>['Pastor','Agricultor-Pastor']])->count()?></div>
         <h3>Pastor</h3>
         <p></p>
       </div>
@@ -298,7 +298,6 @@ use yii\helpers\Html;
           <table class="table table-striped table-hover">
             <thead>
               <th style="background-color: #E9EBEE;padding: 5px;text-align: center;font-size: 10px;">Nome</th>
-              <th style="background-color: #E9EBEE;padding: 5px;text-align: center;font-size: 10px;">Sobrenome</th>
               <th style="background-color: #E9EBEE;padding: 5px;text-align: center;font-size: 10px;">Quantidade Cultivo</th>
               <th style="background-color: #E9EBEE;padding: 5px;text-align: center;font-size: 10px;">Quantidade Producao</th>
             </thead>
@@ -315,14 +314,7 @@ use yii\helpers\Html;
                           <td class ="text-center">
                             <br>
                             <a href="<?= Url::to(['fornecedor/view','id'=>$fornecedor['id']]); ?>" class="image-popup" title="">
-                              <?= $fornecedor['nome']; ?>
-                            </a>
-                          </td>
-
-                          <td class ="text-center">
-                            <br>
-                            <a href="<?= Url::to(['fornecedor/view','id'=>$fornecedor['id']]); ?>" class="image-popup" title="">
-                              <?= $fornecedor['sobrenome']; ?>
+                              <?= $fornecedor['nome'].' '.$fornecedor['sobrenome']; ?>
                             </a>
                           </td>
 
@@ -371,7 +363,6 @@ use yii\helpers\Html;
           <table class="table table-striped table-hover" style="width:100%;">
             <thead>
               <th style="background-color: #E9EBEE;padding: 5px;text-align: center;font-size: 10px;">Nome</th>
-              <th style="background-color: #E9EBEE;padding: 5px;text-align: center;font-size: 10px;">Sobrenome</th>
               <th style="background-color: #E9EBEE;padding: 5px;text-align: center;font-size: 10px;">Quantidade Rebanho</th>
               <th style="background-color: #E9EBEE;padding: 5px;text-align: center;font-size: 10px;">Quantidade Producao</th>
             </thead>
@@ -387,14 +378,7 @@ use yii\helpers\Html;
                         <td class ="text-center">
                           <br>
                           <a href="<?= Url::to(['fornecedor/view','id'=>$fornecedor['id']]); ?>" class="image-popup" title="">
-                            <?= $fornecedor['nome']; ?>
-                          </a>
-                        </td>
-
-                        <td class ="text-center">
-                          <br>
-                          <a href="<?= Url::to(['fornecedor/view','id'=>$fornecedor['id']]); ?>" class="image-popup" title="">
-                            <?= $fornecedor['sobrenome']; ?>
+                            <?= $fornecedor['nome'].' '.$fornecedor['sobrenome']; ?>
                           </a>
                         </td>
 

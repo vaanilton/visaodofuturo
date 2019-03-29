@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use frontend\models\Cultivo;
-
+use frontend\models\Fornecedor;
 
 /**
  * CultivoSearch represents the model behind the search form of `backend\models\Cultivo`.
@@ -42,11 +42,23 @@ class CultivoSearch extends Cultivo
      */
     public function search($params)
     {
-        $query = Cultivo::find();
+        //$query = Cultivo::find();
         // add conditions that should always apply here
+        $id = Yii::$app->user->identity->id;
+        $id_fornecedor = Fornecedor::find()->where(['user_iduser' => $id])->One();
+
+        $query = (new \yii\db\Query())
+        ->select(['id', 'id_fornecedor', 'id_regiao', 'descricao', 'tamanho_do_solu', 'nome_do_planteio',
+              'data_do_planteio', 'tempo_do_cultivo', 'data_registro','photo', 'status'])
+        ->from('Cultivo cl')
+        ->where(['cl.status'=>10, 'cl.id_fornecedor' => $id_fornecedor]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+              'pageSize' => 10,
+            ],
+
         ]);
 
         $this->load($params);

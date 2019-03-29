@@ -15,7 +15,10 @@ use kartik\date\DatePicker;
     ]); ?>
 
 
-    <div class="form-group">
+    <div class="form-group" style="background-color: #E9EBEE;padding: 14px;font-size: 12px;
+                font-family: Open Sans; letter-spacing:2px;
+                vertical-align: baseline;
+                font-style: negrito ;text-align: justify;">
 
       <?= $form->field($profile, 'photo')->widget(FileInput::classname(), [
         'options' => ['accept' => 'image/*'],

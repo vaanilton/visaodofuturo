@@ -54,6 +54,9 @@ class GadoSearch extends Gado
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+              'pageSize' => 10,
+            ],
         ]);
 
         $this->load($params);

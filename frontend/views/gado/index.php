@@ -9,6 +9,7 @@ use backend\models\Gado;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use kartik\date\DatePicker;
+use kop\y2sp\ScrollPager;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\GadoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -168,6 +169,7 @@ $this->params['breadcrumbs'][] = $this->title;
          'filterModel' => $searchModel,
          'export'=> false,
          'pjax'=> true,
+         'showPageSummary' => true,
          'toggleDataContainer' => ['class' => 'btn-group mr-2'],
            // set export properties
          'export' => [
@@ -212,7 +214,8 @@ $this->params['breadcrumbs'][] = $this->title;
                },
                'contentOptions' => [
                      'class' => 'text-center'
-               ]
+               ],
+               'pageSummary' => 'Total',
            ],
            [
                'attribute'=>'Nome Pastor',
@@ -239,7 +242,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   ]
            ],
            'nome',
-           [
+           /*[
                'attribute' => 'Gado',
                'value' => 'nome',
                'filter' => Html::activeDropDownList(
@@ -248,6 +251,12 @@ $this->params['breadcrumbs'][] = $this->title;
                    'class'=>'form-control','prompt' => 'Gado'
                  ]
                )
+           ],*/
+           [
+             'attribute'=>'Quantidade',
+             'value'=>'quantidade',
+             'format' => ['decimal', 2],
+             'pageSummary' => true,
            ],
            [
              'attribute'=> 'Data Registrado',
@@ -262,11 +271,33 @@ $this->params['breadcrumbs'][] = $this->title;
                  ]
              ])
            ],
-           [
+           /*[
                'class' => 'kartik\grid\BooleanColumn',
                'attribute' => 'status',
                'vAlign' => 'middle'
-           ]
+           ]*/
+           [
+             'class' => 'kartik\grid\CheckboxColumn',
+             'headerOptions' => ['class' => 'kartik-sheet-style'],
+           ],
+         ],
+         'panel' => [
+             'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-globe"></i> Gados</h3>',
+             'type'=>'success',
+             'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
+             'footer'=>true
+         ],
+         'pager' => [
+             'class'     => ScrollPager::className(),
+             'container' => '.grid-view tbody',
+             'item'      => 'tr',
+             'paginationSelector' => '.grid-view .pagination',
+             'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+             'enabledExtensions'  => [
+                 ScrollPager::EXTENSION_SPINNER,
+                 //ScrollPager::EXTENSION_NONE_LEFT,
+                 ScrollPager::EXTENSION_PAGING,
+             ],
          ],
        ]);?>
 

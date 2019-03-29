@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            'title' => 'Delete',
                            'class' => '',
                            'data' => [
-                             'confirm' => 'Tem certeza que pretende eliminar esta producao.',
+                             'confirm' => 'Tem certeza que pretende esta Inscrição.',
                              'method' => 'post',
                              'data-pjax' => false
                            ],

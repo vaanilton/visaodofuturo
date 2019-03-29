@@ -204,6 +204,8 @@ class SiteController extends Controller
               //Caso for Adiministrador
             }else if($profile->tipo === 'Adiministrador'){
 
+              //return $this->redirect(['backoffice/index']);
+
               return $this->render('index_admin',[
                 'Utilizador_masculino'=>$Utilizador_masculino,
                 'Utilizador_feminino'=>$Utilizador_feminino,

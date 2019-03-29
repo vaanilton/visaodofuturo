@@ -50,7 +50,9 @@ class ProducaoSearch extends Producao
           $query = (new \yii\db\Query())
           ->select(['pr.id', 'id_cultivo', 'id_gado', 'tipo', 'quantidade_producao', 'quantidade_perda', 'pr.designacao',
                     'data_colheita', 'preco_kilo', 'data_registo', 'pr.photo', 'pr.estado', 'pr.status'])
-          ->from('Producao pr');
+          ->from('Producao pr')
+          ->join('join','Cultivo cl','pr.id_cultivo = cl.id')
+          ->where(['pr.status' => 10, 'cl.id_fornecedor' => $id_fornecedor]);
 
           // add conditions that should always apply here
 

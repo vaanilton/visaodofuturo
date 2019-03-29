@@ -43,7 +43,7 @@ class CultivoController extends Controller
         $id_fornecedor = Fornecedor::find()->where(['user_iduser' => $id])->One();
 
         $searchModel = new CultivoSearch();
-        $searchModel->id_fornecedor = $id_fornecedor->id;
+        $searchModel->id_fornecedor = $id_fornecedor;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 

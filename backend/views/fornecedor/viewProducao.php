@@ -14,12 +14,13 @@
   use kartik\date\DatePicker;
   use backend\models\ProducaoSearch;
   use kartik\export\ExportMenu;
+  use kop\y2sp\ScrollPager;
   /* @var $this yii\web\View */
   /* @var $model backend\models\Fornecedor */
 
 
   ?>
-  <br>
+
   <?php
     $gridColumns = [
       ['class' => 'yii\grid\SerialColumn'],
@@ -56,6 +57,7 @@
                   'class' => 'text-center'
             ]
         ],
+
         [
             'attribute'=>'Nome',
             'pageSummary' => 'Total',
@@ -74,6 +76,7 @@
                 'class' => 'text-center'
              ]
         ],
+
         [
             'attribute'=>'Tipo',
             'value'=>'tipo',
@@ -137,6 +140,23 @@
                 'class' => 'text-center'
           ]
         ],
+        /*[
+            'attribute'=>'Nome Portador',
+
+            'value'=>function($data){
+              $cultivo = Cultivo::find()->where(['id'=>$data['id_cultivo']])->One();
+              $gado = Gado::find()->where(['id'=>$data['id_gado']])->One();
+              if($cultivo){
+                 return $cultivo->id_fornecedor;
+              }else if($gado){
+                return $gado->id_fornecedor;
+              }
+
+            },
+            'contentOptions' => [
+                'class' => 'text-center'
+             ]
+        ],*/
         [
             'class' => 'kartik\grid\ActionColumn',
             'template' => '{Comprar}{Confirmar}{Comprado}',
@@ -200,13 +220,25 @@
                    );
                }
             ]
-       ],
+        ],
      ],
      'panel' => [
          'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-globe"></i> Produções</h3>',
          'type'=>'success',
          'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
-         'footer'=>false
+         'footer'=>true
+     ],
+     'pager' => [
+         'class'     => ScrollPager::className(),
+         'container' => '.grid-view tbody',
+         'item'      => 'tr',
+         'paginationSelector' => '.grid-view .pagination',
+         'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+         'enabledExtensions'  => [
+             ScrollPager::EXTENSION_SPINNER,
+             //ScrollPager::EXTENSION_NONE_LEFT,
+             ScrollPager::EXTENSION_PAGING,
+         ],
      ],
     ]);
   ?>

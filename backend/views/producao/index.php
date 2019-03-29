@@ -3,13 +3,16 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use backend\models\Cultivo;
+use backend\models\Fornecedor;
 use backend\models\Gado;
+use backend\models\Regiao;
 use backend\models\Profile;
 use kartik\date\DatePicker;
 use backend\models\CodigoProducao;
 use kartik\editable\Editable;
 use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
+use kop\y2sp\ScrollPager;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ProducaoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -43,6 +46,49 @@ $this->params['breadcrumbs'][] = $this->title;
             'showPageSummary' => true,
             'columns' => [
               ['class' => 'kartik\grid\SerialColumn'],
+              [
+                  'attribute'=>'Nome Portador',
+
+                  'value'=>function($data){
+                    $cultivo = Cultivo::find()->where(['id'=>$data['id_cultivo']])->One();
+                    $gado = Gado::find()->where(['id'=>$data['id_gado']])->One();
+                    if($cultivo){
+                        $fornecedor = Fornecedor::find()->where(['id'=>$cultivo->id_fornecedor])->One();
+                       return $fornecedor->nome.' '.$fornecedor->sobrenome;
+                    }else if($gado){
+                        $fornecedor = Fornecedor::find()->where(['id'=>$gado->id_fornecedor])->One();
+                       return $fornecedor->nome.' '.$fornecedor->sobrenome;
+                    }
+
+                  },
+                  'contentOptions' => [
+                      'class' => 'text-center'
+                   ]
+              ],
+              [
+                  'attribute'=>'Região',
+
+                  'value'=>function($data){
+                    $cultivo = Cultivo::find()->where(['id'=>$data['id_cultivo']])->One();
+                    $gado = Gado::find()->where(['id'=>$data['id_gado']])->One();
+
+                    if($cultivo){
+
+                        $regiao = Regiao::find()->where(['id'=>$cultivo->id_regiao])->One();
+                        return $regiao->localidade;
+
+                    }else if($gado){
+
+                        $regiao = Regiao::find()->where(['id'=>$gado->id_regiao])->One();
+                        return $regiao->localidade;
+
+                    }
+
+                  },
+                  'contentOptions' => [
+                      'class' => 'text-center'
+                   ]
+              ],
               [
                   'label'=>'Photo',
                   'format'=>'html',
@@ -104,7 +150,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                   'value' => function ($model, $key, $index, $widget) {
                       $p = compact('model', 'key', 'index');
-                      return $widget->col(4, $p) - $widget->col(5, $p);
+                      return $widget->col(6, $p) - $widget->col(7, $p);
                   },
                   'format' => ['decimal', 2],
 
@@ -219,6 +265,18 @@ $this->params['breadcrumbs'][] = $this->title;
                'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
                'footer'=>true
            ],
+           'pager' => [
+               'class'     => ScrollPager::className(),
+               'container' => '.grid-view tbody',
+               'item'      => 'tr',
+               'paginationSelector' => '.grid-view .pagination',
+               'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+               'enabledExtensions'  => [
+                   ScrollPager::EXTENSION_SPINNER,
+                   //ScrollPager::EXTENSION_NONE_LEFT,
+                   ScrollPager::EXTENSION_PAGING,
+               ],
+           ],
           ]);
         ?>
 
@@ -287,6 +345,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute'=>'Estado',
                     'value'=>'estado'
                   ]
+              ],
+              'pager' => [
+                  'class'     => ScrollPager::className(),
+                  'container' => '.grid-view tbody',
+                  'item'      => 'tr',
+                  'paginationSelector' => '.grid-view .pagination',
+                  'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+                  'enabledExtensions'  => [
+                      ScrollPager::EXTENSION_SPINNER,
+                      //ScrollPager::EXTENSION_NONE_LEFT,
+                      ScrollPager::EXTENSION_PAGING,
+                  ],
               ],
             ]);?>
 
@@ -388,6 +458,18 @@ $this->params['breadcrumbs'][] = $this->title;
                   	     },
                       ]
                  ],
+              ],
+              'pager' => [
+                  'class'     => ScrollPager::className(),
+                  'container' => '.grid-view tbody',
+                  'item'      => 'tr',
+                  'paginationSelector' => '.grid-view .pagination',
+                  'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+                  'enabledExtensions'  => [
+                      ScrollPager::EXTENSION_SPINNER,
+                      //ScrollPager::EXTENSION_NONE_LEFT,
+                      ScrollPager::EXTENSION_PAGING,
+                  ],
               ],
             ]);?>
 

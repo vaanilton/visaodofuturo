@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use kartik\date\DatePicker;
+use kop\y2sp\ScrollPager;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\StockSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -11,7 +12,8 @@ $this->title = 'Stocks';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="stock-index">
-
+    <br>
+    <br>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -107,6 +109,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'type'=>'success',
             'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
             'footer'=>true
+        ],
+        'pager' => [
+            'class'     => ScrollPager::className(),
+            'container' => '.grid-view tbody',
+            'item'      => 'tr',
+            'paginationSelector' => '.grid-view .pagination',
+            'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+            'enabledExtensions'  => [
+                ScrollPager::EXTENSION_SPINNER,
+                //ScrollPager::EXTENSION_NONE_LEFT,
+                ScrollPager::EXTENSION_PAGING,
+            ],
         ],
     ]);
     ?>

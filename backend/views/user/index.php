@@ -30,8 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 
     <p>
-        <?= Html::a('Criar Utilizador', ['#'], ['class' => 'btn btn-success', 'data-toggle' => 'modal', 'data-target' => '#modal-user']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Novo Utilizador', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
+
+
 
     <div class="row">
       <div class="col-md-12">
@@ -44,9 +47,21 @@ $this->params['breadcrumbs'][] = $this->title;
                           ?>
                           <div class="col-md-3 col-sm-8 col-xs-12 well profile_view ">
                             <div class="view-first">
+
+                              <?php   if(file_exists($users['photo'])) { ?>
+
                               <a href="<?= Url::to(['user/view','id'=>$users['id']]); ?>" class="image-popup" title="">
                                 <img src="<?php echo Yii::getAlias('@web').'/'.$users['photo'] ?>" class="thumb-img" title="<?= $users['username']; ?>" alt="<?= $users['username']; ?>" width="215" height='230' >
                               </a>
+
+                            <?php }else{ ?>
+
+                              <a href="<?= Url::to(['user/view','id'=>$users['id']]); ?>" class="image-popup" title="">
+                                <img src='../../img/user/utilizador.jpg' class="thumb-img" title="<?= $users['username']; ?>" alt="<?= $users['username']; ?>" width="215" height='230' >
+                              </a>
+
+                            <?php } ?>
+
                             </div>
 
                             <div class="gal-detail thumb">

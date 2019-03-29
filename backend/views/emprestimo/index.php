@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use kartik\grid\GridView;
 use backend\models\Fornecedor;
 use kartik\date\DatePicker;
+use kop\y2sp\ScrollPager;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EmprestimoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -139,6 +140,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Registrar Emprestimos', ['create'], ['class' => 'btn btn-success']),
             'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
             'footer'=>true
+        ],
+        'pager' => [
+            'class'     => ScrollPager::className(),
+            'container' => '.grid-view tbody',
+            'item'      => 'tr',
+            'paginationSelector' => '.grid-view .pagination',
+            'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+            'enabledExtensions'  => [
+                ScrollPager::EXTENSION_SPINNER,
+                //ScrollPager::EXTENSION_NONE_LEFT,
+                ScrollPager::EXTENSION_PAGING,
+            ],
         ],
     ]); ?>
 </div>

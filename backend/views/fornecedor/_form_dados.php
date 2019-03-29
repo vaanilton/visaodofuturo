@@ -14,7 +14,10 @@ use kartik\select2\Select2;
 
   <div class="fornecedor-form">
       <?php $form = ActiveForm::begin(); ?>
-        <div class="row">
+        <div class="row" style="padding: 5px;font-size: 14px;
+                    font-family: Open Sans; letter-spacing:2px;
+                    vertical-align: baseline; line-height: 32px;
+                    font-style: negrito ;text-align: justify;">
 
           <div class="well" style="overflow: auto">
             <div class="x_title">
@@ -136,7 +139,7 @@ use kartik\select2\Select2;
         </div>
 
       <div class="form-group">
-          <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+          <?= Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i> Salvar',['class' => 'btn btn-success']) ?>
       </div>
 
       <?php ActiveForm::end(); ?>

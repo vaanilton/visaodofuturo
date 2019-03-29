@@ -76,7 +76,9 @@ class User extends \yii\db\ActiveRecord
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'password' => 'Novo Password',
             'password_confirm' => 'Confirmar Password',
+            'currentPassword' => 'Atual Password',
         ];
     }
 

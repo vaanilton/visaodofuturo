@@ -528,15 +528,12 @@ class FornecedorController extends Controller
         $model = $this->findModel($id);
         $user = User::find()->where(['id'=>$model->user_iduser])->one();
 
-        $model = $this->findModel($id);
-        $user = User::find()->where(['id'=>$model->user_iduser])->one();
-
         if ($user->load(Yii::$app->request->post())) {
             if($user->password){
-                //$model->password_hash = Yii::$app->security->generatePasswordHash($model->password);
+                $user->password_hash = Yii::$app->security->generatePasswordHash($user->password);
             }
             if($user->save()){
-                Yii::$app->session->setFlash('success', "success");
+                Yii::$app->session->setFlash('success', "Dados Alterado com sucesso");
             }
         }
         if ($model->load(Yii::$app->request->post())) {
@@ -554,7 +551,7 @@ class FornecedorController extends Controller
             }else $model->photo = $model->estra;
 
             if($model->save() ){
-                Yii::$app->session->setFlash('success', "success");
+                Yii::$app->session->setFlash('success', "Dados Alterado com sucesso");
             }
         }
 
@@ -571,20 +568,45 @@ class FornecedorController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionApagar($id){
+    public function actionDelete($id){
 
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
-    public function actionBloquear($id){
+    public function actionApagar($id){
 
         $model = Fornecedor::find()->where(['id' => $id])->one();
+        $user = \common\models\User::find()->where(['id' => $model->user_iduser])->one();
 
         if($model->status == 10){
             $model->status = 0;
-            $model->save();
+            if($model->save()){
+              if($user->status == 10){
+                  $user->status = 0;
+                  $user->save();
+              }
+            }
+        }
+
+        return $this->redirect(['index']);
+
+    }
+
+    public function actionAtivar($id){
+
+        $model = Fornecedor::find()->where(['id' => $id])->one();
+        $user = \common\models\User::find()->where(['id' => $model->user_iduser])->one();
+
+        if($model->status == 0){
+            $model->status = 10;
+            if($model->save()){
+              if($user->status == 0){
+                  $user->status = 10;
+                  $user->save();
+              }
+            }
         }
 
         return $this->redirect(['index']);

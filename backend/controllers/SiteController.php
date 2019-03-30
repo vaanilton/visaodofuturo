@@ -248,9 +248,15 @@ class SiteController extends Controller
                   'dataProvider' => $dataProvider,
               ]);
 
-            }else if($profile->tipo === 'Fornecedores'){
+            }else if($profile->tipo === 'Agente-Venda'){
 
-              return $this->render('index_fornecedores');
+              $searchModel = new StockSearch();
+              $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+              return $this->render('../Agente-Venda/index', [
+                  'searchModel' => $searchModel,
+                  'dataProvider' => $dataProvider,
+              ]);
 
             }else if($profile->tipo === 'Backoffice'){
 

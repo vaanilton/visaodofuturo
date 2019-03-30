@@ -2,8 +2,9 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
-use backend\models\Anuncio;
 use kop\y2sp\ScrollPager;
+use backend\models\Anuncio;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\InscricaoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */

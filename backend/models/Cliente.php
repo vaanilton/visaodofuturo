@@ -15,14 +15,15 @@ use Yii;
  * @property string $estado_civil
  * @property string $sexo
  * @property int $data_nascimento
- * @property string $endereco
  * @property int $contacto
  * @property string $email
- * @property int $estado
+ * @property int $bi
+ * @property int $nif
+ * @property int $status
  *
  * @property Profile $utilizador
  * @property Regiao $regiao
- * @property Venda[] $vendas
+ * @property Fatura[] $faturas
  */
 class Cliente extends \yii\db\ActiveRecord
 {
@@ -40,11 +41,10 @@ class Cliente extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_utilizador', 'id_regiao', 'nome', 'sobrenome', 'estado_civil', 'sexo', 'data_nascimento', 'contacto', 'email'], 'required'],
-            [['id', 'id_utilizador', 'id_regiao', 'data_nascimento', 'contacto', 'estado'], 'integer'],
-            [['nome', 'sexo', 'endereco', 'email'], 'string', 'max' => 255],
-            [['sobrenome', 'estado_civil'], 'string', 'max' => 32],
-            [['id'], 'unique'],
+            [['id_regiao', 'nome', 'sobrenome', 'estado_civil', 'sexo', 'data_nascimento', 'contacto', 'email', 'bi', 'nif'], 'required'],
+            [['id_utilizador', 'id_regiao', 'contacto', 'bi', 'nif', 'status'], 'integer'],
+            [['nome', 'sexo', 'email'], 'string', 'max' => 255],
+            [['sobrenome', 'data_nascimento', 'estado_civil'], 'string', 'max' => 32],
             [['id_utilizador'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_utilizador' => 'user_iduser']],
             [['id_regiao'], 'exist', 'skipOnError' => true, 'targetClass' => Regiao::className(), 'targetAttribute' => ['id_regiao' => 'id']],
         ];
@@ -58,16 +58,17 @@ class Cliente extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_utilizador' => 'Id Utilizador',
-            'id_regiao' => 'Id Regiao',
+            'id_regiao' => 'Regiao',
             'nome' => 'Nome',
             'sobrenome' => 'Sobrenome',
             'estado_civil' => 'Estado Civil',
             'sexo' => 'Sexo',
             'data_nascimento' => 'Data Nascimento',
-            'endereco' => 'Endereco',
             'contacto' => 'Contacto',
             'email' => 'Email',
-            'estado' => 'Estado',
+            'bi' => 'Numero Bi',
+            'nif' => 'Numero Nif',
+            'status' => 'Status',
         ];
     }
 
@@ -90,8 +91,8 @@ class Cliente extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getVendas()
+    public function getFaturas()
     {
-        return $this->hasMany(Venda::className(), ['id_cliente' => 'id']);
+        return $this->hasMany(Fatura::className(), ['id_cliente' => 'id']);
     }
 }

@@ -2,17 +2,16 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use backend\models\Regiao;
+use backend\models\Profile;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Cliente */
 
-$this->title = $model->id;
+$this->title = 'View';
 $this->params['breadcrumbs'][] = ['label' => 'Clientes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cliente-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -28,18 +27,33 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'id_utilizador',
-            'id_regiao',
+            //'id',
+            //'id_utilizador',
+            [
+                  'attribute'=>'Nome Utilizador',
+                  'value'=>function($data){
+                      $fr = Profile::find()->where(['user_iduser'=>$data->id_utilizador])->one();
+                      return $fr['nome'].' '.$fr['sobrenome'];
+                   }
+            ],
+            //'id_regiao',
+            [
+                  'attribute'=>'Nome Região',
+                  'value'=>function($data){
+                      $fr = Regiao::find()->where(['id'=>$data->id_regiao])->one();
+                      return $fr['localidade'];
+                   }
+            ],
             'nome',
             'sobrenome',
             'estado_civil',
             'sexo',
             'data_nascimento',
-            'endereco',
             'contacto',
             'email:email',
-            'estado',
+            'bi',
+            'nif',
+            //'status',
         ],
     ]) ?>
 

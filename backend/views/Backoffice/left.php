@@ -5,8 +5,12 @@ use yii\helpers\Url;
 
   <div class="col-md-3 left_col sidebar">
     <div class="left_col scroll-view ">
+      
       <div class="navbar nav_title" style="border: 0;">
-        <a href="<?= Url::to(['site/index']); ?>" class="site_title"><i class="fa fa-eye"></i> <span>Back - Office</span></a>
+        <a href="<?= Url::to(['fornecedor/create']); ?>" class="site_title">
+          <img src="images/visao.png" alt="" width=50 height=45>
+          <span>Back - Office</span>
+        </a>
       </div>
 
       <div class="clearfix"></div>
@@ -55,7 +59,7 @@ use yii\helpers\Url;
           <h3>General</h3>
           <ul class="nav side-menu">
 
-            <li>
+            <li class="parent <?php if ($page=='visao-presedente') { echo "active"; } ?>">
               <a>
                 <i class="fa fa-eye"></i> Visao do Presedente
                 <span class="fa fa-chevron-down"></span>
@@ -66,7 +70,7 @@ use yii\helpers\Url;
               </ul>
             </li>
 
-            <li>
+            <li class="parent <?php if ($page=='area-intervencao') { echo "active"; } ?>">
               <a>
                 <i class="fa fa-institution "></i> Area de Intervenção
                 <span class="fa fa-chevron-down"></span>
@@ -77,7 +81,7 @@ use yii\helpers\Url;
               </ul>
             </li>
 
-            <li class="parent">
+            <li class="parent <?php if ($page=='equipa') { echo "active"; } ?>">
               <a data-toggle="collapse" >
                 <i class="fa fa-group"></i> Equipa de Gestao
                 <span class="fa fa-chevron-down"></span>
@@ -88,7 +92,7 @@ use yii\helpers\Url;
               </ul>
             </li>
 
-            <li>
+            <li class="parent <?php if ($page=='galeria') { echo "active"; } ?>">
               <a>
                 <i class="fa fa-photo"></i> Galeria Slide
                 <span class="fa fa-chevron-down"></span>
@@ -99,7 +103,7 @@ use yii\helpers\Url;
               </ul>
             </li>
 
-            <li>
+            <li class="parent <?php if ($page=='area-especialisacao') { echo "active"; } ?>">
               <a>
                 <i class="fa fa-square"></i> Áreas Especialisação
                 <span class="fa fa-chevron-down"></span>
@@ -110,7 +114,7 @@ use yii\helpers\Url;
               </ul>
             </li>
 
-            <li>
+            <li class="parent <?php if ($page=='intervensao-social') { echo "active"; } ?>">
               <a>
                 <i class="fa fa-fast-forward"></i> Intervenção Social
                 <span class="fa fa-chevron-down"></span>
@@ -121,18 +125,18 @@ use yii\helpers\Url;
               </ul>
             </li>
 
-            <li>
+            <li class="parent <?php if ($page=='anuncio') { echo "active"; } ?>">
               <a>
                 <i class="fa fa-font"></i> Anúncio
                 <span class="fa fa-chevron-down"></span>
               </a>
               <ul class="nav child_menu">
                 <li><a class="" href="<?= Url::to(['anuncio/index']); ?>">Anúncio</a></li>
-                <li><a class="" href="<?= Url::to(['ianuncio/create']); ?>">Novo</a></li>
+                <li><a class="" href="<?= Url::to(['anuncio/create']); ?>">Novo</a></li>
               </ul>
             </li>
 
-            <li>
+            <li class="parent <?php if ($page=='inscricao') { echo "active"; } ?>">
               <a>
                 <i class="fa fa-plus"></i> Inscrição
                 <span class="fa fa-chevron-down"></span>
@@ -142,7 +146,7 @@ use yii\helpers\Url;
               </ul>
             </li>
 
-            <li>
+            <li class="parent <?php if ($page=='informacao-contacto') { echo "active"; } ?>">
               <a>
                 <i class="fa fa-dashboard"></i> Informação Contacto
                 <span class="fa fa-chevron-down"></span>

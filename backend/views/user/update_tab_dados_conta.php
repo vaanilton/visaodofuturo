@@ -4,15 +4,17 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 ?>
 
-<?php $form = ActiveForm::begin([
-            // 'enableAjaxValidation' => true,
-            'enableClientValidation' => true,
-]); ?>
+
 
  <div class="form-group" style="background-color: #E9EBEE;padding: 18px;font-size: 16px;
              font-family: Open Sans; letter-spacing:2px;
              vertical-align: baseline; line-height: 32px;
              font-style: negrito ;text-align: justify;">
+
+     <?php $form = ActiveForm::begin([
+                 // 'enableAjaxValidation' => true,
+                 'enableClientValidation' => true,
+     ]); ?>
 
     <div class="form-group col-sm-12   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
       <?= $form->field($model, 'username')->textInput(['placeholder'=>"Username"]) ?>
@@ -34,7 +36,9 @@ use yii\helpers\Html;
       <?= $form->field($model, 'password_confirm')->passwordInput(['placeholder'=>"Degite novamente o Password"]) ?>
     </div>
 
-    <?= Html::submitButton('Update', ['class' => 'btn btn-lg btn-primary criar']) ?>
+    <div class="form-group col-sm-12 gen-fields-holder">
+        <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-primary']) ?>
+    </div>
 
   </div>
 

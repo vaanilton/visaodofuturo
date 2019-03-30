@@ -18,8 +18,8 @@ class ClienteSearch extends Cliente
     public function rules()
     {
         return [
-            [['id', 'id_utilizador', 'id_regiao', 'data_nascimento', 'contacto', 'estado'], 'integer'],
-            [['nome', 'sobrenome', 'estado_civil', 'sexo', 'endereco', 'email'], 'safe'],
+            [['id', 'id_utilizador', 'id_regiao', 'data_nascimento', 'contacto', 'bi', 'nif', 'status'], 'integer'],
+            [['nome', 'sobrenome', 'estado_civil', 'sexo', 'email'], 'safe'],
         ];
     }
 
@@ -64,14 +64,15 @@ class ClienteSearch extends Cliente
             'id_regiao' => $this->id_regiao,
             'data_nascimento' => $this->data_nascimento,
             'contacto' => $this->contacto,
-            'estado' => $this->estado,
+            'bi' => $this->bi,
+            'nif' => $this->nif,
+            'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome])
             ->andFilterWhere(['like', 'sobrenome', $this->sobrenome])
             ->andFilterWhere(['like', 'estado_civil', $this->estado_civil])
             ->andFilterWhere(['like', 'sexo', $this->sexo])
-            ->andFilterWhere(['like', 'endereco', $this->endereco])
             ->andFilterWhere(['like', 'email', $this->email]);
 
         return $dataProvider;

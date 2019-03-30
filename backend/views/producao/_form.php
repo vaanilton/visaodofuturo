@@ -13,7 +13,10 @@ use kartik\select2\Select2;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="producao-form">
+<div class="producao-form" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+            font-family: Open Sans; letter-spacing:2px;
+            vertical-align: baseline; line-height: 32px;
+            font-style: negrito ;text-align: justify;">
 
     <?php $form = ActiveForm::begin(); ?>
 

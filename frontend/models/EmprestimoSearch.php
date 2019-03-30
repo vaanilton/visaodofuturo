@@ -18,7 +18,7 @@ class EmprestimoSearch extends Emprestimo
     {
         return [
             [['id', 'id_fornecedor', 'id_utilizador', 'quantidade'], 'integer'],
-            [['tipo', 'data'], 'safe'],
+            [['tipo', 'data', 'estado'], 'safe'],
         ];
     }
 
@@ -89,6 +89,7 @@ class EmprestimoSearch extends Emprestimo
       ]);
 
       $query->andFilterWhere(['like', 'tipo', $this->tipo])
+          ->andFilterWhere(['like', 'estado', $this->estado])
           ->andFilterWhere(['like', 'data', $this->data]);
 
       return $dataProvider;

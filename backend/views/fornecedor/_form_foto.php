@@ -37,9 +37,9 @@ use dosamigos\datepicker\DatePicker;
             <?= $form->field($user, 'password_confirm')->passwordInput(['placeholder'=>"Degita Password Novamente"]) ?>
           </div>
         </div>
-      <div class="form-group">
-          <?= Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i> Salvar',['class' => 'btn btn-success']) ?>
-      </div>
+        <div class="form-group col-sm-12 gen-fields-holder">
+            <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-lg btn-primary']) ?>
+        </div>
 
       <?php ActiveForm::end(); ?>
   </div>

@@ -31,13 +31,15 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'data_nascimento') ?>
 
-    <?php // echo $form->field($model, 'endereco') ?>
-
     <?php // echo $form->field($model, 'contacto') ?>
 
     <?php // echo $form->field($model, 'email') ?>
 
-    <?php // echo $form->field($model, 'estado') ?>
+    <?php // echo $form->field($model, 'bi') ?>
+
+    <?php // echo $form->field($model, 'nif') ?>
+
+    <?php // echo $form->field($model, 'status') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

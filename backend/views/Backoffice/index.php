@@ -18,8 +18,11 @@ use yii\helpers\Html;
 <div class="row">
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="x_panel tile fixed_height_320">
-      <div class="x_title">
-        <h2>Area de Intervenção</h2>
+      <div class="x_title" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+                  font-family: Open Sans; letter-spacing:2px;
+                  vertical-align: baseline; line-height: 32px;
+                  font-style: negrito ;text-align: justify;">
+        <h2 >Area de Intervenção</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -82,7 +85,10 @@ use yii\helpers\Html;
 
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="x_panel tile fixed_height_320 overflow_hidden">
-      <div class="x_title">
+      <div class="x_title" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+                  font-family: Open Sans; letter-spacing:2px;
+                  vertical-align: baseline; line-height: 32px;
+                  font-style: negrito ;text-align: justify;">
         <h2>Equipa de Gestão</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -173,7 +179,10 @@ use yii\helpers\Html;
 
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="x_panel tile fixed_height_320">
-      <div class="x_title">
+      <div class="x_title" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+                  font-family: Open Sans; letter-spacing:2px;
+                  vertical-align: baseline; line-height: 32px;
+                  font-style: negrito ;text-align: justify;">
         <h2>Galeria Slide Historial</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -247,7 +256,10 @@ use yii\helpers\Html;
 
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="x_panel tile fixed_height_320">
-      <div class="x_title">
+      <div class="x_title" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+                  font-family: Open Sans; letter-spacing:2px;
+                  vertical-align: baseline; line-height: 32px;
+                  font-style: negrito ;text-align: justify;">
         <h2>Area Especialisação</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -311,7 +323,10 @@ use yii\helpers\Html;
 
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="x_panel tile fixed_height_320 overflow_hidden">
-      <div class="x_title">
+      <div class="x_title" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+                  font-family: Open Sans; letter-spacing:2px;
+                  vertical-align: baseline; line-height: 32px;
+                  font-style: negrito ;text-align: justify;">
         <h2>Intervenção Social</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -388,7 +403,10 @@ use yii\helpers\Html;
 
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="x_panel tile fixed_height_320">
-      <div class="x_title">
+      <div class="x_title" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+                  font-family: Open Sans; letter-spacing:2px;
+                  vertical-align: baseline; line-height: 32px;
+                  font-style: negrito ;text-align: justify;">
         <h2>Informações de Contacto</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>

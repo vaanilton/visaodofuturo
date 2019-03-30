@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
+use kop\y2sp\ScrollPager;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EquipaSearch */
@@ -12,12 +13,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="equipa-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Equipa', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -75,6 +72,25 @@ $this->params['breadcrumbs'][] = $this->title;
                        );
                    }
                 ]
+            ],
+        ],
+        'panel' => [
+            'heading'=>'<h3 class="panel-title"><i class="glyphicon glyphicon-font"></i> Equipa de Gestão</h3>',
+            'type'=>'success',
+            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Novo Equipa de Gestão', ['create'], ['class' => 'btn btn-success']),
+            'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
+            'footer'=>true
+        ],
+        'pager' => [
+            'class'     => ScrollPager::className(),
+            'container' => '.grid-view tbody',
+            'item'      => 'tr',
+            'paginationSelector' => '.grid-view .pagination',
+            'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+            'enabledExtensions'  => [
+                ScrollPager::EXTENSION_SPINNER,
+                //ScrollPager::EXTENSION_NONE_LEFT,
+                ScrollPager::EXTENSION_PAGING,
             ],
         ],
     ]); ?>

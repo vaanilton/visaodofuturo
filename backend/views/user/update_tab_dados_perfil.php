@@ -13,7 +13,7 @@ use kartik\date\DatePicker;
                 font-family: Open Sans; letter-spacing:2px;
                 vertical-align: baseline; line-height: 32px;
                 font-style: negrito ;text-align: justify;">
-                
+
       <?php $form = ActiveForm::begin([
           'options' => ['enctype' => 'multipart/form-data']
       ]); ?>
@@ -66,8 +66,9 @@ use kartik\date\DatePicker;
       </div>
 
       <div class="form-group col-sm-12 gen-fields-holder">
-        <?= Html::submitButton('Update', ['class' => 'btn btn-lg btn-primary criar']) ?>
+          <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-primary']) ?>
       </div>
+
 
   </div>
 

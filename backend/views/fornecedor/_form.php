@@ -12,9 +12,11 @@ use kartik\select2\Select2;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-  <div class="fornecedor-form">
+  <div class="fornecedor-form" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+              font-family: Open Sans; letter-spacing:2px;
+              vertical-align: baseline; line-height: 32px;
+              font-style: negrito ;text-align: justify;">
       <?php $form = ActiveForm::begin(); ?>
-        <div class="row">
 
           <div class="well" style="overflow: auto">
             <div class="x_title">
@@ -153,7 +155,6 @@ use kartik\select2\Select2;
                     ]])
               ?>
             </div>
-          </div>
         </div>
 
       <div class="form-group">

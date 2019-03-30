@@ -222,6 +222,35 @@ use yii\helpers\Url;
                     </div>
                   </div>
                 </div>
+
+              <?php }else if($profile->tipo === 'Agente-Venda'){ ?>
+
+                  <div class="wrapper">
+                    <div class="container body">
+                      <div class="main_container">
+                        <?= $this->render(
+                        '../Agente-Venda/header.php',
+                        [
+                          'directoryAsset' => $directoryAsset,
+                          'profile'=>$profile
+                        ]
+                        ) ?>
+                        <?= $this->render(
+                          '../Agente-Venda/left.php',
+                          [
+                            'directoryAsset' => $directoryAsset,
+                            'profile'=>$profile
+                          ]
+                        )
+                        ?>
+                        <?= $this->render(
+                          '../Agente-Venda/content.php',
+                          ['content' => $content, 'directoryAsset' => $directoryAsset]
+                        ) ?>
+                      </div>
+                    </div>
+                  </div>
+
               <?php }else return Yii::$app->getResponse()->redirect(Url::to(['site/login']));
           } else return Yii::$app->getResponse()->redirect(Url::to(['site/login'])); ?>
 

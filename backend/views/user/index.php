@@ -28,13 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
   </div>
-
+  <?php /*
+    <p>
+        <?= Html::a('Create User', ['#'], ['class' => 'btn btn-success', 'data-toggle' => 'modal', 'data-target' => '#modal-user']) ?>
+    </p> */ ?>
     <p>
         <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Novo Utilizador', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-
-
 
     <div class="row">
       <div class="col-md-12">

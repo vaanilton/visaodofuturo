@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'value'=>function($data){
                   $fr = Fornecedor::find()->where(['id'=>$data->id_fornecedor, 'status'=>10])->one();
                   return $fr->nome.' '.$fr->sobrenome;
-              }
+               }
             ],
             [
               'attribute'=>'Regiao',

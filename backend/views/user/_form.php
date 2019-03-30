@@ -12,7 +12,10 @@ use kartik\select2\Select2;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="user-form">
+<div class="user-form" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+            font-family: Open Sans; letter-spacing:2px;
+            vertical-align: baseline; line-height: 32px;
+            font-style: negrito ;text-align: justify;">
 
     <?php $form = ActiveForm::begin([
         'id' => 'form-signup',
@@ -20,8 +23,6 @@ use kartik\select2\Select2;
         //'enableAjaxValidation' => true,
         'enableClientValidation' => true,
     ]); ?>
-
-    <div class="row">
 
       <div class="well" style="overflow: auto">
         <div class="x_title">
@@ -79,7 +80,8 @@ use kartik\select2\Select2;
                 'Gestor' => 'Gestor',
                 'Operador' => 'Operador',
                 'Fiel_armazen' => 'Fiel_armazen',
-                'Fornecedores' => 'Fornecedores'
+                'Fornecedores' => 'Fornecedores',
+                'Agente-Venda' => 'Agente-Venda',
               ],
               'options' => ['placeholder' => 'Escolha o tipo de Utilizador...', 'multiple' => false],
               ])->label('Tipo Utilizador');
@@ -128,7 +130,7 @@ use kartik\select2\Select2;
             ]
           ])?>
         </div>
-      </div>
+    
     </div>
 
     <div class="form-group">

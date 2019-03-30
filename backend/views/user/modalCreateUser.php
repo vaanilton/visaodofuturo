@@ -1,5 +1,5 @@
 <?php
-
+use backend\assets\JqueryAsset;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
@@ -9,6 +9,7 @@ use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
 /* @var $form yii\widgets\ActiveForm */
+//JqueryAsset::register($this);
 ?>
 <div class="container-fluid">
 <div class="row">

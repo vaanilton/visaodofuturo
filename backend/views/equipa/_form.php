@@ -8,7 +8,10 @@ use kartik\file\FileInput;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="equipa-form">
+<div class="equipa-form" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+            font-family: Open Sans; letter-spacing:2px;
+            vertical-align: baseline; line-height: 32px;
+            font-style: negrito ;text-align: justify;">
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="well" style="overflow: auto">
@@ -60,10 +63,10 @@ use kartik\file\FileInput;
             ]
         ])?>
       </div>
-
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+      </div>
+      <div class="form-group">
+          <?= Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i> Salvar',['class' => 'btn btn-success']) ?>
+      </div>
 
     <?php ActiveForm::end(); ?>
 

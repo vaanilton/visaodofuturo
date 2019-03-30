@@ -8,7 +8,7 @@ use backend\models\ClienteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use backend\models\Profile;
 /**
  * ClienteController implements the CRUD actions for Cliente model.
  */
@@ -62,10 +62,12 @@ class ClienteController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate(){
+
+        $modelUser = Profile::find()->where(['user_iduser' => Yii::$app->user->identity->id])->one();
         $model = new Cliente();
 
+        $model->id_utilizador = $modelUser->user_iduser;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }

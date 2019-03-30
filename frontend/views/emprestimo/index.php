@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ])
           ],*/
           //'estado',
-          [
+          /*[
               'attribute'=>'Estado',
               'value'=>'estado',
               'filter' => Html::activeDropDownList(
@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   'class'=>'form-control','prompt' => 'Estado'
                 ]
               )
-          ],
+          ],*/
           [
             'attribute'=> 'Data Registrado',
             'value' => 'data',

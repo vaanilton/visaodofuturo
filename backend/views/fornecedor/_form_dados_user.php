@@ -78,9 +78,9 @@ use kartik\select2\Select2;
 
         </div>
 
-      <div class="form-group">
-          <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-      </div>
+        <div class="form-group">
+            <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-lg btn-primary']) ?>
+        </div>
 
       <?php ActiveForm::end(); ?>
   </div>

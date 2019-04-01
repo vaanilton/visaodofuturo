@@ -129,7 +129,8 @@ use kartik\select2\Select2;
             </div>
 
             <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-              <?= $form->field($user, 'password')->passwordInput(['placeholder'=>"Crie um Password"]) ?>
+              <?= $form->field($user, 'password')->passwordInput(['placeholder'=>"Crie um Password"])->hint('Password should be within A-Za-z0-9')
+                    ->label('Password Hint') ?> 
             </div>
 
             <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">

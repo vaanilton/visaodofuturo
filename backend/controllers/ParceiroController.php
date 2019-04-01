@@ -4,11 +4,13 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Parceiro;
+use backend\models\Item;
 use backend\models\ParceiroSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\Profile;
+use yii\web\uploadedFile;
 /**
  * ParceiroController implements the CRUD actions for Parceiro model.
  */
@@ -50,10 +52,11 @@ class ParceiroController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id){
+        $modelItem = Item::find()->where(['id_parceiro'=>$id])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'modelItem' => $modelItem,
         ]);
     }
 
@@ -69,9 +72,22 @@ class ParceiroController extends Controller
 
         $model->id_utilizador = $modelUser->user_iduser;
         $model->data_registro = date('Y-m-d');
-        
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+
+        if ($model->load(Yii::$app->request->post())) {
+
+          $emagem_nome = Yii::$app->security->generateRandomString();
+          $file = $model->photo = UploadedFile::getInstance($model, 'photo');
+          $caminho = \Yii::$app->params['parceiro'];
+          if($file){
+               $model->photo->saveAs($caminho.$emagem_nome.'.'.$model->photo->extension );
+               $model->photo = $caminho.$emagem_nome.'.'.$model->photo->extension ;
+               $model->estra = $model->photo;
+          }else $model->photo = $caminho.'parceiro.jpg' ;
+
+          if($model->save()){
+              return $this->redirect(['view', 'id' => $model->id]);
+          }
+
         }
 
         return $this->render('create', [
@@ -90,8 +106,21 @@ class ParceiroController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+          $emagem_nome = Yii::$app->security->generateRandomString();
+          $file = $model->photo = UploadedFile::getInstance($model, 'photo');
+          $caminho = \Yii::$app->params['parceiro'];
+          if($file){
+               $model->photo->saveAs($caminho.$emagem_nome.'.'.$model->photo->extension );
+               $model->photo = $caminho.$emagem_nome.'.'.$model->photo->extension ;
+               $model->estra = $model->photo;
+          }else $model->photo = $caminho.'parceiro.jpg' ;
+
+          if($model->save()){
+              //return $this->redirect(['view', 'id' => $model->id]);
+              Yii::$app->session->setFlash('success', "success");
+          }
         }
 
         return $this->render('update', [

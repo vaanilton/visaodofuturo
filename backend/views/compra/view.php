@@ -7,15 +7,18 @@ use backend\models\Cultivo;
 use backend\models\Fornecedor;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Compra */
-
+$this->title = 'View';
 $this->params['breadcrumbs'][] = ['label' => 'Compras', 'url' => ['index']];
 
 ?>
 <div class="compra-view">
+  <h5 style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+              font-family: Open Sans; letter-spacing:2px;
+              vertical-align: baseline; line-height: 32px;
+              font-style: negrito ;text-align: justify;"><?= Html::encode($this->title) ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
+    <div class="pull-right">
+      <p>
         <?= Html::a('Finalizar Compra', ['finalizarcompra', 'id' => $model->id], [
             'class' => 'btn btn-primary',
             'data' => [
@@ -30,7 +33,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Compras', 'url' => ['index']];
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
+      </p>
+    </div>
+  </h5>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -89,5 +94,4 @@ $this->params['breadcrumbs'][] = ['label' => 'Compras', 'url' => ['index']];
             'data',
         ],
     ]) ?>
-
 </div>

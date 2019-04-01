@@ -70,7 +70,7 @@ AppAsset::register($this);
 
             <ul >
               <li >
-                <a href="<?= Url::to(['site/index']); ?>"><em class="fa fa-power-off"></em><?= Yii::$app->user->identity->username ?></a>
+                <a href="<?= Url::to(['site/index']); ?>"><em class="fa fa-power-off"></em><?= ' '.Yii::$app->user->identity->username ?></a>
     					</li>
             </ul>
 

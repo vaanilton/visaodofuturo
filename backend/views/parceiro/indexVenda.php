@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use kop\y2sp\ScrollPager;
-use backend\models\ItemSearch;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ParceiroSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -19,29 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-          [
-              'class' => 'kartik\grid\SerialColumn',
-              'contentOptions' => ['class' => 'kartik-sheet-style'],
-              'width' => '36px',
-              'header' => '',
-              'headerOptions' => ['class' => 'kartik-sheet-style']
-          ],
-          [
-            'class' => 'kartik\grid\ExpandRowColumn',
-            'value' => function($model, $key, $index, $column){
-              return GridView::ROW_COLLAPSED;
-            },
-            'detail' => function($model, $key, $index, $column){
-              $searchModel = new ItemSearch();
-              $searchModel->id_parceiro = $model->id;
-              $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-              return Yii::$app->controller->renderPartial('indexItemParceiro', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-              ]);
-            }
-          ],
+            ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
             //'id_utilizador',

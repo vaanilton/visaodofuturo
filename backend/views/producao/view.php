@@ -15,55 +15,61 @@ $this->params['breadcrumbs'][] = ['label' => 'Producaos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="producao-view">
+  <h5 style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+              font-family: Open Sans; letter-spacing:2px;
+              vertical-align: baseline; line-height: 32px;
+              font-style: negrito ;text-align: justify;"><?= Html::encode($this->title) ?>
 
-    <p>
+    <div class="pull-right">
 
-    <?php
-        $profile = Profile::find()->where(['user_iduser' => Yii::$app->user->identity->id])->one();
-        if($profile){
-          if($profile->tipo === 'Adiministrador' || $profile->tipo === 'Gestor'){
-          ?>
-            <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => 'Are you sure you want to delete this item?',
-                    'method' => 'post',
-                ],
-                ])
-            ?>
-          <?php
-          if($model->estado === 'Analizar'){
-          ?>
-              <?= Html::a('Confirmar', ['confirmar', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-          <?php
-          }else if($model->estado === 'Confirmado'){
-          ?>
-              <?= Html::a('Comprar', ['comprar', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-          <?php
-          }else if($model->estado === 'Comprado'){
-          ?>
-              <h1><?= Html::encode("Producao Comprado") ?></h1>
+      <p>
         <?php
-          }
-        }else if($profile->tipo === 'Fiel_armazen'){
-          ?>
+            $profile = Profile::find()->where(['user_iduser' => Yii::$app->user->identity->id])->one();
+            if($profile){
+              if($profile->tipo === 'Adiministrador' || $profile->tipo === 'Gestor'){
+              ?>
+                <?= Html::a('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('<i class="glyphicon glyphicon-trash"></i> Remover', ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => 'Are you sure you want to delete this item?',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+              <?php
+              if($model->estado === 'Analizar'){
+              ?>
+                  <?= Html::a('Confirmar', ['confirmar', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+              <?php
+              }else if($model->estado === 'Confirmado'){
+              ?>
+                  <?= Html::a('Comprar', ['comprar', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+              <?php
+              }else if($model->estado === 'Comprado'){
+              ?>
+                  <h1><?= Html::encode("Producao Comprado") ?></h1>
             <?php
-            if($model->estado === 'Analizar'){
-            ?>
-                <?= Html::a('Confirmar', ['confirmar', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?php
-            }else if($model->estado === 'Comprado'){
-            ?>
-                <h1><?= Html::encode("Producao Comprado") ?></h1>
-            <?php
+              }
+            }else if($profile->tipo === 'Fiel_armazen'){
+              ?>
+                <?php
+                if($model->estado === 'Analizar'){
+                ?>
+                    <?= Html::a('Confirmar', ['confirmar', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?php
+                }else if($model->estado === 'Comprado'){
+                ?>
+                    <h1><?= Html::encode("Producao Comprado") ?></h1>
+                <?php
+                }
+                ?>
+              <?php
+              }
             }
             ?>
-          <?php
-          }
-        }
-        ?>
-    </p>
+          </p>
+      </div>
+    </h5>
 
     <?= DetailView::widget([
         'model' => $model,

@@ -250,12 +250,14 @@ class SiteController extends Controller
 
             }else if($profile->tipo === 'Agente-Venda'){
 
-              $searchModel = new StockSearch();
-              $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+              $modelsParceiro=(new \yii\db\Query())
+              ->select(['id', 'id_utilizador', 'nome', 'endereco', 'nif', 'data_registro', 'status', 'photo'])
+              ->from('Parceiro')
+              ->where(['status' => 10])
+              ->all();
 
               return $this->render('../Agente-Venda/index', [
-                  'searchModel' => $searchModel,
-                  'dataProvider' => $dataProvider,
+                  'modelsParceiro' => $modelsParceiro,
               ]);
 
             }else if($profile->tipo === 'Backoffice'){

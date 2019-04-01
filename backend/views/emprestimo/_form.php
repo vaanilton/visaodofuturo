@@ -9,6 +9,17 @@ use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Emprestimo */
 /* @var $form yii\widgets\ActiveForm */
+$arrayFornecedor = array();
+$fornecedor = Fornecedor::find()->where(['status'=>10])->all();
+if($fornecedor){
+  foreach ($fornecedor as $key => $value) {
+      $arrayFornecedor [$key] =[
+        (int)$value['id'],
+        $value['nome'].' '.$value['sobrenome']
+      ];
+  }
+}
+
 ?>
 
 <div class="emprestimo-form" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
@@ -26,7 +37,7 @@ use kartik\date\DatePicker;
 
       <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
         <?= $form->field($model, 'id_fornecedor')->widget(Select2::className(), [
-          'data' => ArrayHelper::map(Fornecedor::find()->all(),'id','nome'),
+          'data' => ArrayHelper::map(Fornecedor::find()->where(['status'=>10])->all(),'id',"nome"),
           'options' => ['placeholder' => 'Escolha um Agricultor', 'id' => 'catid'],
         ]);?>
       </div>

@@ -12,6 +12,7 @@ use kartik\date\DatePicker;
 use yii\helpers\ArrayHelper;
 use kartik\select2\Select2;
 use kop\y2sp\ScrollPager;
+use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CultivoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -20,6 +21,29 @@ $this->title = 'Cultivos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cultivo-index">
+
+  <h5 style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+              font-family: Open Sans; letter-spacing:2px;
+              vertical-align: baseline; line-height: 32px;
+              font-style: negrito ;text-align: justify;"><?php echo date("d/m/Y");?>
+
+    <div class="pull-right">
+
+        <?php $form = ActiveForm::begin(['action' => ['index'],'method' => 'get',]); ?>
+
+            <?= $form->field($searchModel, 'nome_do_planteio')
+              ->label(false)
+              ->textInput(['placeholder' => "Entre com o nome...",'type' => "text", 'class' => "form-control"])
+        ?>
+    </div>
+    <div class="pull-right">
+
+        <?= Html::submitButton('Pesquisar', ['class' => 'btn btn-default', 'type'=>"Search"]) ?>
+
+        <?php ActiveForm::end(); ?>
+
+    </div>
+  </h5>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

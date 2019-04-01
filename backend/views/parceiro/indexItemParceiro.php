@@ -3,71 +3,56 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use kop\y2sp\ScrollPager;
-use backend\models\ItemSearch;
+use yii\helpers\ArrayHelper;
+use backend\models\Parceiro;
+use backend\models\profile;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ParceiroSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Parceiros';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="parceiro-index">
+<br>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    ?>
+
+
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
-          [
-              'class' => 'kartik\grid\SerialColumn',
-              'contentOptions' => ['class' => 'kartik-sheet-style'],
-              'width' => '36px',
-              'header' => '',
-              'headerOptions' => ['class' => 'kartik-sheet-style']
-          ],
-          [
-            'class' => 'kartik\grid\ExpandRowColumn',
-            'value' => function($model, $key, $index, $column){
-              return GridView::ROW_COLLAPSED;
-            },
-            'detail' => function($model, $key, $index, $column){
-              $searchModel = new ItemSearch();
-              $searchModel->id_parceiro = $model->id;
-              $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-              return Yii::$app->controller->renderPartial('indexItemParceiro', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-              ]);
-            }
-          ],
+            ['class' => 'kartik\grid\SerialColumn'],
 
             //'id',
             //'id_utilizador',
-            [
-                'label'=>'Logotipo',
-                'format'=>'html',
-                'value'=>function($data){
-                    return Html::img(Yii::getAlias('@web').'/'.$data['photo'],[
-                      'width'=>'70px'
-                    ]);
-                },
-                'contentOptions' => [
-                      'class' => 'text-center'
-                ]
-            ],
-            [
-                  'attribute'=>'Utilizador',
-                  'value'=>'utilizador.nome'
-            ],
+            /*[
+                  'attribute'=>'Nome Utilizador',
+                  'value'=>'utilizador.nome',
+            ],*/
+            //'id_parceiro',
+            /*[
+                  'attribute'=>'Nome Parceiro',
+                  'value'=>'parceiro.nome',
+                  'filter' => Html::activeDropDownList($searchModel, 'id_parceiro',ArrayHelper::map(
+                      Parceiro::find()->asArray()->all(), 'id', 'nome'),
+                      ['class'=>'form-control','prompt' => 'Selecionar Parceiro']
+                    ),
+                    'contentOptions' => [
+                         'class' => 'text-center'
+                   ]
+            ],*/
+            'codigo',
             'nome',
-            'endereco',
-            'nif',
-            //'data_registro',
+            'iva',
+            'unidade_caixa',
+            'unidade_caixa_iva',
+            'preco_caixa_iva',
+            'preco_item',
+            'data_registrado',
             //'status',
 
-            [
+            /*[
                 'class' => 'kartik\grid\ActionColumn',
                 'template' => '{view}{update}{delete}',
                 'buttons' => [
@@ -95,14 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                        );
                    }
                 ]
-            ],
-        ],
-        'panel' => [
-            'heading'=>'<h3 class="panel-title"><i class="fa fa-group"></i> Parceiros (Fornecedores)</h3>',
-            'type'=>'success',
-            'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Novo Parceiro (Fornecedores)', ['create'], ['class' => 'btn btn-success']),
-            'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
-            'footer'=>true
+            ],*/
         ],
         'pager' => [
             'class'     => ScrollPager::className(),

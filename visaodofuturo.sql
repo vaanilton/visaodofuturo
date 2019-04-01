@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2019 at 10:40 PM
+-- Generation Time: Apr 01, 2019 at 02:29 PM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -13,6 +13,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `visaodofuturo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Anuncio`
+--
+
+CREATE TABLE `Anuncio` (
+  `id` int(11) NOT NULL,
+  `descricao` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `requisitos` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `data` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `status` smallint(11) DEFAULT '10'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `Anuncio`
+--
+
+INSERT INTO `Anuncio` (`id`, `descricao`, `requisitos`, `data`, `status`) VALUES
+(3, 'A firma Visão de futuro pretende recrutar 20 Agentes de terreno, sendo 15 efetivo e 5 reserva,\r\nPara integrar a sua equipa na ilha de fogo, em regime de Estagiara.\r\n\r\nApós o Estagio, os 20 necessários serão escolhido pelo desempenho durante o estagio. \r\n\r\nAnuncio valido até dia 1 de Abril ate 1 de Maio', 'Disponibilidade Imediata\r\n12 ano de Escolaridade minimo ou equivalente\r\nSer residente da Ilha \r\nDisponível para residir fora da sua Localidade \r\nIdade Compreendida entre 18 - 35 anos \r\nAdicionais \r\nCarta de Condução\r\nConhecimento Informatico\r\nExperiencia Secretariado  ', '2019-03-22', 10);
 
 -- --------------------------------------------------------
 
@@ -57,7 +78,7 @@ CREATE TABLE `Area_Intervencao` (
 
 INSERT INTO `Area_Intervencao` (`id`, `icone`, `titulo`, `descricao`, `status`) VALUES
 (1, 'fa fa-envira', 'Produto', 'Criação de um sistema de articulação de produtos produzidos\r\n na ilha para a sua valorização e termos de preço e qualidade \r\npara maior competitividade no mercado', 10),
-(2, 'fa fa-pagelines', 'Emprego', 'Promoção de auto emprego de forma sustentável e duradouro', 10),
+(2, 'fa fa-pagelines', 'Emprego & Anúncios ', 'Promoção de auto emprego de forma sustentável e duradouro', 10),
 (3, 'fa fa-globe', 'Independência', 'Promover auto independência e enquadramento no sistema \r\nde providência social do país de forma a diminuir a \r\npobreza no seio dos idosos ao longo prazo', 10),
 (4, 'fa fa-pagelines', 'Investimentos', 'Execuções de ações práticas para uma melhor educação \r\ndo mundo rural, e para uma melhor eficácia em\r\n relação a retorno nos Investimentos', 10),
 (5, 'fa fa-globe', 'Mercado', 'criação de um mercado de escoamento sustentável \r\npara servir a ilha nas suas produções e consumo', 10),
@@ -165,6 +186,35 @@ CREATE TABLE `chat` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Cliente`
+--
+
+CREATE TABLE `Cliente` (
+  `id` int(11) NOT NULL,
+  `id_utilizador` int(11) NOT NULL,
+  `id_regiao` int(11) NOT NULL,
+  `nome` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `sobrenome` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `estado_civil` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `sexo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `data_nascimento` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `contacto` int(11) NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `bi` int(11) NOT NULL,
+  `nif` int(11) NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '10'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `Cliente`
+--
+
+INSERT INTO `Cliente` (`id`, `id_utilizador`, `id_regiao`, `nome`, `sobrenome`, `estado_civil`, `sexo`, `data_nascimento`, `contacto`, `email`, `bi`, `nif`, `status`) VALUES
+(1, 62, 1, 'Anilton', 'Miranda', 'Solteiro', 'Masculino', '2019-3-4', 9706153, 'anilton@gmail.com', 232323, 32323232, 10);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Codigo_Producao`
 --
 
@@ -238,7 +288,26 @@ INSERT INTO `Compra` (`id`, `id_utilizador`, `id_producao`, `quantidade`, `preco
 (48, 28, 22, 900, 18000, '2019-01-13', 'Em Analise', NULL),
 (49, 28, 23, 900, 180000, '2019-01-13', 'Em Analise', NULL),
 (50, 28, 24, 900, 180000, '2019-01-22', 'Em Analise', NULL),
-(51, 28, 25, 900, 180000, '2019-03-03', 'Em Analise', NULL);
+(51, 28, 25, 900, 180000, '2019-03-03', 'Em Analise', NULL),
+(52, 28, 28, 900, 180000, '2019-03-19', 'Em Analise', NULL),
+(53, 30, 26, 900, 180000, '2019-03-22', 'Em Analise', NULL),
+(54, 30, 29, 900, 180000, '2019-03-22', 'Em Analise', NULL),
+(55, 28, NULL, 10, 1000000, '2019-03-23', 'Em Analise', 5),
+(56, 28, 27, 1000, 100000, '2019-03-24', 'Em Analise', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacto`
+--
+
+CREATE TABLE `contacto` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `menssage` varchar(255) NOT NULL,
+  `contexto` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -269,11 +338,13 @@ INSERT INTO `Cultivo` (`id`, `id_fornecedor`, `id_regiao`, `descricao`, `tamanho
 (13, 14, 2, 'savana', 200, 'tomate', '01/01/2019', 'Inverno', '2018-12-21', '../../img/cultivo/cjba9SAPhI4k4E_KTP8Rt8LStWcA0R9D.jpg', 10, '../../img/cultivo/cjba9SAPhI4k4E_KTP8Rt8LStWcA0R9D.jpg'),
 (14, 14, 2, 'canarias', 200, 'pimento', '12/03/2018', 'Inverno', '2018-12-21', '../../img/cultivo/1i_F32Pe3cw1ZfZAf5PteZ1k2POs9P0P.jpg', 10, '../../img/cultivo/1i_F32Pe3cw1ZfZAf5PteZ1k2POs9P0P.jpg'),
 (15, 15, 2, 'piqueno', 200, 'Abobura', '12/30/2018', 'Inverno', '2018-12-21', '../../img/cultivo/fUXu-JRenY4uCGk1RJlFqBg5xQmHvANp.jpg', 10, '../../img/cultivo/fUXu-JRenY4uCGk1RJlFqBg5xQmHvANp.jpg'),
-(16, 16, 2, 'flor', 200, 'cove', '11/25/2018', 'Inverno', '2018-12-30', '../../img/cultivo/6cieHrLxGjUo6PcLQa3l2yQ53yr4m772.jpg', 10, '../../img/cultivo/6cieHrLxGjUo6PcLQa3l2yQ53yr4m772.jpg'),
-(17, 14, 1, '-------', 878, 'sebola', '12/30/2018', 'Inverno', '2019-01-04', '../../img/cultivo/r80g00KKp_XWetoZEZZhgGEJAMY_-Vh1.jpg', 10, '../../img/cultivo/r80g00KKp_XWetoZEZZhgGEJAMY_-Vh1.jpg'),
-(18, 14, 1, 'cove', 878, 'cove', '02/06/1', 'Inverno', '2019-01-05', '../../img/cultivo/PhdKdpqHuAcTeRBguw6iTW5M5hU5_0Ak.jpg', 10, '../../img/cultivo/PhdKdpqHuAcTeRBguw6iTW5M5hU5_0Ak.jpg'),
+(16, 16, 2, 'flor', 200, 'couve', '11/25/2018', 'Inverno', '2018-12-30', '../../img/cultivo/6cieHrLxGjUo6PcLQa3l2yQ53yr4m772.jpg', 10, '../../img/cultivo/6cieHrLxGjUo6PcLQa3l2yQ53yr4m772.jpg'),
+(17, 14, 1, '-------', 878, 'cebola', '12/30/2018', 'Inverno', '2019-01-04', '../../img/cultivo/r80g00KKp_XWetoZEZZhgGEJAMY_-Vh1.jpg', 10, '../../img/cultivo/r80g00KKp_XWetoZEZZhgGEJAMY_-Vh1.jpg'),
+(18, 14, 1, 'couve', 878, 'couve', '02/06/1', 'Inverno', '2019-01-05', '../../img/cultivo/PhdKdpqHuAcTeRBguw6iTW5M5hU5_0Ak.jpg', 10, '../../img/cultivo/PhdKdpqHuAcTeRBguw6iTW5M5hU5_0Ak.jpg'),
 (19, 14, 2, 'piqueno', 878, 'Abobura', '02/06/1', 'Primavera', '2019-01-05', '../../img/cultivo/M5ysTJMKuq3UL-UWL-ZMOJ3J9Fhzwums.jpg', 10, '../../img/cultivo/M5ysTJMKuq3UL-UWL-ZMOJ3J9Fhzwums.jpg'),
-(20, 14, 1, 'savana', 878, 'tomate', '01/01/2019', 'Inverno', '2019-01-08', '../../img/cultivo/qLlvA030tlmtXfomoMm2Kuz9Q1xGPGn0.jpg', 10, '../../img/cultivo/qLlvA030tlmtXfomoMm2Kuz9Q1xGPGn0.jpg');
+(20, 14, 1, 'savana', 878, 'tomate', '01/01/2019', 'Inverno', '2019-01-08', '../../img/cultivo/qLlvA030tlmtXfomoMm2Kuz9Q1xGPGn0.jpg', 10, '../../img/cultivo/qLlvA030tlmtXfomoMm2Kuz9Q1xGPGn0.jpg'),
+(21, 14, 3, 'savana', 200, 'tomate', '03/11/2019', 'Inverno', '2019-03-21', '../../img/cultivo/pJ_Kt4gzKQRvJsaAQww8_l0lsjCxg1x5.jpg', 10, '../../img/cultivo/pJ_Kt4gzKQRvJsaAQww8_l0lsjCxg1x5.jpg'),
+(22, 14, 5, 'savana', 200, 'tomate', '02/06/1', 'Inverno', '2019-03-31', '../../img/cultivo/8UNXKoFi_RUgOLXet5dXsxjz0NvHSrUn.jpg', 10, '../../img/cultivo/8UNXKoFi_RUgOLXet5dXsxjz0NvHSrUn.jpg');
 
 -- --------------------------------------------------------
 
@@ -291,24 +362,25 @@ CREATE TABLE `Emprestimo` (
   `data` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `data_devolucao` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `quantidade_monetario` int(11) NOT NULL,
-  `estado` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Debito'
+  `estado` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Debito',
+  `status` smallint(6) NOT NULL DEFAULT '10'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Emprestimo`
 --
 
-INSERT INTO `Emprestimo` (`id`, `id_fornecedor`, `id_utilizador`, `tipo`, `nome`, `quantidade`, `data`, `data_devolucao`, `quantidade_monetario`, `estado`) VALUES
-(4, 14, 28, 'Produto', 'Adobo', 2, '2018-12-22', '2019-01-01', 20000, 'Pago'),
-(5, 14, 28, 'Produto', 'Ramede', 2, '2018-12-22', '2019-01-01', 2000, 'Debito'),
-(6, 14, 28, 'Monetario', NULL, 2, '2018-12-22', '01/06/2019', 20000, 'Pago'),
-(8, 14, 28, 'Equipamento', 'Enxada', 1, '2018-12-22', '2019-01-01', 2000, 'Debito'),
-(9, 14, 28, 'Equipamento', NULL, 2, '2018-12-22', '12/30/2018', 20000, 'Debito'),
-(10, 14, 28, 'Equipamento', NULL, 2, '2018-12-22', '12/30/2018', 20000, 'Debito'),
-(11, 14, 28, 'Equipamento', 'Adobo', 2, '2018-12-22', '01/06/2019', 2000, 'Debito'),
-(12, 14, 28, 'Equipamento', NULL, 2, '2018-12-24', '01/01/2019', 20000, 'Pago'),
-(13, 14, 28, 'Equipamento', 'Enxada', 2, '2018-12-25', '01/01/2019', 2000, 'Debito'),
-(14, 14, 28, 'Medicamentos', 'Dexix', 2, '2019-01-31', '2019-1-31', 2000, 'Debito');
+INSERT INTO `Emprestimo` (`id`, `id_fornecedor`, `id_utilizador`, `tipo`, `nome`, `quantidade`, `data`, `data_devolucao`, `quantidade_monetario`, `estado`, `status`) VALUES
+(4, 14, 28, 'Produto', 'Adobo', 2, '2018-12-22', '2019-01-01', 20000, 'Pago', 10),
+(5, 14, 28, 'Produto', 'Ramede', 2, '2018-12-22', '2019-01-01', 2000, 'Debito', 10),
+(8, 14, 28, 'Equipamento', 'Enxada', 1, '2018-12-22', '2019-01-01', 2000, 'Debito', 10),
+(9, 14, 28, 'Equipamento', NULL, 2, '2018-12-22', '12/30/2018', 20000, 'Debito', 10),
+(10, 14, 28, 'Equipamento', NULL, 2, '2018-12-22', '12/30/2018', 20000, 'Debito', 10),
+(11, 14, 28, 'Equipamento', 'Adobo', 2, '2018-12-22', '01/06/2019', 2000, 'Debito', 10),
+(12, 14, 28, 'Equipamento', NULL, 2, '2018-12-24', '01/01/2019', 20000, 'Pago', 10),
+(13, 14, 28, 'Equipamento', 'Enxada', 2, '2018-12-25', '01/01/2019', 2000, 'Debito', 10),
+(14, 14, 28, 'Medicamentos', 'Dexix', 2, '2019-01-31', '2019-1-31', 2000, 'Debito', 10),
+(15, 15, 28, 'Equipamentos', 'Enxada', 2, '2019-03-24', '2019-3-10', 2000, 'Debito', 10);
 
 -- --------------------------------------------------------
 
@@ -326,7 +398,7 @@ CREATE TABLE `Equipa` (
   `facebook` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tweter` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `google` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` int(11) NOT NULL
+  `status` smallint(11) NOT NULL DEFAULT '10'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -406,7 +478,7 @@ INSERT INTO `Estado` (`id`, `user_iduser`, `data_hr_inicio`, `data_hr_fim`, `dat
 (55, 28, '2018-12-09 19:58:15', '2018-12-10 12:43:48', '2018-12-09', NULL),
 (56, 28, '2018-12-10 12:44:38', '2018-12-10 14:22:00', '2018-12-10', NULL),
 (57, 28, '2018-12-10 14:22:10', '2018-12-11 01:19:25', '2018-12-10', NULL),
-(58, 30, '2018-12-11 01:23:48', '2019-03-17 19:31:43', '2018-12-11', NULL),
+(58, 30, '2018-12-11 01:23:48', '2019-03-28 23:12:11', '2018-12-11', NULL),
 (59, 28, '2018-12-11 01:26:34', '2018-12-12 22:28:20', '2018-12-11', NULL),
 (60, 28, '2018-12-12 22:30:38', '2018-12-14 21:25:33', '2018-12-12', NULL),
 (61, 28, '2018-12-15 00:32:32', '2018-12-15 01:44:29', '2018-12-15', NULL),
@@ -416,13 +488,36 @@ INSERT INTO `Estado` (`id`, `user_iduser`, `data_hr_inicio`, `data_hr_fim`, `dat
 (65, 28, '2018-12-18 14:16:49', NULL, '2018-12-18', NULL),
 (66, 28, '2018-12-18 14:16:52', NULL, '2018-12-18', NULL),
 (67, 28, '2018-12-18 14:16:54', '2018-12-19 16:42:51', '2018-12-18', NULL),
-(68, 31, '2018-12-19 16:43:04', '2019-03-17 19:21:35', '2018-12-19', NULL),
+(68, 31, '2018-12-19 16:43:04', '2019-03-21 21:26:34', '2018-12-19', NULL),
 (69, 28, '2018-12-19 20:46:31', '2018-12-20 02:43:09', '2018-12-19', NULL),
 (70, 28, '2018-12-20 03:22:05', '2018-12-20 03:22:11', '2018-12-20', NULL),
 (71, 28, '2018-12-20 03:39:41', '2018-12-20 04:12:25', '2018-12-20', NULL),
 (72, 28, '2018-12-20 04:52:50', '2018-12-20 15:03:47', '2018-12-20', NULL),
 (73, 28, '2018-12-20 15:03:58', '2018-12-20 17:29:26', '2018-12-20', NULL),
-(74, 28, '2018-12-21 18:21:06', '2019-03-18 00:11:52', '2018-12-21', NULL);
+(74, 28, '2018-12-21 18:21:06', '2019-04-01 14:13:04', '2018-12-21', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Fatura`
+--
+
+CREATE TABLE `Fatura` (
+  `id` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `id_utilizador` int(11) NOT NULL,
+  `numero_fatura` int(11) NOT NULL,
+  `total_venda` int(11) NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '10',
+  `data_registo` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `Fatura`
+--
+
+INSERT INTO `Fatura` (`id`, `id_cliente`, `id_utilizador`, `numero_fatura`, `total_venda`, `status`, `data_registo`) VALUES
+(1, 1, 62, 1, 10000, 10, '');
 
 -- --------------------------------------------------------
 
@@ -458,7 +553,7 @@ CREATE TABLE `Fornecedor` (
 --
 
 INSERT INTO `Fornecedor` (`id`, `id_utilizador`, `id_regiao`, `nome`, `sobrenome`, `estado_civil`, `sexo`, `data_nascimento`, `endereco`, `contacto`, `numero_agregado`, `grau_parentesco`, `tipo`, `status`, `photo`, `NIF`, `BI`, `data_registo`, `estra`, `user_iduser`) VALUES
-(14, 28, 1, 'Fernando', 'Pereira', 'Solteiro', 'Masculino', '01/01/2019', 'Moia Moia', 9928341, 7, 'pai', 'Agricultor-Pastor', 10, '../../img/user/71-ROvfO00QbQUR21Om-ruJyCvg7L5Vf.jpg', '1234567890', '123456', '2018-12-21', '../../img/user/71-ROvfO00QbQUR21Om-ruJyCvg7L5Vf.jpg', 56),
+(14, 28, 1, 'Fernando', 'Pereira', 'Solteiro', 'Masculino', '01/01/2019', 'Moia Moia', 9928341, 7, 'pai', 'Agricultor-Pastor', 10, '../../img/user/eiF4-rUlr5hO6p9kqPqXqDErVw-UhB3H.jpg', '1234567890', '123456', '2018-12-21', '../../img/user/eiF4-rUlr5hO6p9kqPqXqDErVw-UhB3H.jpg', 56),
 (15, 28, 2, 'Simon', 'Barros', 'Casado', 'Masculino', '12/31/2018', 'Achada Lama', 9928341, 3, 'pai', 'Agricultor-Pastor', 10, '../../img/fornecedor/TZ4gqVci6HTRswtqdq2Ebz_sawaV7xfY.jpg', '0987654321', '12354', '2018-12-21', '../../img/fornecedor/TZ4gqVci6HTRswtqdq2Ebz_sawaV7xfY.jpg', 57),
 (16, 28, 1, 'Calu', 'Miranda', 'Solteiro', 'Masculino', '1988-12-4', 'Achada Lama', 9928341, 3, 'pai', 'Agricultor-Pastor', 10, '../../img/user/74kw0_wIFq9HUIAles-ejb2FcyBZaFt9.jpg', '212212121', '123432', '2018-12-25', '../../img/user/74kw0_wIFq9HUIAles-ejb2FcyBZaFt9.jpg', 58),
 (17, 28, 1, 'Luiz', 'Barros', 'Solteiro', 'Masculino', '1980-4-1', 'Achada Lama', 9928341, 7, 'pai', 'Pastor', 10, '../../img/user/sdpFKoj-IzRGjp_V9HihSerboCgbDuVH.jpg', '12345678909', '1212210', '2019-01-05', '../../img/user/sdpFKoj-IzRGjp_V9HihSerboCgbDuVH.jpg', 60);
@@ -491,8 +586,8 @@ INSERT INTO `Gado` (`id`, `nome`, `descricao`, `quantidade`, `data_registo`, `id
 (1, 'Vacas', 'terra', 20, '2018-12-29', 15, 1, '../../img/gado/UCRTwQBFocWLwwNdhv0jK3wq2sDv9Dqb.jpg', 0, NULL, 'Comprado'),
 (2, 'Vacas', 'Posto', 0, '2018-12-30', 16, 2, '../../img/gado/M1mxugbRj7KH3u2ajDkzklhMsvzKrg1y.jpg', 0, NULL, 'Comprado'),
 (3, 'Vacas', 'Posto', 9, '2019-01-02', 14, 1, '../../img/gado/yG7stqTCwjPgv4_NLKhytOx3q38ZmfkW.jpg', 10, '../../img/gado/yG7stqTCwjPgv4_NLKhytOx3q38ZmfkW.jpg', 'Comprado'),
-(4, 'Galinha', 'Navi', 500, '2019-01-13', 15, 1, '../../img/gado/gado.jpg', 10, NULL, NULL),
-(5, 'Cabras', 'terra', 21, '2019-01-13', 15, 1, '../../img/gado/gado.jpg', 10, NULL, NULL),
+(4, 'Galinha', 'Navi', 498, '2019-01-13', 15, 1, '../../img/gado/gado.jpg', 10, NULL, NULL),
+(5, 'Cabras', 'terra', 20, '2019-01-13', 15, 1, '../../img/gado/gado.jpg', 10, NULL, 'Comprado'),
 (6, 'Galinha', 'Navi', 1000, '2019-01-13', 14, 1, '../../img/gado/gado.jpg', 10, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -522,6 +617,31 @@ INSERT INTO `Galeria` (`id`, `photo`, `estra`, `descricao`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `historial_gado`
+--
+
+CREATE TABLE `historial_gado` (
+  `id` int(11) NOT NULL,
+  `id_gado` int(11) NOT NULL,
+  `obs` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `quantidade` int(100) NOT NULL,
+  `data` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `historial_gado`
+--
+
+INSERT INTO `historial_gado` (`id`, `id_gado`, `obs`, `quantidade`, `data`) VALUES
+(1, 5, 'reproduziu ', 2, '23/03/19 19:48:12'),
+(2, 5, 'reproduziu', 3, '23/03/19 19:55:28'),
+(3, 5, 'reproduziu', 3, '23/03/19 19:55:45'),
+(4, 5, 'produziu', 3, '23/03/19 19:56:04'),
+(5, 4, 'moreu', 2, '23/03/19 19:58:56');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Informacao_Contacto`
 --
 
@@ -540,6 +660,62 @@ CREATE TABLE `Informacao_Contacto` (
 
 INSERT INTO `Informacao_Contacto` (`id`, `telefone`, `email`, `localisacao`, `hora_funcionamento`, `status`) VALUES
 (1, '9993876', 'visaodofuturocv@gmail.com', 'Rua do Mercado, São Filipe, Cabo Verde', 'Segunda - Sábado : 8:00 am para 12:00 pm 13:00 pm para 16:00 pm', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Inscricao`
+--
+
+CREATE TABLE `Inscricao` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `morada` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `sexo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `data_nascimento` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `escolaridade` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `BI` int(11) NOT NULL,
+  `NIF` int(11) NOT NULL,
+  `telefone` int(11) NOT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `status` smallint(11) DEFAULT '10',
+  `id_anuncio` int(11) NOT NULL,
+  `data_inscrito` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `Inscricao`
+--
+
+INSERT INTO `Inscricao` (`id`, `nome`, `morada`, `sexo`, `data_nascimento`, `escolaridade`, `BI`, `NIF`, `telefone`, `email`, `status`, `id_anuncio`, `data_inscrito`) VALUES
+(6, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:35:28'),
+(7, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:36:53'),
+(8, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:36:56'),
+(9, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:37:51'),
+(10, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:37:55'),
+(11, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:38:20'),
+(12, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:38:37'),
+(13, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:38:39'),
+(14, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:39:11'),
+(15, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:39:37'),
+(16, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:40:09'),
+(17, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:40:30'),
+(18, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:41:22'),
+(19, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:41:44'),
+(20, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:42:04'),
+(21, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:42:09'),
+(22, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:42:39'),
+(23, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:44:27'),
+(24, 'Anilton Miranda', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:45:12'),
+(25, 'Anilton Miranda Moniz', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:45:27'),
+(26, 'Anilton Miranda Moniz', 'Palmarejo', 'Masculino', '1995-6-1', '12', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 17:48:03'),
+(27, 'Yasmine Freira', 'Palmarejo', 'Feminino', '1995-4-19', 'Superior', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '23/03/19 21:29:06'),
+(28, 'Yasmine Freira', 'Palmarejo', 'Feminino', '1995-4-19', 'Superior', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '24/03/19 22:30:38'),
+(29, 'Yasmine Freira', 'Palmarejo', 'Feminino', '1995-4-19', 'Superior', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '24/03/19 23:56:29'),
+(30, 'Anilton Mira', 'Palmarejo', 'Masculino', '1995-6-1', 'Superior', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '24/03/19 23:57:16'),
+(31, 'Anilton Mira', 'Palmarejo', 'Masculino', '1995-6-1', 'Superior', 545676, 987987988, 9706153, 'va@gmail.com', 10, 3, '24/03/19 23:57:44'),
+(32, 'Antonio Fernendes', 'Fogo', 'Masculino', '2019-3-12', 'Superior', 545676, 987987988, 9706153, 'antonio@gmail.com', 10, 3, '25/03/19 13:20:27'),
+(33, 'Helida Pires', 'Santiago', 'Feminino', '2019-4-3', 'Superior', 6998988, 897987, 76877887, 'helida@gmail.com', 10, 3, '25/03/19 15:16:51');
 
 -- --------------------------------------------------------
 
@@ -566,6 +742,36 @@ INSERT INTO `Intervensao_Social` (`id`, `photo`, `nome`, `descricao`, `status`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Item`
+--
+
+CREATE TABLE `Item` (
+  `id` int(11) NOT NULL,
+  `id_utilizador` int(11) NOT NULL,
+  `id_parceiro` int(11) NOT NULL,
+  `codigo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `nome` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `iva` int(11) DEFAULT NULL,
+  `unidade_caixa` int(11) DEFAULT NULL,
+  `unidade_caixa_iva` int(11) DEFAULT NULL,
+  `preco_caixa_iva` int(11) DEFAULT NULL,
+  `preco_item` int(11) NOT NULL,
+  `data_registrado` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` smallint(11) NOT NULL DEFAULT '10'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `Item`
+--
+
+INSERT INTO `Item` (`id`, `id_utilizador`, `id_parceiro`, `codigo`, `nome`, `iva`, `unidade_caixa`, `unidade_caixa_iva`, `preco_caixa_iva`, `preco_item`, `data_registrado`, `status`) VALUES
+(1, 62, 1, '111111', 'Arroz', NULL, 2000, NULL, NULL, 2000, '2019-03-29', 10),
+(2, 62, 1, '111112', 'Milho', NULL, 2000, NULL, NULL, 2000, '2019-03-29', 10),
+(3, 62, 2, '111113', 'Arroz', NULL, 2000, NULL, NULL, 2000, '2019-03-31', 10);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migration`
 --
 
@@ -583,6 +789,35 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m130524_201442_init', 1541722684),
 ('m140506_102106_rbac_init', 1544754385),
 ('m170907_052038_rbac_add_index_on_auth_assignment_user_id', 1544754385);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Parceiro`
+--
+
+CREATE TABLE `Parceiro` (
+  `id` int(11) NOT NULL,
+  `id_utilizador` int(11) NOT NULL,
+  `nome` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `endereco` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `nif` int(11) NOT NULL,
+  `data_registro` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` smallint(11) NOT NULL DEFAULT '10',
+  `photo` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `estra` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `contacto` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `Parceiro`
+--
+
+INSERT INTO `Parceiro` (`id`, `id_utilizador`, `nome`, `endereco`, `nif`, `data_registro`, `status`, `photo`, `estra`, `email`, `contacto`) VALUES
+(1, 62, 'Mimosa', 'Praia', 121212212, '2019-03-29', 10, '../../img/parceiro_loja_online/xWBoN4KK1wfgzpd9o4xkWQ7CtL8yUBS6.png', '../../img/parceiro_loja_online/xWBoN4KK1wfgzpd9o4xkWQ7CtL8yUBS6.png', NULL, NULL),
+(2, 62, 'Montanhês', 'Sao Domingos', 121221212, '2019-03-29', 10, '../../img/parceiro_loja_online/17mo1SFXi8j4QTIcvFfoZTCk-TQo_41i.png', '../../img/parceiro_loja_online/17mo1SFXi8j4QTIcvFfoZTCk-TQo_41i.png', NULL, NULL),
+(3, 62, 'Upranimal', 'Sao Domingos', 2147483647, '2019-04-01', 10, '../../img/parceiro_loja_online/S5s7SqEatQyjcKsJgO9TsAqsD9NvteW3.jpeg', '../../img/parceiro_loja_online/S5s7SqEatQyjcKsJgO9TsAqsD9NvteW3.jpeg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -630,7 +865,10 @@ INSERT INTO `Producao` (`id`, `id_cultivo`, `id_gado`, `tipo`, `quantidade_produ
 (23, 14, NULL, 'Agricula', 1000, 100, '01/14/2019', 200, '2019-01-13', '../../img/producao/8s5XKHFcSLIZ16RgRIXIhX-nedNOI0Of.jpg', 'Comprado', '../../img/producao/8s5XKHFcSLIZ16RgRIXIhX-nedNOI0Of.jpg', 10, 2, 'pimento'),
 (24, 13, NULL, 'Agricula', 1000, 100, '01/15/2019', 200, '2019-01-22', '../../img/producao/wjAhmZM7gCQ54UMnEUWkiCMm2sx2cBwf.jpg', 'Comprado', '../../img/producao/wjAhmZM7gCQ54UMnEUWkiCMm2sx2cBwf.jpg', 10, 1, 'tomate'),
 (25, 13, NULL, 'Agricula', 1000, 100, '01/22/2019', 200, '2019-01-29', '../../img/producao/mXSHcPs9ytby1x0b02gFl_IhAjDBlnv0.jpg', 'Comprado', '../../img/producao/mXSHcPs9ytby1x0b02gFl_IhAjDBlnv0.jpg', 10, 1, 'tomate'),
-(26, 13, NULL, 'Agricula', 1000, 100, '01/22/2019', 200, '2019-02-08', '../../img/producao/Ym7J1rvWbJsfY-kGYy2hW5XHhK90878x.jpg', 'Confirmado', '../../img/producao/Ym7J1rvWbJsfY-kGYy2hW5XHhK90878x.jpg', 10, 1, 'tomate');
+(26, 13, NULL, 'Agricula', 1000, 100, '01/22/2019', 200, '2019-02-08', '../../img/producao/Ym7J1rvWbJsfY-kGYy2hW5XHhK90878x.jpg', 'Comprado', '../../img/producao/Ym7J1rvWbJsfY-kGYy2hW5XHhK90878x.jpg', 10, 1, 'tomate'),
+(27, NULL, 5, 'Picuaria', 1000, 0, '03/19/2018', 100, '2019-03-19', NULL, 'Comprado', NULL, 10, 14, 'leite'),
+(28, 15, NULL, 'Agricula', 1000, 100, '04/04/2019', 200, '2019-03-19', '../../img/producao/vi6Ylcdz-CSB0Vyyo4z6cIiAcz2TyCYs.jpg', 'Comprado', '../../img/producao/vi6Ylcdz-CSB0Vyyo4z6cIiAcz2TyCYs.jpg', 10, 3, 'abobura'),
+(29, 13, NULL, 'Agricula', 1000, 100, '03/22/2019', 200, '2019-03-22', '../../img/producao/producao.jpg', 'Comprado', NULL, 10, 1, 'tomate');
 
 -- --------------------------------------------------------
 
@@ -656,8 +894,8 @@ CREATE TABLE `Produto` (
 --
 
 INSERT INTO `Produto` (`id`, `id_compra`, `nome`, `descricao`, `preco`, `photo`, `data_registo`, `estra`, `status`, `codigo_producao_id`) VALUES
-(7, 34, 'tomate', 'savana', 200, '../../img/producao/wjAhmZM7gCQ54UMnEUWkiCMm2sx2cBwf.jpg', '2019-01-22', NULL, 10, 1),
-(8, 37, 'Abobura', 'piqueno', 200, '../../img/producao/2aPK7m4ibHtvrdjnHSP48pGezZEIsk3n.jpg', '2019-01-12', NULL, 10, 3),
+(7, 34, 'tomate', 'savana', 200, '../../img/producao/producao.jpg', '2019-03-22', NULL, 10, 1),
+(8, 37, 'Abobura', 'piqueno', 200, '../../img/producao/vi6Ylcdz-CSB0Vyyo4z6cIiAcz2TyCYs.jpg', '2019-03-19', NULL, 10, 3),
 (9, 45, 'Ovo', 'Ovo', 20, '../../img/producao/producao.jpg', '2019-01-13', NULL, 10, 15),
 (10, 49, 'pimento', 'pimento', 200, '../../img/producao/8s5XKHFcSLIZ16RgRIXIhX-nedNOI0Of.jpg', '2019-01-13', NULL, 10, 2);
 
@@ -689,18 +927,10 @@ CREATE TABLE `profile` (
 
 INSERT INTO `profile` (`user_iduser`, `id_regiao`, `nome`, `sobrenome`, `tipo`, `sexo`, `telefone`, `data_nascimento`, `endereco`, `photo`, `data_registo`, `estado`, `estra`) VALUES
 (27, 1, 'Vanilton', 'Pereira', 'Adiministrador', 'Masculino', 9706153, '03-Dec-1906', 'Palmarejo', 'img/user/5d7TYpemkQaOWwiEp4FTYn4oV1icDJ3e.jpg', '2018-11-28', 'offline', 'img/user/5d7TYpemkQaOWwiEp4FTYn4oV1icDJ3e.jpg'),
-(28, 2, 'Anilton', 'Miranda', 'Adiministrador', 'Masculino', 9706153, '06/01/1995', 'Palmarejo', '../../img/user/BkMsb1zkWahPQznrnj6IvWhPIHRa83P7.jpg', '2018-11-28', 'oline', '../../img/user/BkMsb1zkWahPQznrnj6IvWhPIHRa83P7.jpg'),
-(29, 1, 'Edson', 'Silva', 'Adiministrador', 'Masculino', 9706153, '1995-06-01', 'Palmarejo', '../../img/user/E1OXXt8hnOmxkJmobqR3s-U-9FW0ZRZU.jpg', '2018-11-28', NULL, '../../img/user/E1OXXt8hnOmxkJmobqR3s-U-9FW0ZRZU.jpg'),
+(28, 2, 'Anilton', 'Miranda', 'Adiministrador', 'Masculino', 9706153, '06/01/1995', 'Fazenda', '../../img/user/BkMsb1zkWahPQznrnj6IvWhPIHRa83P7.jpg', '2018-11-28', 'offline', '../../img/user/BkMsb1zkWahPQznrnj6IvWhPIHRa83P7.jpg'),
 (30, 1, 'Flavio', 'Maio', 'Gestor', 'Masculino', 9706153, '1995-06-01', 'Palmarejo', '../../img/user/E1OXXt8hnOmxkJmobqR3s-U-9FW0ZRZU.jpg', '2018-12-03', 'offline', '../../img/user/E1OXXt8hnOmxkJmobqR3s-U-9FW0ZRZU.jpg'),
-(31, 1, 'Antonio', 'Fogo', 'Operador', 'Masculino', 9264063, '1985-06-01', 'Mustero', '../../img/user/Jhwc3ZOYUBCKLILyLM-i8qKxMk8KwrZ5.jpg', '2018-12-03', 'offline', '../../img/user/Jhwc3ZOYUBCKLILyLM-i8qKxMk8KwrZ5.jpg'),
-(32, 1, 'Cleisa', 'Fernandes', 'Operador', 'Feminino', 9706153, '1995-06-01', 'Brazil', '../../img/user/yf2nGAFzqkfR74X-ZVGpwiUXjpEd5A5n.jpg', '2018-12-03', 'offline', '../../img/user/yf2nGAFzqkfR74X-ZVGpwiUXjpEd5A5n.jpg'),
-(33, 1, 'Nito', 'Pereira', 'Fornecedores', 'Masculino', 9264063, '1995-06-01', 'Tirachapeu', '../../img/user/yf2nGAFzqkfR74X-ZVGpwiUXjpEd5A5n.jpg', '2018-12-05', NULL, '../../img/user/yf2nGAFzqkfR74X-ZVGpwiUXjpEd5A5n.jpg'),
-(34, 1, 'Ja', 'Miranda', 'Operador', 'Masculino', 9706153, '1995-06-01', 'Palmarejo', '../../img/user/yf2nGAFzqkfR74X-ZVGpwiUXjpEd5A5n.jpg', '2018-12-05', NULL, '../../img/user/yf2nGAFzqkfR74X-ZVGpwiUXjpEd5A5n.jpg'),
-(51, 1, 'Filumena', 'Miranda', 'Adiministrador', 'Feminino', 9706153, '05/06/1', 'Palmarejo', '../../img/user/9pMmw3pZ2llqImSlQZQp1taJP2Ooamym.jpg', '2018-12-14', NULL, '../../img/user/9pMmw3pZ2llqImSlQZQp1taJP2Ooamym.jpg'),
-(59, 1, 'Antonio', 'Fogo', 'Fiel_armazen', 'Masculino', 9706153, '2018-12-18', 'Fogo', '../../img/user/8vO1pQcEKDwl7073IfDbR0_ohfvSybe9.jpg', '2018-12-27', 'offline', '../../img/user/8vO1pQcEKDwl7073IfDbR0_ohfvSybe9.jpg'),
-(61, 2, 'Vanilde', 'Miranda', 'backoffice', 'Feminino', 9706153, '1995-6-1', 'Achada Lama', '../../img/user/8vO1pQcEKDwl7073IfDbR0_ohfvSybe9.jpg', '2019-02-02', 'offline', '../../img/user/8vO1pQcEKDwl7073IfDbR0_ohfvSybe9.jpg'),
-(65, 1, 'Yasmine', 'Freire', 'Adiministrador', 'Feminino', 9706153, '1995-4-21', 'Orgoes', '../../img/user/DFFLKVQeoZc4fPQAah_lInjy-vY9kj9l.jpg', '2019-02-24', 'offline', '../../img/user/DFFLKVQeoZc4fPQAah_lInjy-vY9kj9l.jpg'),
-(67, 1, 'Xoco', 'Xoco', 'Adiministrador', 'Masculino', 9706153, '1995-6-1', 'Palmarejo', '../../img/user/pEgUY9Rn8xNbT48Y3kDx39P1HjH8_8gx.jpg', '2019-03-17', NULL, '../../img/user/pEgUY9Rn8xNbT48Y3kDx39P1HjH8_8gx.jpg');
+(61, 6, 'Yasmine', 'Freire', 'Operador', 'Feminino', 9264063, '1995-6-1', 'Orgoes', '../../img/user/c5WcBTYysQaEpyybWzGj1WMUAGjLlxax.jpg', '2019-03-26', 'offline', '../../img/user/c5WcBTYysQaEpyybWzGj1WMUAGjLlxax.jpg'),
+(62, 1, 'Vanilton', 'Miranda', 'Agente-Venda', 'Masculino', 9706153, '1995-6-1', 'Palmarejo', '../../img/user/Z49oXqpltXvUYzE9-De3UdXbJ5-OzHMJ.jpg', '2019-03-29', 'oline', '../../img/user/Z49oXqpltXvUYzE9-De3UdXbJ5-OzHMJ.jpg');
 
 -- --------------------------------------------------------
 
@@ -769,18 +999,19 @@ CREATE TABLE `Stock` (
   `id_produto` int(11) NOT NULL,
   `id_utilizador` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL,
-  `data_registo` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `data_registo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` smallint(11) NOT NULL DEFAULT '10'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Stock`
 --
 
-INSERT INTO `Stock` (`id`, `id_produto`, `id_utilizador`, `quantidade`, `data_registo`) VALUES
-(5, 7, 28, 2700, '2018-12-29'),
-(6, 8, 28, 3800, '2019-01-12'),
-(7, 9, 28, 1827, '2019-01-13'),
-(8, 10, 28, 900, '2019-01-13');
+INSERT INTO `Stock` (`id`, `id_produto`, `id_utilizador`, `quantidade`, `data_registo`, `status`) VALUES
+(5, 7, 28, 3604, '2018-12-29', 10),
+(6, 8, 28, 4700, '2019-01-12', 10),
+(7, 9, 28, 1827, '2019-01-13', 10),
+(8, 10, 28, 900, '2019-01-13', 10);
 
 -- --------------------------------------------------------
 
@@ -805,25 +1036,17 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
-(27, 'vanilton', 'SlIqi8lT0zcE_7rzisvws7nSWWL556W7', '$2y$13$a/Qz/H9.gYMIDvGVdxx8QenHnYjXGz5recOMTVy/2ZM9z4sc/z3QO', NULL, 'vanilton@gmail.com', 0, 1543428265, 1543428265),
+(27, 'vanilton', 'SlIqi8lT0zcE_7rzisvws7nSWWL556W7', '$2y$13$a/Qz/H9.gYMIDvGVdxx8QenHnYjXGz5recOMTVy/2ZM9z4sc/z3QO', NULL, 'vaanilton@gmail.com', 10, 1543428265, 1553600940),
 (28, 'anilton', '9GlfcJGSNBOeeGv55KngvUSaCusV8kd9', '$2y$13$POkCl6jMUkbBqBS4p5GK3uOG4mDHwFjdQeOSQxA.bzr93HNo4VXpW', 'TV33nIg_ngPyOaBYj_1e5zzAwTIlhKG3_1544319158', 'anilton@gmail.com', 10, 1543432694, 1544319158),
-(29, 'edson', 'euqKXFVFfHhW8gCGzbxZhwPaWyZDK4XF', '$2y$13$wDB59F2XQkEyi5m7XjJFpuYSXTGER9IOdArXtYov3S3h62MLqFAC6', NULL, 'edson@gmail.com', 10, 1543435296, 1543435296),
-(30, 'gestor', '6JN0Fgu0vlrq2bNtX6VsnBeF9pYp2ZLr', '$2y$13$eu7V3HX9sqLggnX9x7d.YOgoIEEM1lYfZAV7v83vvkYlsRnZjdati', NULL, 'flavio@gmail.com', 10, 1543875876, 1543875876),
-(31, 'operador', '7BS43tz7MZQBOm-W6Xe1yQdQXcgWMrLt', '$2y$13$Oaf0cqeSyZILXBuMrKVKV.YA1yBMAXwsMWZWcapr6KzWtSjymBKYG', NULL, 'antonio@gmail.com', 10, 1543876004, 1543876004),
+(30, 'gestor', '6JN0Fgu0vlrq2bNtX6VsnBeF9pYp2ZLr', '$2y$13$eu7V3HX9sqLggnX9x7d.YOgoIEEM1lYfZAV7v83vvkYlsRnZjdati', NULL, 'flavio@gmail.com', 10, 1543875876, 1553727441),
+(31, 'operador', '7BS43tz7MZQBOm-W6Xe1yQdQXcgWMrLt', '$2y$13$Oaf0cqeSyZILXBuMrKVKV.YA1yBMAXwsMWZWcapr6KzWtSjymBKYG', NULL, 'antonio@gmail.com', 0, 1543876004, 1543876004),
 (32, 'cleisa', 'BI7zN37CLOubbw51j0VZY5PKXPT4lHoO', '$2y$13$pZha5GP8uo/CGOM3cVLxgOueTcjwiEz0/EgCVLUP6.fIFDvEE1itm', NULL, 'cleisa@gmail.com', 10, 1543876286, 1543876286),
-(33, 'nito', '2oPOKDwCnaOxG5cfzYSYylLYvyxdDsbQ', '$2y$13$FTXCVLi7YURVTD2ypGLOoORsfQj/NDNl7aMfxVN9cTAQD.cEM0Jyi', NULL, 'nito@gmail.com', 10, 1543971535, 1543971535),
-(34, 'ja', 'QjvSzuwr0iOqzFTy0VZAVtL912E82pQH', '$2y$13$cJKkEYB0pQFlUGoXq/CWbOraojqEBNI6UKzan.rycXemOF8hkHwNq', NULL, 'ja@gmail.com', 10, 1544040416, 1544040416),
-(51, 'nnelaaassssd', 'vKJfzVhsT7galYHPN8MJsyNEFqJTFWMF', '$2y$13$4kUHreQmfL82hhS.Oexu5OdHZwvBKkq6V8RtPLvrcr1R5vlZ9SCsa', NULL, 'nnelaaassssd@gmail.com', 10, 1544760897, 1544760897),
-(56, 'fernando', 'GRLBZRs1Ou1bCVYAbniieVRT1lPewJ6z', '$2y$13$8pLQuHUFbcUniAApKZRlaOfurPVpIywMIrLETRe7h9VNbnEnhgybC', NULL, 'fernando@gmail.com', 10, 1545422444, 1545422444),
+(56, 'fernando', 'GRLBZRs1Ou1bCVYAbniieVRT1lPewJ6z', '$2y$13$gq.ZQYOrhlt1p3FyI7CUw.euW0lRu2LugNd2eMzCtiQuP2YZRSzA.', NULL, 'fernando@gmail.com', 10, 1545422444, 1545422444),
 (57, 'simon', 'w4a57QFoEjvRZ0ZZVYsg63GScO63fPxh', '$2y$13$2s8GXR7kE0i1/jF5bun8uuUNJUhuCcVg6pNtZHkYbSSQlMFIMNbXC', NULL, 'simon@gmail.com', 10, 1545423351, 1545423351),
 (58, 'calu', '6CNGwLVnazN8SLpF-yFS5Zc4DX01TQ7K', '$2y$13$Irn9y1sZb9vxez5NZYmtju.fH1SFTke0ivyGNEuEj.sW91z4raWuC', NULL, 'calu@gmail.com', 10, 1545708005, 1545708005),
-(59, 'fiel', 'o596soKvSUus_JTWEIlesWG4suVCF_oc', '$2y$13$z/Ah1zRxoqaN0k1xmnyVJe8weDigKUkj4Z8A0KqPsn9D.UfN7Z6HC', NULL, 'fiel@gmail.com', 10, 1545954095, 1545954095),
-(60, 'gaby', '4wyED_65_kmqvOC8bJwlkw0gX52La0l6', '$2y$13$NKlHJxhVgzvxTRN/6PyMHu2181p7B/NW87InGkO8S9yKgJOiVUW4m', NULL, 'gaby@gmail.com', 10, 1546646543, 1546646543),
-(61, 'backoffice', 'B9yEMWjw8bAODaph7iIWYQZL2J7VPxda', '$2y$13$aS.p.2fEYrRfyGYAjC65derfq6PD5b1BXwW6k8eYHr3yhH.EyqlAi', NULL, 'vanilde@gmail.com', 10, 1549143607, 1549143607),
-(62, 'tset', 'test', 'test', NULL, 'test', 10, 0, 0),
-(65, 'yasmine', 'iB8CU--vGVMPyVe1ubAidaVvZanULqia', '$2y$13$FnrHSnfs0/1Lapz7glAbW.oqtZBSatea6t7CqqFuPpMXRmNgQIVHu', NULL, 'yasmine@gmail.com', 10, 1551021135, 1551021135),
-(66, 'helida', '123456', '123456', NULL, 'helida@gmail.com', 10, 0, 0),
-(67, 'xoco', 'OWPdnxws0DyAjQ9xussj87498cbeueMZ', '$2y$13$eQPkavbaEIjRFEaTWO5zNu6Fb.JnPX4Xlu27TVzafel3oGmgZ0lgW', NULL, 'xoco@gmail.com', 10, 1552849856, 1552849856);
+(60, 'gaby', '4wyED_65_kmqvOC8bJwlkw0gX52La0l6', '$2y$13$kD0KkU7sLR/cyIcLtILbtOWMJ1XcOnCkPUCsrZzdEU9utByBgbdia', NULL, 'gaby@gmail.com', 10, 1546646543, 1553696767),
+(61, 'operadora', 'QzqmDx21gn8W3pcOnvVLMUC8JpaWcgWg', '$2y$13$jcZLlicrBllG102Np.nNOOhmwDxzlURIRAwG0guJL2xr1ILDI8MKW', NULL, 'yasmine@gmail.com', 10, 1553608984, 1553608984),
+(62, 'agente', 'YZc-JGuxABVXXu3sDceKvZtLsniYCfuO', '$2y$13$PN9T1UYF3My0zOENuhEAc.yqMzv1kMAGWTPvWSL.1JSdAGcYoYuja', NULL, 'agente@gmail.com', 10, 1553884706, 1553884706);
 
 -- --------------------------------------------------------
 
@@ -851,6 +1074,12 @@ INSERT INTO `visao_presedente` (`id`, `descricao`, `status`, `nome`, `sobrenome`
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `Anuncio`
+--
+ALTER TABLE `Anuncio`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `Area_Especialisacao`
@@ -899,6 +1128,15 @@ ALTER TABLE `chat`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `Cliente`
+--
+ALTER TABLE `Cliente`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `id_utilizador` (`id_utilizador`),
+  ADD KEY `id_regiao` (`id_regiao`);
+
+--
 -- Indexes for table `Codigo_Producao`
 --
 ALTER TABLE `Codigo_Producao`
@@ -915,6 +1153,12 @@ ALTER TABLE `Compra`
   ADD KEY `id_utilizador` (`id_utilizador`),
   ADD KEY `id_producao` (`id_producao`),
   ADD KEY `id_gado` (`id_gado`);
+
+--
+-- Indexes for table `contacto`
+--
+ALTER TABLE `contacto`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `Cultivo`
@@ -949,6 +1193,15 @@ ALTER TABLE `Estado`
   ADD KEY `user_iduser` (`user_iduser`);
 
 --
+-- Indexes for table `Fatura`
+--
+ALTER TABLE `Fatura`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `id_utilizador` (`id_utilizador`),
+  ADD KEY `id_cliente` (`id_cliente`);
+
+--
 -- Indexes for table `Fornecedor`
 --
 ALTER TABLE `Fornecedor`
@@ -975,10 +1228,26 @@ ALTER TABLE `Galeria`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `historial_gado`
+--
+ALTER TABLE `historial_gado`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `id_gado` (`id_gado`);
+
+--
 -- Indexes for table `Informacao_Contacto`
 --
 ALTER TABLE `Informacao_Contacto`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `Inscricao`
+--
+ALTER TABLE `Inscricao`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `id_anuncio` (`id_anuncio`);
 
 --
 -- Indexes for table `Intervensao_Social`
@@ -987,10 +1256,27 @@ ALTER TABLE `Intervensao_Social`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `Item`
+--
+ALTER TABLE `Item`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `id_utilizador` (`id_utilizador`),
+  ADD KEY `id_parceiro` (`id_parceiro`);
+
+--
 -- Indexes for table `migration`
 --
 ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
+
+--
+-- Indexes for table `Parceiro`
+--
+ALTER TABLE `Parceiro`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `id_utilizador` (`id_utilizador`);
 
 --
 -- Indexes for table `Producao`
@@ -1054,6 +1340,12 @@ ALTER TABLE `visao_presedente`
 --
 
 --
+-- AUTO_INCREMENT for table `Anuncio`
+--
+ALTER TABLE `Anuncio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `Area_Especialisacao`
 --
 ALTER TABLE `Area_Especialisacao`
@@ -1072,6 +1364,12 @@ ALTER TABLE `chat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `Cliente`
+--
+ALTER TABLE `Cliente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `Codigo_Producao`
 --
 ALTER TABLE `Codigo_Producao`
@@ -1081,19 +1379,25 @@ ALTER TABLE `Codigo_Producao`
 -- AUTO_INCREMENT for table `Compra`
 --
 ALTER TABLE `Compra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- AUTO_INCREMENT for table `contacto`
+--
+ALTER TABLE `contacto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Cultivo`
 --
 ALTER TABLE `Cultivo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `Emprestimo`
 --
 ALTER TABLE `Emprestimo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `Equipa`
@@ -1106,6 +1410,12 @@ ALTER TABLE `Equipa`
 --
 ALTER TABLE `Estado`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+
+--
+-- AUTO_INCREMENT for table `Fatura`
+--
+ALTER TABLE `Fatura`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Fornecedor`
@@ -1126,10 +1436,22 @@ ALTER TABLE `Galeria`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `historial_gado`
+--
+ALTER TABLE `historial_gado`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `Informacao_Contacto`
 --
 ALTER TABLE `Informacao_Contacto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `Inscricao`
+--
+ALTER TABLE `Inscricao`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `Intervensao_Social`
@@ -1138,10 +1460,22 @@ ALTER TABLE `Intervensao_Social`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `Item`
+--
+ALTER TABLE `Item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `Parceiro`
+--
+ALTER TABLE `Parceiro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `Producao`
 --
 ALTER TABLE `Producao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `Produto`
@@ -1165,7 +1499,7 @@ ALTER TABLE `Stock`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `visao_presedente`
@@ -1197,6 +1531,13 @@ ALTER TABLE `auth_item_child`
   ADD CONSTRAINT `auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `Cliente`
+--
+ALTER TABLE `Cliente`
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`id_utilizador`) REFERENCES `profile` (`user_iduser`),
+  ADD CONSTRAINT `cliente_ibfk_2` FOREIGN KEY (`id_regiao`) REFERENCES `Regiao` (`id`);
+
+--
 -- Constraints for table `Compra`
 --
 ALTER TABLE `Compra`
@@ -1225,6 +1566,13 @@ ALTER TABLE `Estado`
   ADD CONSTRAINT `estado_ibfk_1` FOREIGN KEY (`user_iduser`) REFERENCES `user` (`id`);
 
 --
+-- Constraints for table `Fatura`
+--
+ALTER TABLE `Fatura`
+  ADD CONSTRAINT `fatura_ibfk_1` FOREIGN KEY (`id_utilizador`) REFERENCES `profile` (`user_iduser`),
+  ADD CONSTRAINT `fatura_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `Cliente` (`id`);
+
+--
 -- Constraints for table `Fornecedor`
 --
 ALTER TABLE `Fornecedor`
@@ -1238,6 +1586,31 @@ ALTER TABLE `Gado`
   ADD CONSTRAINT `gado_ibfk_1` FOREIGN KEY (`id_regiao`) REFERENCES `Regiao` (`id`),
   ADD CONSTRAINT `gado_ibfk_2` FOREIGN KEY (`id_fornecedor`) REFERENCES `Fornecedor` (`id`),
   ADD CONSTRAINT `gado_ibfk_3` FOREIGN KEY (`id_regiao`) REFERENCES `Regiao` (`id`);
+
+--
+-- Constraints for table `historial_gado`
+--
+ALTER TABLE `historial_gado`
+  ADD CONSTRAINT `historial_gado_ibfk_1` FOREIGN KEY (`id_gado`) REFERENCES `Gado` (`id`);
+
+--
+-- Constraints for table `Inscricao`
+--
+ALTER TABLE `Inscricao`
+  ADD CONSTRAINT `inscricao_ibfk_1` FOREIGN KEY (`id_anuncio`) REFERENCES `Anuncio` (`id`);
+
+--
+-- Constraints for table `Item`
+--
+ALTER TABLE `Item`
+  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`id_utilizador`) REFERENCES `profile` (`user_iduser`),
+  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`id_parceiro`) REFERENCES `Parceiro` (`id`);
+
+--
+-- Constraints for table `Parceiro`
+--
+ALTER TABLE `Parceiro`
+  ADD CONSTRAINT `parceiro_ibfk_1` FOREIGN KEY (`id_utilizador`) REFERENCES `profile` (`user_iduser`);
 
 --
 -- Constraints for table `Producao`

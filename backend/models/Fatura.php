@@ -49,7 +49,7 @@ class Fatura extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_cliente' => 'Id Cliente',
+            'id_cliente' => 'Cliente',
             'id_utilizador' => 'Id Utilizador',
             'numero_fatura' => 'Numero Fatura',
             'total_venda' => 'Total Venda',

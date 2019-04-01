@@ -88,8 +88,8 @@ use yii\helpers\ArrayHelper;
         <?= $form->field($model, 'nif')->textInput(['placeholder'=>"Numero de NIF"]) ?>
       </div>
     </div>
-    <div class="form-group">
-        <?= Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i> Salvar',['class' => 'btn btn-success']) ?>
+    <div class="pull-right">
+      <?= Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i> Salvar',['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

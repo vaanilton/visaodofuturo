@@ -36,7 +36,7 @@ class Parceiro extends \yii\db\ActiveRecord
         return [
             [['nome', 'endereco', 'nif'], 'required'],
             [['id_utilizador', 'nif', 'status'], 'integer'],
-            [['endereco', 'data_registro', 'nome'], 'string', 'max' => 255],
+            [['endereco', 'data_registro', 'nome', 'photo'], 'string', 'max' => 255],
             [['id_utilizador'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_utilizador' => 'user_iduser']],
         ];
     }
@@ -53,6 +53,7 @@ class Parceiro extends \yii\db\ActiveRecord
             'endereco' => 'Endereço',
             'nif' => 'Numero Nif',
             'data_registro' => 'Data Registro',
+            'photo' => 'Logotipo Parceiro',
             'status' => 'Status',
         ];
     }

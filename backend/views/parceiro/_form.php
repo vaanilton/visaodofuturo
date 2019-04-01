@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\file\FileInput;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Parceiro */
 /* @var $form yii\widgets\ActiveForm */
@@ -32,10 +32,38 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'nif')->textInput(['placeholder'=>"Numero NIF"]) ?>
       </div>
 
+      <div class="form-group col-sm-8   gen-fields-holder">
+        <?= $form->field($model, 'email')->textInput(['placeholder'=>"Email"]) ?>
+      </div>
+
+      <div class="form-group col-sm-4   gen-fields-holder">
+        <?= $form->field($model, 'contacto')->textInput(['placeholder'=>"Numero Telefone"]) ?>
+      </div>
+
+      <div class="form-group col-sm-12 gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+        <?= $form->field($model, 'photo')->widget(FileInput::classname(), [
+          'options' => ['accept' => 'image/*'],
+          'pluginOptions' => [
+              'showUpload' => true,
+              'allowedFileExtensions' => ['jpg','png','jpeg'],
+              'initialPreview'=>[
+                  "$model->photo"
+              ],
+              'initialPreviewAsData'=>true,
+              'initialCaption'=>"$model->photo",
+              'initialPreviewConfig' => [
+                  ['caption' => "$model->photo", 'size' => '873727'],
+              ],
+              'overwriteInitial'=>true,
+              'maxFileSize'=>2800
+            ]
+        ])?>
+      </div>
+
     </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i> Salvar',['class' => 'btn btn-success']) ?>
+    <div class="pull-right">
+      <?= Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i> Salvar',['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

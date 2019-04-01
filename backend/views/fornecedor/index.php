@@ -14,7 +14,7 @@ use kop\y2sp\ScrollPager;
 /* @var $searchModel backend\mdels\FornecedorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Fornecedors';
+$this->title = 'Fornecedores';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="fornecedor-index">
@@ -28,26 +28,28 @@ $this->params['breadcrumbs'][] = $this->title;
     $profile = Profile::find()->where(['user_iduser' => $id])->One();
   ?>
 
-  <div class="col-md-10">
-    <div class="title_right">
-      <div class="col-md-5 col-sm-12 col-xs-12 form-group pull-right top_search">
-        <div class="input-group">
-          <?php $form = ActiveForm::begin(['action' => ['index'],'method' => 'get',]); ?>
-            <div class="col-sm-8">
-              <?= $form->field($searchModel, 'BI')
-                ->label(false)
-                ->textInput(['placeholder' => "Entre com o BI...",'type' => "text", 'class' => "form-control"])
-              ?>
-            </div>
-              <span class="input-group-btn">
-                <?= Html::submitButton('Search', ['class' => 'btn btn-default', 'type'=>"Search"]) ?>
-              </span>
-          <?php ActiveForm::end(); ?>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h5 style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+              font-family: Open Sans; letter-spacing:2px;
+              vertical-align: baseline; line-height: 32px;
+              font-style: negrito ;text-align: justify;"><?php echo date("d/m/Y");?>
 
+    <div class="pull-right">
+
+        <?php $form = ActiveForm::begin(['action' => ['index'],'method' => 'get',]); ?>
+
+            <?= $form->field($searchModel, 'BI')
+              ->label(false)
+              ->textInput(['placeholder' => "Entre com o BI...",'type' => "text", 'class' => "form-control"])
+        ?>
+    </div>
+    <div class="pull-right">
+
+        <?= Html::submitButton('Pesquisar', ['class' => 'btn btn-default', 'type'=>"Search"]) ?>
+
+        <?php ActiveForm::end(); ?>
+
+    </div>
+  </h5>
 
   <div class="x_panel">
     <div class="row">

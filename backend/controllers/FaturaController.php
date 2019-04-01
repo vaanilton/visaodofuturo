@@ -3,12 +3,13 @@
 namespace backend\controllers;
 
 use Yii;
+use backend\models\Item;
 use backend\models\Fatura;
 use backend\models\FaturaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\data\Pagination;
 /**
  * FaturaController implements the CRUD actions for Fatura model.
  */
@@ -65,6 +66,12 @@ class FaturaController extends Controller
     public function actionCreate()
     {
         $model = new Fatura();
+        $item = Item::find()->where(['status'=>10]);
+
+        $pages = new Pagination(['totalCount' => $item->count(), 'pageSize'=>10]);
+        $item = $item->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -72,6 +79,8 @@ class FaturaController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'item' => $item,
+            'pages' => $pages,
         ]);
     }
 

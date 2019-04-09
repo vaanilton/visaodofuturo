@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <img src="../../img//logotipo.jpg" class="img-responsive zoom-img" alt="" width="150px" height="350px"/>
       </a>
     </h1>
-    <h3 class="tittle">
+    <h3 class="tittle" >
       <span>Formulario de Inscrição</span>
     </h3>
     <br>

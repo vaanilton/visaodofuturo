@@ -5,9 +5,9 @@ use yii\helpers\Url;
 
   <div class="col-md-3 left_col sidebar">
     <div class="left_col scroll-view ">
-      
+
       <div class="navbar nav_title" style="border: 0;">
-        <a href="<?= Url::to(['fornecedor/create']); ?>" class="site_title">
+        <a href="<?= Url::to(['site/index']); ?>" class="site_title">
           <img src="images/visao.png" alt="" width=50 height=45>
           <span>Back - Office</span>
         </a>

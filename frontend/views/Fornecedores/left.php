@@ -11,7 +11,8 @@ $fornecedor = Fornecedor::find()->where(['user_iduser' => $id])->One();
     <div class="left_col scroll-view ">
       <div class="navbar nav_title" style="border: 0;">
         <a href="<?= Url::to(['site/inicial']); ?>" class="site_title">
-          <img src="../../img//logo.jpg" class="img-responsive zoom-img" alt="" width="150px" height="350px"/>
+          <img src="<?php echo Yii::getAlias('@web').'/img/visao.png' ?>" alt="" width=50 height=45>
+          <span>Visão Do Futuro </span>
         </a>
       </div>
 
@@ -26,7 +27,7 @@ $fornecedor = Fornecedor::find()->where(['user_iduser' => $id])->One();
           if(file_exists($profile->photo)) {
           ?>
             <a href="<?= Url::to(['user/update','id'=>$profile['user_iduser']]); ?>" class="image-popup" title="">
-                <img style="margin-right: 50px !important; width: 60px;" src="<?= $profile['photo']; ?>" alt="" class="img-circle profile_img">
+                <img style="margin-right: 50px !important; width: 60px;" src="<?php echo Yii::getAlias('@web').'/'.$profile['photo']; ?>?>" alt="" class="img-circle profile_img">
             </a>
           <?php
           } else {

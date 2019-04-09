@@ -43,8 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
     </div>
     <div class="pull-right">
-
-        <?= Html::submitButton('Pesquisar', ['class' => 'btn btn-default', 'type'=>"Search"]) ?>
+        <?= Html::submitButton('<i class="glyphicon glyphicon-search"></i>', ['class' => 'btn btn-default', 'type'=>"Search"]) ?>
 
         <?php ActiveForm::end(); ?>
 

@@ -18,7 +18,7 @@ use yii\helpers\Html;
       <?= $form->field($model, 'username')->textInput(['placeholder'=>"Username"]) ?>
     </div>
 
-    <div class="form-group col-sm-12   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+    <div class="form-group col-sm-12   gen-fields-holder">
       <?= $form->field($model, 'email')->textInput(['placeholder'=>"Email"]) ?>
     </div>
 
@@ -34,8 +34,9 @@ use yii\helpers\Html;
       <?= $form->field($model, 'password_confirm')->passwordInput(['placeholder'=>"Confirmar Password"]) ?>
     </div>
 
-    <?= Html::submitButton('Update', ['class' => 'btn btn-lg btn-primary criar']) ?>
-
+    <div style="text-align: center;">
+      <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-primary']) ?>
+    </div>
   </div>
 
   <?php ActiveForm::end(); ?>

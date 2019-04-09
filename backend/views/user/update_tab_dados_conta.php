@@ -29,15 +29,15 @@ use yii\helpers\Html;
     </div>
 
     <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-      <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Entre com Novo Password"]) ?>
+      <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Entre com Novo Password"])->hint('conter apenas A-Za-z0-9') ?>
     </div>
 
     <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
       <?= $form->field($model, 'password_confirm')->passwordInput(['placeholder'=>"Degite novamente o Password"]) ?>
     </div>
 
-    <div class="form-group col-sm-12 gen-fields-holder">
-        <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-primary']) ?>
+    <div style="text-align: center;">
+      <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-primary']) ?>
     </div>
 
   </div>

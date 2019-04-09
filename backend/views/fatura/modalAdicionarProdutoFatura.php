@@ -63,17 +63,21 @@ use yii\widgets\LinkPager;
                               <?= $value['preco_item']; ?>
                             </td>
 
+                            <?php $form = ActiveForm::begin(); ?>
                             <td class='col-xs-2'>
                               <div class="pull-right">
                     						<input type="text" class="form-control" style="text-align:right" id="precio_venta_<?php echo $value['unidade_caixa']; ?>"  value="<?php echo $value['unidade_caixa'];;?>" >
-                    					</div>
+                                
+                              </div>
                             </td>
 
                             <td>
                               <?= Html::a('<i class="glyphicon glyphicon-plus"></i>',
                                             ['update', 'id' => $value['id']], ['class' => 'btn btn-primary']
                                           ) ?>
+                                <?= Html::submitButton('<i class="glyphicon glyphicon-print"></i> Salvar e Imprimir',['class' => 'btn btn-success']) ?>
                             </td>
+                            <?php ActiveForm::end(); ?>
                           </tr>
 
                         <?php } ?>

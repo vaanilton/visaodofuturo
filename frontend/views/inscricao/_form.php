@@ -14,7 +14,7 @@ use kartik\select2\Select2;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="well" style="overflow: auto">
-      <div class="x_title">
+      <div class="x_title" >
         <h2 style="text-align: center;font-size: 15px;">Informacoes Inscrição</h2>
         <div class="clearfix"></div>
       </div>

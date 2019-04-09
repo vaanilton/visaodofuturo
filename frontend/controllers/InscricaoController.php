@@ -8,7 +8,7 @@ use frontend\models\InscricaoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\uploadedFile;
 /**
  * InscricaoController implements the CRUD actions for Inscricao model.
  */
@@ -83,8 +83,18 @@ class InscricaoController extends Controller
         $model->data_inscrito = date('d/m/y H:i:s');
         if ($model->load(Yii::$app->request->post())) {
 
+            $file_nome = Yii::$app->security->generateRandomString();
+            $file = $model->carta = UploadedFile::getInstance($model, 'carta');
+            $caminho = \Yii::$app->params['inscricao_carta'];
+
+            if($file){
+               $model->carta->saveAs($caminho.$file_nome.'.'.$model->carta->extension );
+               $model->carta = $caminho.$file_nome.'.'.$model->carta->extension ;
+            }
+
             if ($model->save()) {
                   Yii::$app->session->setFlash('success', "Candidadtura Efetuada");
+
               } else {
                   Yii::$app->session->setFlash('error', "Error");
               }

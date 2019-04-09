@@ -41,6 +41,7 @@ class Inscricao extends \yii\db\ActiveRecord
             [['nome', 'morada', 'sexo', 'data_nascimento', 'escolaridade', 'BI', 'NIF', 'telefone', 'email'], 'required'],
             [['BI', 'NIF', 'telefone', 'status', 'id_anuncio'], 'integer'],
             ['email', 'email'],
+            [['carta'], 'file', 'extensions' => 'pdf, doc'],
             [['nome', 'morada', 'sexo', 'data_nascimento', 'escolaridade', 'email'], 'string', 'max' => 100],
             [['id_anuncio'], 'exist', 'skipOnError' => true, 'targetClass' => Anuncio::className(), 'targetAttribute' => ['id_anuncio' => 'id']],
         ];
@@ -64,6 +65,8 @@ class Inscricao extends \yii\db\ActiveRecord
             'email' => 'Email',
             'status' => 'Status',
             'id_anuncio' => 'Id Anuncio',
+            'curiculum' => 'Curriculum Vitae',
+            'carta' => 'Carta de Candidatura',
         ];
     }
 

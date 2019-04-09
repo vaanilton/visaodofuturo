@@ -21,26 +21,36 @@
   ?>
 
   <div class="fornecedor-view">
-    <div class="form-group col-sm-7   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-    </div>
+    <h5 style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+                font-family: Open Sans; letter-spacing:2px;
+                vertical-align: baseline; line-height: 32px;
+                font-style: negrito ;text-align: justify;"><?=Html::encode($this->title).' - '.$model->nome.' '.$model->sobrenome ?>
 
-    <div class="x_panel">
+      <div class="pull-right">
+        <p>
+          <?= Html::a('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+          <?= Html::a('<i class="glyphicon glyphicon-trash"></i> Remover', ['delete', 'id' => $model->id], [
+              'class' => 'btn btn-danger',
+              'data' => [
+                  'confirm' => 'Are you sure you want to delete this item?',
+                  'method' => 'post',
+              ],
+          ]) ?>
+        </p>
+      </div>
+    </h5>
+
+    <div class="col-md-12 panel">
       <br>
-      <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-        <img src="<?php echo Yii::getAlias('@web').'/'.$model['photo'] ?>" class=""  alt="" width="440" height='475'>
+      <div class="col-md-6">
+        <img height="445px" width="450px" src="<?php echo Yii::getAlias('@web').'/'.$model->photo ?>" alt="<?= $model->nome; ?>"/>
       </div>
 
-      <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-
+      <div class="col-md-6" style="background-color: #E9EBEE;padding: 18px;font-size: 16px;
+                  font-family: Open Sans; letter-spacing:2px;
+                  vertical-align: baseline; line-height: 32px;
+                  font-style: negrito ;text-align: justify;">
         <?php if($profile=$model){ ?>
-
-          <h4 style="background-color: #E9EBEE;padding: 18px;font-size: 16px;
-                      font-family: Open Sans; letter-spacing:2px;
-                      vertical-align: baseline; line-height: 32px;
-                      font-style: negrito ;text-align: justify;">
-
-              Nome - <?= $profile->nome.' '.$profile->sobrenome; ?>
-          </h4>
 
           <h4 style="background-color: #E9EBEE;padding: 18px;font-size: 16px;
                       font-family: Open Sans; letter-spacing:2px;
@@ -62,33 +72,15 @@
               <?php }?>
 
           </h4>
-          <div class="col-sm-6">
-
-          </div>
-          <div class="col-sm-8">
-
-            <?php if($profile->status == 0){?>
-              <?= Html::a('<i class="fa fa-edit"></i> Ativar',['ativar', 'id' => $model->id],['class' => 'btn btn-success']) ?>
-            <?php } ?>
-
-            <?= Html::a('<i class="fa fa-edit"></i> Update',['update', 'id' => $model->id],['class' => 'btn btn-primary']) ?>
-            <?= Html::a('<i class="fa fa-trash-o"></i> Delete', ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => 'Are you sure you want to delete this item?',
-                    'method' => 'post',
-                ],
-            ]) ?>
-          </div>
         <?php } ?>
       </div>
     </div>
-    <br><br>
 
-    <div class="col-md-12">
+    <div class="col-md-12 panel">
+      <br>
 
 				<div class="tabs">
-					<ul class="nav nav-tabs" style="background-color: #D0DCE0;padding: 5px;font-size: 16px;
+					<ul class="nav nav-tabs" style="background-color: #D0DCE0;padding: 1px;font-size: 12px;
                       font-family: Open Sans; letter-spacing:2px;
                       vertical-align: baseline; line-height: 32px;
                       font-style: negrito ;text-align: justify;">

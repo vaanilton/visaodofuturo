@@ -18,23 +18,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="utilizador-index">
 
-  <div class="title_right">
-    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Pesquisar Utilizador...">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">Pesquisar</button>
-        </span>
-      </div>
+  <h5 style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+              font-family: Open Sans; letter-spacing:2px;
+              vertical-align: baseline; line-height: 32px;
+              font-style: negrito ;text-align: justify;">
+
+              <?php /*
+                <p>
+                    <?= Html::a('Create User', ['#'], ['class' => 'btn btn-success', 'data-toggle' => 'modal', 'data-target' => '#modal-user']) ?>
+
+                    <?= Html::a('Create User', ['#'], ['class' => 'btn btn-success', 'data-toggle' => 'modal', 'data-target' => '#modal-user']) ?>      
+                </p> */ ?>
+
+                <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Novo Utilizador', ['create'], ['class' => 'btn btn-success']) ?>
+
+    <div class="pull-right">
+        <button class="btn btn-default" type="button">Pesquisar</button>
     </div>
-  </div>
+    <div class="pull-right">
+        <input type="text" class="form-control" placeholder="Pesquisar Utilizador...">
+    </div>
+  </h5>
+<br>
   <?php /*
     <p>
         <?= Html::a('Create User', ['#'], ['class' => 'btn btn-success', 'data-toggle' => 'modal', 'data-target' => '#modal-user']) ?>
     </p> */ ?>
-    <p>
-        <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Novo Utilizador', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+
 
     <div class="row">
       <div class="col-md-12">
@@ -57,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php }else{ ?>
 
                               <a href="<?= Url::to(['user/view','id'=>$users['id']]); ?>" class="image-popup" title="">
-                                <img src='../../img/user/utilizador.jpg' class="thumb-img" title="<?= $users['username']; ?>" alt="<?= $users['username']; ?>" width="215" height='230' >
+                                <img src='<?php echo Yii::getAlias('@web').'/../../img/user/utilizador.jpg'?>' class="thumb-img" title="<?= $users['username']; ?>" alt="<?= $users['username']; ?>" width="215" height='230' >
                               </a>
 
                             <?php } ?>

@@ -9,9 +9,17 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 
 <div class="update-user">
+	<h4 style="background-color: #E9EBEE;padding: 10px;font-size: 16px;
+							font-family: Open Sans; letter-spacing:2px;
+							vertical-align: baseline; line-height: 32px;
+							font-style: negrito ;text-align: justify;">
+							Update Colaborador
+	</h4>
+	<br>
 	<div class="container-fluid">
 
-		<div class="row">
+		<div class="row panel">
+			<br>
 			<div class="col-md-5" >
 				<div class="caixa-perfil">
 					<div class="details-account" >
@@ -22,10 +30,10 @@ $this->params['breadcrumbs'][] = 'Update';
 			                  vertical-align: baseline; line-height: 32px;
 			                  font-style: negrito ;text-align: justify;">
 							<h4 class="text-center">
-								<?= $profile->nome ?>
+								<?= $profile->nome.' '.$profile->sobrenome ?>
 							</h4>
 
-							<div class="ga-border" style="height: 3px;width: 100px; background-color: #228bdf;margin: 10px auto;"></div>
+							<div class="ga-border" style="height: 3px;width: 180px; background-color: #228bdf;margin: 10px auto;"></div>
 
 							<p class="text-muted text-center">
 								<small><?= $profile->tipo; ?></small>

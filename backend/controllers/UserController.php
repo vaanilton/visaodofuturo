@@ -41,7 +41,7 @@ class UserController extends Controller
      * @return mixed
      */
     public function actionIndex(){
-
+      $this->layout = 'ajax_main';
       $model = new SignupForm();
       $modelProfile = new Profile();
 

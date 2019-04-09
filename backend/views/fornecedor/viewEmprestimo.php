@@ -41,7 +41,6 @@
   ?>
   <?= GridView::widget([
       'dataProvider' => $dataProvider,
-      'filterModel' => $searchModel,
       'showPageSummary' => true,
       'columns' => [
           ['class' => 'kartik\grid\SerialColumn'],
@@ -67,12 +66,12 @@
               'attribute'=>'Tipo',
               'pageSummary' => 'Total',
               'value'=>'tipo',
-              'filter' => Html::activeDropDownList(
+              /*'filter' => Html::activeDropDownList(
                 $searchModel, 'tipo',['Equipamento'=>'Equipamento', 'Medicamento'=>'Medicamento'],
                 [
                   'class'=>'form-control','prompt' => 'tipo'
                 ]
-              )
+              )*/
           ],
           'nome',
           //'quantidade',
@@ -109,25 +108,25 @@
           [
               'attribute'=>'Estado',
               'value'=>'estado',
-              'filter' => Html::activeDropDownList(
+              /*'filter' => Html::activeDropDownList(
                 $searchModel, 'estado',['Debito'=>'Debito', 'Pago'=>'Pago'],
                 [
                   'class'=>'form-control','prompt' => 'Estado'
                 ]
-              )
+              )*/
           ],
           [
             'attribute'=> 'Data Registrado',
             'value' => 'data',
             'format' => 'raw',
-            'filter' =>DatePicker::widget([
+            /*'filter' =>DatePicker::widget([
                 'model' => $searchModel,
                 'attribute' => 'data',
                 'pluginOptions' => [
                     'autoclose'=>true,
                     'format' => 'yyyy-m-d'
                 ]
-            ])
+            ])*/
           ],
 
           [
@@ -166,7 +165,6 @@
       'panel' => [
           'heading'=>'<h3 class="panel-title"><i class="fa fa-dollar"></i> Emprestimos</h3>',
           'type'=>'success',
-          'before'=>Html::a('<i class="glyphicon glyphicon-plus"></i> Registrar Emprestimos', ['create'], ['class' => 'btn btn-success']),
           'after'=>Html::a('<i class="fas fa-redo"></i> Reset Grid', ['index'], ['class' => 'btn btn-info']),
           'footer'=>true
       ],

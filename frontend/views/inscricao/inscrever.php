@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
 use yii\helpers\Url;
+use kartik\file\FileInput;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Inscricao */
 /* @var $form yii\widgets\ActiveForm */
@@ -12,15 +13,14 @@ use yii\helpers\Url;
 
 <div class="inscricao-form">
 
-    <h1>
+    <h3 class="tittle" style="background-color: #D0DCE0;padding: 18px;font-size: 20px;
+                font-family: Open Sans; letter-spacing:2px;
+                vertical-align: baseline;text-align: center;">
       <a href="<?= Url::to(['site/index']); ?>">
         <img src="../../img//logotipo.jpg" class="img-responsive zoom-img" alt="" width="150px" height="350px"/>
       </a>
-    </h1>
-    <h3 class="tittle">
       <span>Formulario de Inscrição</span>
     </h3>
-    <br>
 
     <?php if (Yii::$app->session->hasFlash('success')): ?>
       <div class="alert alert-success alert-dismissable">
@@ -102,9 +102,35 @@ use yii\helpers\Url;
       <div class="form-group col-sm-6   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
         <?= $form->field($model, 'email')->textInput(['placeholder'=>"Email"]) ?>
       </div>
+      <div class="form-group col-sm-6 gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+        <?php /*
+        <?= $form->field($model, 'carta')->widget(FileInput::classname(), [
+          'options' => ['accept' => 'pdf'],
+          'pluginOptions' => [
+              'showPreview' => false,
+              'showCaption' => true,
+              'showRemove' => true,
+              'showUpload' => false
+          ]
+        ])->hint('Opcional')?>
+      </div>
+      <div class="form-group col-sm-6 gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+        <?= $form->field($model, 'curiculum')->widget(FileInput::classname(), [
+          'options' => ['accept' => 'pdf'],
+          'pluginOptions' => [
+              'showPreview' => false,
+              'showCaption' => true,
+              'showRemove' => true,
+              'showUpload' => false
+          ]
+        ])->hint('Opcional')?>
+        */ ?>
+      </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="background-color: #D0DCE0;padding: 18px;font-size: 20px;
+                font-family: Open Sans; letter-spacing:2px;
+                vertical-align: baseline;text-align: center;">
         <?= Html::submitButton('<i class="glyphicon glyphicon-floppy-disk"></i> Emviar Inscrição',['class' => 'btn btn-success']) ?>
     </div>
 

@@ -11,7 +11,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-  <div class="fornecedor-form" style="padding: 5px;font-size: 14px;
+  <div class="fornecedor-form" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
               font-family: Open Sans; letter-spacing:2px;
               vertical-align: baseline; line-height: 32px;
               font-style: negrito ;text-align: justify;">
@@ -38,7 +38,7 @@ use dosamigos\datepicker\DatePicker;
           </div>
         </div>
         <div class="form-group col-sm-12 gen-fields-holder">
-            <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-lg btn-primary']) ?>
+            <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-primary']) ?>
         </div>
 
       <?php ActiveForm::end(); ?>

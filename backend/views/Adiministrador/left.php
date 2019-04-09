@@ -7,7 +7,7 @@ use yii\helpers\Url;
     <div class="left_col scroll-view">
       <div class="navbar nav_title" style="border: 0;">
         <a href="<?= Url::to(['site/index']); ?>" class="site_title">
-          <img src="images/visao.png" alt="" width=50 height=45>
+          <img src="<?php echo Yii::getAlias('@web').'/images/visao.png' ?>" alt="" width=50 height=45>
           <span>Visão Do Futuro </span>
         </a>
       </div>
@@ -18,20 +18,21 @@ use yii\helpers\Url;
       <div class="profile clearfix">
         <div class="profile_pic">
 
-          <?php
-          $page = Yii::$app->controller->id;
-          if(file_exists($profile->photo)) {
-          ?>
-            <a href="<?= Url::to(['user/update','id'=>$profile['user_iduser']]); ?>" class="image-popup" title="">
-                <img style="margin-right: 50px !important; width: 60px;" src="<?= $profile['photo']; ?>" alt="" class="img-circle profile_img">
-            </a>
-          <?php
-          } else {
-          ?>
-              <img style="margin-right: 50px !important; width: 60px;" src="../../img/user/utilizador.jpg" class="img-circle profile_img" alt=""/>
-          <?php
-          }
-          ?>
+          <?php $page = Yii::$app->controller->id;
+
+            if(file_exists($profile->photo)) {?>
+
+              <a href="<?= Url::to(['user/update','id'=>$profile['user_iduser']]); ?>" class="image-popup" title="">
+                <img style="margin-right: 50px !important; width: 60px;" src="<?php echo Yii::getAlias('@web').'/'.$profile['photo']; ?>" alt="" class="img-circle profile_img">
+              </a>
+
+            <?php } else { ?>
+
+              <a href="<?= Url::to(['user/update','id'=>$profile['user_iduser']]); ?>" class="image-popup" title="">
+                <img style="margin-right: 50px !important; width: 60px;" src="<?php echo Yii::getAlias('@web').'/../../img/user/utilizador.jpg'?>" class="img-circle profile_img" alt=""/>
+              </a>
+
+            <?php } ?>
 
         </div>
 

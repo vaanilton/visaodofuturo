@@ -35,8 +35,9 @@ use kartik\date\DatePicker;
         ]
       ])?>
 
-          <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-primary']) ?>
-
+      <div style="text-align: center;">
+        <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-primary']) ?>
+      </div>
     </div>
 
   <?php ActiveForm::end(); ?>

@@ -8,41 +8,29 @@ use yii\helpers\Url;
 */
 ?>
 
-  <div class="top_nav navbar-fixed-top">
+  <div class="top_nav navbar-fixed-top" >
     <div class="nav_menu">
 
         <div class="nav toggle">
           <a id="menu_toggle"><i class="fa fa-bars"></i></a>
         </div>
 
-
-          <?php
-          if (!Yii::$app->user->isGuest) {
-          ?>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <?= Html::a('<em class="fa fa-power-off"></em>&nbsp;', ['site/logout'], ['data' => ['method' => 'post']]) ?>
-            </li>
-          <?php
-          }
-          ?>
+        <?php
+        if (!Yii::$app->user->isGuest) {
+        ?>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <?= Html::a('<em class="fa fa-power-off"></em>&nbsp;', ['site/logout'], ['data' => ['method' => 'post']]) ?>
+          </li>
+        <?php
+        }
+        ?>
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                <em class="fa fa-user"></em>
+            <a href="<?= Url::to(['user/update','id'=>Yii::$app->user->identity->id]); ?>">
+                <div><em class="fa fa-user"></em></div>
             </a>
-            <ul class="dropdown-menu dropdown-alerts">
-              <li>
-                  <a href="<?= Url::to(['user/update','id'=>Yii::$app->user->identity->id]); ?>">
-                      <div><em class="fa fa-eye"></em>&nbsp;Perfill</div>
-                  </a>
-              </li>
-              <li class="divider"></li>
-              <li>
-                  <?= Html::a('<em class="fa fa-power-off"></em>&nbsp;Logout', ['site/logout'], ['data' => ['method' => 'post']]) ?>
-              </li>
-            </ul>
           </li>
 
           <li role="presentation" class="dropdown">

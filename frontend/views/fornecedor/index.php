@@ -8,6 +8,16 @@ $fornecedor = Fornecedor::find()->where(['user_iduser' => $id])->One();
 ?>
 
   <div class="fornecedor-index">
+
+    <h5 style="background-color: #D9EDF6;padding: 8px;font-size: 14px;
+                font-family: Open Sans; letter-spacing:2px;
+                vertical-align: baseline; line-height: 32px;
+                font-style: negrito ;text-align: justify;">PAGINA PRINCIPAL COLABORADOR
+        <div class="pull-right">
+          <?php echo date("d/m/Y");?>
+        </div>
+    </h5>
+
     <div class="panel panel-default">
         <ul class="nav nav-tabs" style="background-color: #D0DCE0;padding: 5px;font-size: 14px;
                     font-family: Open Sans; letter-spacing:2px;

@@ -12,11 +12,14 @@ use kartik\select2\Select2;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-  <div class="fornecedor-form">
+  <div class="fornecedor-form" style="background-color: #D0DCE0;padding: 8px;font-size: 14px;
+              font-family: Open Sans; letter-spacing:2px;
+              vertical-align: baseline;
+              font-style: negrito ;text-align: justify;">
       <?php $form = ActiveForm::begin(); ?>
         <div class="row" style="padding: 5px;font-size: 14px;
                     font-family: Open Sans; letter-spacing:2px;
-                    vertical-align: baseline; line-height: 32px;
+                    vertical-align: baseline;
                     font-style: negrito ;text-align: justify;">
 
           <div class="well" style="overflow: auto">
@@ -116,30 +119,31 @@ use kartik\select2\Select2;
             </div>
           </div>
 
-          <div class="form-group col-sm-12   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
-            <?= $form->field($model, 'photo')->widget(FileInput::classname(), [
-                'options' => ['accept' => 'image/*'],
-                'pluginOptions' => [
-                    'showUpload' => true,
-                    'allowedFileExtensions' => ['jpg','png','jpeg'],
-                    'initialPreview'=>[
-                        "$model->photo"
-                    ],
-                    'initialPreviewAsData'=>true,
-                    'initialCaption'=>"$model->photo",
-                    'initialPreviewConfig' => [
-                        ['caption' => "$model->photo", 'size' => '873727'],
-                    ],
-                    'overwriteInitial'=>true,
-                    'maxFileSize'=>2800
-                  ]])
-            ?>
+          <div class="well" style="overflow: auto">
+            <div class="form-group col-sm-12   gen-fields-holder" item-name="numero_documento" item-type="text" required="required">
+              <?= $form->field($model, 'photo')->widget(FileInput::classname(), [
+                  'options' => ['accept' => 'image/*'],
+                  'pluginOptions' => [
+                      'showUpload' => true,
+                      'allowedFileExtensions' => ['jpg','png','jpeg'],
+                      'initialPreview'=>[
+                          "$model->photo"
+                      ],
+                      'initialPreviewAsData'=>true,
+                      'initialCaption'=>"$model->photo",
+                      'initialPreviewConfig' => [
+                          ['caption' => "$model->photo", 'size' => '873727'],
+                      ],
+                      'overwriteInitial'=>true,
+                      'maxFileSize'=>2800
+                    ]])
+              ?>
+            </div>
           </div>
-
         </div>
 
         <div class="form-group col-sm-12 gen-fields-holder">
-            <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-lg btn-primary']) ?>
+            <?= Html::submitButton('<i class="glyphicon glyphicon-refresh"></i> Atualizar Dados',['class' => 'btn btn-primary']) ?>
         </div>
 
       <?php ActiveForm::end(); ?>

@@ -56,27 +56,51 @@ use frontend\models\Anuncio;
             </h4>
 
             <div class="clearfix"></div>
-
+            <br>
+            <br>
             <h3 class="tittle">
               <span>Anúncio</span>
             </h3>
 
-            <h4 style="background-color: #E9EBEE;padding: 18px;font-size: 16px;
-                      font-family: Open Sans; letter-spacing:2px; vertical-align: baseline;
-                      line-height: 32px; font-style: negrito">
-
                 <?php $pegar = Anuncio::find()->where(['status'=>10])->all()?>
                 <?php if($pegar){ ?>
-                  <?php foreach ($pegar as $key => $value) { ?>
-                    <?php echo ($key+1).' - '.shortdata($value['descricao'], 40).''.Html::a(
-                      '<span class="btn btn-sm btn-success">
-                        <b class="glyphicon glyphicon-plus"></b>
-                      </span>',
-                      ['anuncio/view', 'id' => $value['id']]).'<br>';
-                  }
-                }?>
 
-            </h4>
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </thead>
+
+                  <?php foreach ($pegar as $key => $value) { ?>
+                    <tbody>
+                      <td>
+                        <span class="btn btn-sm btn-success">
+                          <?php echo ($key+1); ?>
+                        </span>
+                      </td>
+
+                      <td>
+                        <?php echo shortdata($value['descricao'], 110); ?>
+                      </td>
+
+                      <td>
+                        <?php echo Html::a(
+                          '<span class="btn btn-sm btn-primary">
+                            <b class="glyphicon glyphicon-plus"></b>
+                          </span>',
+                          ['anuncio/view', 'id' => $value['id']]).'<br>';
+
+                        ?>
+                      </td>
+                    </tbody>
+
+                    <?php } ?>
+
+                </table>
+
+                  <?php } ?>
+
 
           <?php }else { ?>
 

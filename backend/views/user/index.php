@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>
                     <?= Html::a('Create User', ['#'], ['class' => 'btn btn-success', 'data-toggle' => 'modal', 'data-target' => '#modal-user']) ?>
 
-                    <?= Html::a('Create User', ['#'], ['class' => 'btn btn-success', 'data-toggle' => 'modal', 'data-target' => '#modal-user']) ?>      
+                    <?= Html::a('Create User', ['#'], ['class' => 'btn btn-success', 'data-toggle' => 'modal', 'data-target' => '#modal-user']) ?>
                 </p> */ ?>
 
                 <?= Html::a('<i class="glyphicon glyphicon-plus"></i> Novo Utilizador', ['create'], ['class' => 'btn btn-success']) ?>
@@ -45,23 +45,22 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create User', ['#'], ['class' => 'btn btn-success', 'data-toggle' => 'modal', 'data-target' => '#modal-user']) ?>
     </p> */ ?>
 
-
     <div class="row">
       <div class="col-md-12">
         <div class="x_panel">
           <div class="x_content">
+
             <div class="row">
-              <?php
-                  if ($modelsUsers) {
-                      foreach ($modelsUsers as $key => $users) {
-                          ?>
-                          <div class="col-md-3 col-sm-8 col-xs-12 well profile_view ">
-                            <div class="view-first">
+
+              <?php if ($modelsUsers) {
+                      foreach ($modelsUsers as $key => $users) { ?>
+                          <div class="col-md-4 col-sm-8 col-xs-8 well profile_view ">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 
                               <?php   if(file_exists($users['photo'])) { ?>
 
                               <a href="<?= Url::to(['user/view','id'=>$users['id']]); ?>" class="image-popup" title="">
-                                <img src="<?php echo Yii::getAlias('@web').'/'.$users['photo'] ?>" class="thumb-img" title="<?= $users['username']; ?>" alt="<?= $users['username']; ?>" width="215" height='230' >
+                                <img src="<?php echo Yii::getAlias('@web').'/'.$users['photo'] ?>" class="img-circle" width="125" height='140' >
                               </a>
 
                             <?php }else{ ?>
@@ -73,20 +72,23 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php } ?>
 
                             </div>
-
+                            <h4 class="text-center"><?= $users['nome'].' '.$users['sobrenome']; ?></h4>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
                             <div class="gal-detail thumb">
                               <h4 class="text-center"><?= $users['username']; ?></h4>
                               <div class="ga-border" style="height: 3px;width: 60px; background-color: #228bdf;margin: 10px auto;"></div>
                               <p class="text-muted text-center"><small><?= $users['tipo']; ?></small></p>
                               <ul class="list-unstyled">
+                                <p style="text-align:center;font-size: smaller;overflow-wrap: break-word;" id="user-email"><?= $users['email']; ?></p>
                                 <li><i class="fa fa-building"></i> Localidade: <?= $users['endereco']; ?></li>
                                 <li><i class="fa fa-phone"></i> Telefone #: <?= $users['telefone']; ?></li>
                               </ul>
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
                               <div class="btn-group">
                                 <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 </a>
                                   <div class="col-xs-12 bottom text-center">
-                                    <div class="col-xs-10 col-sm-6 emphasis">
+                                    <div class="col-xs-10 col-sm-6 emphasis ">
 
                                       <?php if(Yii::$app->user->identity->id == $users['id']){?>
                                         <a href="<?= Url::to(['user/update','id'=>$users['id']]); ?>">
@@ -110,7 +112,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                   </div>
                               </div>
                             </div>
-
                           </div>
                           <?php
                       }

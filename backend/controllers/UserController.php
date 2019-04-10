@@ -48,7 +48,7 @@ class UserController extends Controller
       $searchModel = new UserSearch();
       $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
       $modelsUsers=(new \yii\db\Query())
-      ->select(['p.nome','username', 'telefone', 'endereco','photo','u.id', 'p.tipo'])
+      ->select(['p.nome','p.sobrenome','username', 'telefone', 'endereco','photo','u.id', 'p.tipo', 'u.email'])
       ->from('user u')
       ->join('join','profile p','p.user_iduser = u.id')
       ->where(['status' => 10]);
